@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/destyle.css">
+    <link rel="stylesheet" href="../css/side.css">
+    <link rel="stylesheet" href="../css/grid.css">
+    <link rel="stylesheet" href="../css/entry.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <title>車両管理</title>
+</head>
+<body>
+  <div class="top">
+    <header class="header">
+      <h1>HAL中古車販売</h1>
+    </header>
+    <aside class="menu">
+        <ul id="accordion" class="accordion">
+            <li>
+              <div class="link"><i class="fa fa-database"></i>車両管理<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+                <li><a href="top.html">車両一覧</a></li>
+                <li><a href="#">車両情報登録</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="link"><i class="fa fa-code"></i>会員管理<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+                <li><a href="user.html">会員情報一覧</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="link"><i class="fa fa-mobile"></i>出品管理<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+                <li><a href="schedule.html">スケジュール登録</a></li>
+                <li><a href="#">出品一覧</a></li>
+                <li><a href="#">出品情報登録</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="link"><i class="fa fa-globe"></i>オークション管理<i class="fa fa-chevron-down"></i></div>
+              <ul class="submenu">
+                <li><a href="auction.html">オークション一覧</a></li>
+                <li><a href="#">オークション検索</a></li>
+                <li><a href="#">オークション詳細</a></li>
+              </ul>
+            </li>
+          </ul>
+    </aside>
+        <main class="main">
+            <h1>車両情報登録</h1>
+              <form class="form" action="#" method="post">
+                  <!-- 車種名 -->
+                  <div class="item">
+                    <label class="label_left" for="name">車種名</label>
+                    <input id="name" type="text" placeholder="車種名を入力" required><br>
+                  </div>
+                
+                  <!-- メーカー名 -->
+                  <div class="item">
+                    <label class="label_left" for="meka">メーカー名</label>
+                    <input id="meka" type="text" placeholder="メーカー名を入力" required><br>
+                  </div>
+                
+                  <!--  仕入日 -->
+                  <div class="item">
+                    <label  class="label_left" for="date">仕入日</label>
+                    <input id="date" type="text" placeholder="仕入日を入力" required><br>
+                  </div>
+                
+                  <!-- ボディータイプ -->
+                  <div class="item">
+                    <label class="label_left" for="bodyType">ボディータイプ</label>
+                    <input id="bodyType" type="text" placeholder="ボディータイプを入力" required><br>
+                  </div>
+                
+                  <!-- 年式 -->
+                  <div class="item">
+                      <label class="label_left" for="yearType">年式</label>
+                      <input id="yearType" type="text" placeholder="年式を入力" required><br>
+                  </div>
+
+                  <!-- 走行距離 -->
+                  <div class="item">
+                      <label class="label_left" for="loadResult">走行距離</label>
+                      <input id="loadResult" type="text" placeholder="走行距離を入力" required><br>
+                  </div>
+
+                  <!-- 実走行 -->
+                  <div class="item">
+                      <label class="label_left" for="rnu">実走行</label>
+                      <select name="rnu" id="rnu">
+                          <option value="">以下から選択してください</option>
+                          <option value="0">可能</option>
+                          <option value="1">不可能</option>
+                        </select><br>
+                  </div> 
+
+                  <!-- 色 -->
+                  <div class="item">
+                      <label class="label_left" for="color">色</label>
+                      <input id="color" type="text" placeholder="色を入力" required><br>
+                  </div>  
+                  
+                  <!-- 車検有効期限 -->
+                  <div class="item">
+                      <label class="label_left" for="vehicleInspection">車検有効期限</label>
+                      <input id="vehicleInspection" type="text" placeholder="車検有効期限を入力" required><br>
+                  </div>  
+
+                  <!-- オートマ/ミッション -->
+                  <div class="item">
+                      <label class="label_left" for="auto">オートマ/ミッション</label>
+                      <select name="auto" id="auto">
+                          <option value="">以下から選択してください</option>
+                          <option value="0">オートマ車</option>
+                          <option value="1">ミッション車</option>
+                        </select><br>
+                  </div> 
+
+                  <!-- 排気量 -->
+                  <div class="item">
+                      <label class="label_left" for="co">排気量</label>
+                      <input id="co" type="text" placeholder="排気量を入力" required><br>
+                  </div>                 
+  
+                  <!-- 乗車人数 -->
+                  <div class="item">
+                      <label class="label_left" for="co">乗車人数</label>
+                      <select name="auto" id="auto">
+                          <option value="">以下から選択してください</option>
+                          <!-- 乗車人数繰り返し処理　HTMLファイルのため消してます-->
+                          {# <?php for($number = 1; $number <= 12 ;$number ++){ ?>
+                              <option value="<?= $year?>" selected><?= $year?></option>
+                          <?php } ?> #}
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+
+                      </select>人<br>
+                  </div>
+                  <!-- 駆動方式 -->
+                  <div class="item">
+                      <label class="label_left" for="drive">駆動方式</label>
+                      <input id="drive" type="text" placeholder="駆動方式を入力" required><br>
+                  </div> 
+
+                  <!-- 装備品 -->
+                  <div class="item">
+                      <label class="label_left" for="equipment">装備品</label>
+                      <input id="equipment" type="text" placeholder="装備品を入力" required><br>
+                  </div>
+                  
+                  <div class="item">
+                      <label class="label_left" for="img">車種写真<br><img src="img/hasure.png"></label>
+
+                  </div>
+                
+                  <!-- 初期価格 -->
+                  <div class="item">
+                      <label class="label_left" for="price">初期価格</label>
+                      <input id="price" type="text" placeholder="初期価格を入力" required><br>
+                  </div>
+
+                  <!-- 最低落札価格 -->
+                  <div class="item">
+                    <label class="label_left" for="price">最低落札価格</label>
+                    <input id="price" type="text" placeholder="最低落札価格を入力" required><br>
+                  </div>
+              
+                  <!--   名前 -->
+                  <div class="btns">
+                    <input type="submit" value="登録"><br>
+                    <input type="reset" value="リセット">
+                  </div>
+              </form>
+        </main>
+        <footer class="footer">フッター</footer>
+</div>
+      <script src="../js/side.js"></script>
+  </body>
+</html>
