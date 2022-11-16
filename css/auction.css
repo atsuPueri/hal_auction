@@ -1,0 +1,69 @@
+  
+  ul { list-style-type: none; }
+  
+  a {
+    color: #b63b4d;
+    text-decoration: none;
+  }
+  
+/* main */
+
+main h1 {
+  font-size: 24px;
+  margin: 3vw;
+}
+main h3 {
+    font-size: 18px;
+    margin-left: 6em;
+}
+form {
+  position: absolute;
+  top: 8vw;
+  right: 10vw;
+}
+input {
+  border: solid 1px black;
+}
+
+/* データ一覧*/
+
+table{
+  width: 80%;
+  margin: 10vh 5vw 5vh 7vw;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table th,table td{
+  padding: 10px 0;
+  text-align: center;
+}
+
+table tr:nth-child(odd){
+  background-color: #eee
+}
+.gg-search {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 16px;
+  height: 16px;
+  border: 2px solid;
+  border-radius: 100%;
+  margin-left: -4px;
+  margin-top: -4px
+}
+.gg-search::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 3px;
+  width: 2px;
+  height: 8px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  top: 10px;
+  left: 12px
+}

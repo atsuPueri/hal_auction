@@ -1,0 +1,40 @@
+/* グリッドデザイン */
+.top {
+    display: grid;
+    grid-template-areas:
+    "menu header"
+    "menu main"
+    "footer footer" ;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 6vh auto 10vh;
+    }
+    .top .header {
+    grid-area: header;
+    color: black;
+    font-size: 1.5rem;
+    text-align: center;
+    }
+    .top .menu {
+    grid-area: menu;
+    background: rgb(164, 162, 162);
+    }
+    .top img {
+    width: 100%;
+    }
+    .top .digital {
+    color: #8e6f5c;
+    background: #c2b185;
+    border-top: solid 2px;
+    border-bottom: solid 2px;
+    text-align: center;
+    }
+    .top .main {
+    grid-area: main;
+    background:white;
+    }
+    .top .footer {
+      grid-area: footer;
+      background: blue;
+      height: 10vh;
+    }
+  
