@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$main-collor: #d1cdcd;
+$main-collor2: rgb(218, 108, 108);
+$time_container_width: 5%;
+$row_width: calc(100% / 5);
+$row_margin: 5px;
+
+#days {
+
+    background-color: $main-collor2;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+
+    // 右端から始めることで、左端の余白を開ける。
+    justify-content: end;
+
+    .day {
+        // border: solid 1px green;
+        background-color: $main-collor2;
+        // background-color: aquamarine; // 微妙に突き出てるので確認を。 可能性として、.rowのmarginが関係しているかも。
+        text-align: center;
+
+        // 日付の要素を下の.rowと合わせる
+        width: calc(#{$row_width} - (#{$time_container_width} / 5)
+                /** - ($row_margin * 2) */
+            ); // 要素数を５子にしているので、全て入るように
+        // margin: 0 $row_margin;
+    }
+}
+
+#container {
+    background-color: $main-collor2;
+    width: 80%;
+    height: 200vh;
+    margin: 0 auto;
+    display: flex;
+
+    #time_container {
+        width: $time_container_width;
+    }
+
+    .time {}
+
+    #drag_zone {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    .row {
+        margin: 0 $row_margin; // 横に5pxマージン
+        background-color: $main-collor;
+        height: 100%; // 高さを親要素と同じ高さに
+        width: $row_width; // 要素数を５子にしているので、全て入るように
+
+        position: relative;
+
+        .draggable {
+            background-color: green;
+            display: block;
+            position: absolute; // 親要素からどれだけ下に下げるか指定するため
+
+            width: 90%; // 少し余白を持たせる
+            border-radius: 5px; // 少し角を丸く
+
+            cursor: move;
+            // top: 100px; // 位置決め用
+
+            .size {
+                position: absolute;
+                bottom: 0px;
+                border: solid 1px blue;
+                width: 100%;
+                height: 5px;
+                
+                cursor: ns-resize;
+            }
+        }
+    }
+}
