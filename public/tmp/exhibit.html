@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/destyle.css">
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="../css/grid.css">
-    <link rel="stylesheet" href="../css/entry.css">
+    <link rel="stylesheet" href="../css/exhibit.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
     <title>車両管理</title>
 </head>
@@ -52,6 +52,15 @@
         <main class="main">
             <h1>出品情報登録</h1>
               <form class="form" action="#" method="post">
+
+                <div class="center">
+                <select name="sources" id="sources" class="custom-select sources" placeholder="車両選択">
+                    <option value="1">プリウス</option>
+                    <option value="2">アルファード</option>
+                    <option value="3">セレナ</option>
+                </select>
+                </div>
+
                   <!-- 最低落札価格 -->
                   <div class="item">
                     <label class="label_left" for="price">最低落札価格</label>
