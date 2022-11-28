@@ -48,7 +48,7 @@ h1 {
   position: relative;
 }
 #container .row .draggable {
-  background-color: green;
+  background-color: skyblue;
   display: block;
   position: absolute;
   width: 90%;
@@ -63,3 +63,6 @@ h1 {
   height: 5px;
   cursor: ns-resize;
 }/*# sourceMappingURL=style.css.map */
+.time {
+  margin: 4.5vh 0 2vh 0;
+}
