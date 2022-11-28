@@ -2,7 +2,7 @@ module.exports = function(app) {
     
     // ビューエンジンをEJSに設定
     app.set('view engine', 'ejs');
-    app.use(express.static(__dirname + '/views', {
+    app.use(express.static(__dirname + '/../../public/', {
         index: false
     }));
 

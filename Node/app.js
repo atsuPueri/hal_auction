@@ -14,3 +14,8 @@ require('./settings/web.js')(app);
 
 // httpサーバー起動
 http_socket.listen(9000);
+
+// クライアントからサーバーにコネクションしたとき
+io_socket.on('connection', (stream) => {
+    
+});
