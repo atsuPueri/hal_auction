@@ -52,7 +52,7 @@
 }
 
 #container .row .draggable {
-  background-color: green;
+  background-color: skyblue;
   display: block;
   position: absolute;
   width: 90%;
