@@ -28,6 +28,7 @@ header ul li:first-child {
     margin: 10% 0;
     display: flex;
     justify-content: space-around;
+    /* clip-path: polygon(50% 0,100% 0%,100% 100%,30% 100%); */
     background-color: goldenrod;
 }
 #held {
