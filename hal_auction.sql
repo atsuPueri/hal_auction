@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-11-28 06:06:45
+-- 生成日時: 2022-11-30 07:34:22
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.6
 
@@ -34,6 +34,14 @@ CREATE TABLE `bid` (
   `bid_price` int(11) NOT NULL,
   `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `bid`
+--
+
+INSERT INTO `bid` (`bid_id`, `user_id`, `car_id`, `bid_price`, `time`) VALUES
+(1, 1, 5, 10000, '2022-11-30 13:52:30'),
+(4, 1, 5, 15000, '2022-11-30 13:52:30');
 
 -- --------------------------------------------------------
 
@@ -124,7 +132,11 @@ CREATE TABLE `favorite_car_type` (
   `car_type_id` int(11) DEFAULT NULL,
   `maker_id` int(11) DEFAULT NULL,
   `keyword` text DEFAULT NULL,
-  `equipment` int(11) DEFAULT NULL
+  `equipment` int(11) DEFAULT NULL,
+  `mileage` int(11) DEFAULT NULL,
+  `clor` int(11) DEFAULT NULL,
+  `automatic_or_mission` int(11) DEFAULT NULL,
+  `number_of_passengers` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -234,7 +246,7 @@ ALTER TABLE `user`
 -- テーブルのAUTO_INCREMENT `bid`
 --
 ALTER TABLE `bid`
-  MODIFY `bid_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- テーブルのAUTO_INCREMENT `car`
