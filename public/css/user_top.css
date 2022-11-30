@@ -1,0 +1,35 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    border: solid 1px red;
+}
+/** header **/
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px black;
+}
+header h1 {
+    font-size: ;
+}
+header ul {
+    display: flex;
+}
+header ul li {
+    border-left: solid 1px black;
+}
+header ul li:first-child {
+    border-left: none;
+}
+
+/** main **/
+#bana {
+    margin: 10% 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: goldenrod;
+}
+#held {
+    margin: auto 0;
+}
