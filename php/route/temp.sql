@@ -10,3 +10,6 @@ VALUES
 ('val1','val2',2)
 
 
+INSERT INTO bid(user_id,car_id,bid_price,time)
+VALUES(1,5,10000,'2022-11-30 13:52:30')
+
