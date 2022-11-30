@@ -29,14 +29,23 @@ header ul li:first-child {
     margin: 10% 0;
     display: flex;
     justify-content: space-around;
-    /* clip-path: polygon(50% 0,100% 0%,100% 100%,30% 100%); */
-    background-color: goldenrod;
 }
 #bana img {
+    width: 40%;
+    position: relative;
+    left: 700px;
+}
+#bana h2{
+    font-size: 24px;
+}
+#bak {
     width: 100%;
+    clip-path: polygon(45% 0,100% 0%,100% 100%,30% 100%);
+    background-color: goldenrod;
 }
 #held {
-    margin: auto 0;
+    position: absolute;
+    left: 100px;
 }
 /** オークション予定 **/
 .vehicle {
