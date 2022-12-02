@@ -28,24 +28,19 @@ header ul li:first-child {
 #bana {
     margin: 10% 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 #bana img {
-    width: 40%;
-    position: relative;
-    left: 700px;
+    width: 50%;
 }
 #bana h2{
     font-size: 24px;
 }
 #bak {
-    width: 100%;
-    clip-path: polygon(45% 0,100% 0%,100% 100%,30% 100%);
+    text-align: right;
+    width: 60%;
+    clip-path: polygon(25% 0,100% 0%,100% 100%,0% 100%);
     background-color: goldenrod;
-}
-#held {
-    position: absolute;
-    left: 100px;
 }
 /** オークション予定 **/
 .vehicle {
@@ -55,3 +50,6 @@ header ul li:first-child {
 .vehicle img {
     width: 100%;
 }
+/* #held {
+    text-align: center;
+} */
