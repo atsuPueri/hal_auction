@@ -43,7 +43,7 @@ header ul li:first-child {
     text-align: right;
     width: 60%;
     clip-path: polygon(25% 0,100% 0%,100% 100%,0% 100%);
-    background-color: goldenrod;
+    background-color: rgb(235, 185, 58);
 }
 #held {
     margin: 0 auto;
@@ -55,7 +55,7 @@ header ul li:first-child {
     border: 1px solid black;
     border-radius: 120px;
     margin: 3vh 0 0 3vw;
-    padding: 1.5vw;
+    padding: 2vh 3vw 2vh 3vw;
 }
 /** オークション予定 **/
 .vehicle {
