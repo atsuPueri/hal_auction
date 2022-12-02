@@ -1,5 +1,4 @@
 <?php
-//階層はrouteと同階層に移動させる
 
 //SELECT
 function db_get($param){    
@@ -34,10 +33,62 @@ function db_change($param){
         //データは空、ステータスはfalse
         return [ 'data' => [], 'status' => false ];
     }
+    mysqli_close($link);
     //データが入り、ステータスはtrue
     $list['status'] = true;
-    mysqli_close($link);
     return $list;
+}
+
+//ANDで繋いでSQL文を生成 SELECT DELETE
+function add_and($sql, $column, $operator, $val, $where = "WHERE") {
+    //値が入っていなかった場合空で返す
+    if (($val ?? '') === '') {
+        return $sql;
+    }
+    static $flg = true;
+    $sql .= "\n";
+    // 一回目のみtrue
+    if ($flg) {
+        $sql .= $where;
+        $flg = false;
+    } else {
+        $sql .= "AND";
+    }
+    
+    $sql .= " {$column} {$operator} {$val} ";
+    return $sql;
+}
+
+//INSERT文を生成
+function into_make(array $associative_array, bool $mode = true): string {
+    // insert文作成
+    $keys = [];
+    $values = [];
+    foreach ($associative_array as $key => $value) { // 添え字と中身をそれぞれ配列に格納
+        $keys[] = $key;
+
+        // 文字列が渡されたときはシングルで囲いそれ以外の時は囲わない
+        if ($mode) {
+            if (is_string($value)) {
+                $values[] = "'" . $value . "'";
+            } else if (is_int($value)) {
+                $values[] = (string)$value;
+            } else if (is_bool($value)) {
+                $values[] = $value ? "true" : "false";
+            } else if (is_null($value)) {
+                $values[] = "null";
+            }
+        } else {
+            $values[] = $value;
+        }
+    }
+
+
+    $column = implode(", ", $keys); // A,B,C 　この形で格納
+    $data = implode(", ", $values); // 'A','B','C','D' 
+    $sql = "({$column}) VALUES ({$data}) ";
+
+    return $sql;
 }
 
 //JSONエンコード
@@ -47,24 +98,8 @@ function enc($data) {
     );
 }
 
-//メーカー一覧を取得
-function get_maker_list(){
-    $sql = "SELECT * FROM maker";
-    return db_get($sql);
-}
-//車種一覧を取得
-function get_car_type_list(){
-    $sql = "SELECT * FROM car_type";
-    return db_get($sql);
-}
-//車両一覧を取得
-function get_car_list(){
-    $sql = "SELECT * FROM car";
-    return db_get($sql);
-}
-//出品一覧を取得
-function get_exhibit_list(){
-    $sql = "SELECT * FROM exhibit";
-    return db_get($sql);
-}
+
+
+
+
 
