@@ -48,7 +48,7 @@ header ul li:first-child {
     text-align: right;
     width: 60%;
     clip-path: polygon(25% 0,100% 0%,100% 100%,0% 100%);
-    background-color: rgb(235, 185, 58);
+    background-color: #F7BE62;
 }
 /*追加変更(2022/12/02) 渡邉 */
 #held {
