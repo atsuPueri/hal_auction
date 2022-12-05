@@ -25,30 +25,38 @@ header ul li:first-child {
 
 /** main **/
 /** オークション開催中 **/
+
+/*追加変更(2022/12/02) 渡邉 */
 #bana {
     margin: 10% 0;
     display: flex;
     justify-content: space-between;
 }
+/*追加変更(2022/12/02) 渡邉 */
 #bana img {
     width: 50%;
     margin: 0 10vw 0 0;
 }
+/*追加変更(2022/12/02) 渡邉 */
 #bana h2{
     font-size: 24px;
 }
+/*追加変更(2022/12/02) 渡邉 */
 #bak {
     text-align: right;
     width: 60%;
     clip-path: polygon(25% 0,100% 0%,100% 100%,0% 100%);
-    background-color: rgb(235, 185, 58);
+    background-color: #F7BE62;
 }
+/*追加変更(2022/12/02) 渡邉 */
 #held {
     margin: 0 auto;
 }
+/*追加変更(2022/12/02) 渡邉 */
 #held h2 {
     margin-bottom: 10vh;
 }
+/*buttonタグにidを追加(2022/12/02) 渡邉 */
 #button {
     border: 1px solid black;
     border-radius: 120px;
