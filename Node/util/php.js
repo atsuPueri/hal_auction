@@ -10,14 +10,22 @@ module.exports = function(url, callable) {
     
     const php_host = require('../settings/php_host');
 
-    http.get(php_host.host + url, response => {
-        let data = '';
+    console.log("3");
+
+    const request_url = php_host.host + url;
+    let data = '';
+    http.get(request_url, response => {
+
+        console.log("4");
         response.on('data', chunk => {
             data = String(chunk);
         });
 
         response.on('end', () => {
+            
+            console.log("5");
             callable(data);
+            console.log("6");
         });
 
     }).on('error', err => {

@@ -4,6 +4,10 @@ module.exports = function(app) {
 
     app.get('/', (request, response) => {
 
+        php("/test", (m) => {
+            console.log(m);
+        });
+        
         response.render('top.ejs');
     });
     
