@@ -13,9 +13,9 @@
         <h1>HALオークション</h1>
         <nav>
             <ul>
-                <li>通知</li>
-                <li>お気に入り</li>
-                <li>ログイン/登録</li>
+                <li><a href="inform.html"><img src="../img/alarm.png" alt="通知" width="35px"></a></li>
+                <li><a href="favolite.html"><img src="../img/star.png" alt="お気に入り" width="35px"></a></li>
+                <li><a href="login_register.html"><img src="../img/user.png" alt="ログイン/登録" width="35px"></a></li>
             </ul>
         </nav>
     </header>
@@ -137,24 +137,31 @@
             </div>
             <div id="search">
                 <form>
-                    <p><input type="text" name=""></p>
-                    <p><button type="submit" name="">虫眼鏡</button></p>
-                    <div>
-                        <p>メーカー</p>
-                        <p>
-                            <select name="">
-                                <option value="">すべてのメーカー</option>
-                                <option value="">※ここから選択肢</option>
-                            </select>
-                        </p>
-                        <p>車種</p>
-                        <p>
-                            <select name="">
-                                <option value="">すべての車種</option>
-                                <option value="">※ここから選択肢</option>
-                            </select>
-                        </p>
+                    <div class="flex">
+                        <p><input type="text" name=""></p>
+                        <p><button type="submit" name=""><img src="../img/search.png" alt="検索ボタン" width="20px"></button></p>
                     </div>
+                    <div class="flex">
+                        <div>
+                        <p>メーカー</p>
+                            <p>
+                                <select name="">
+                                    <option value="">すべてのメーカー</option>
+                                    <option value="">※ここから選択肢</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div>
+                        <p>車種</p>
+                            <p>
+                                <select name="">
+                                    <option value="">すべての車種</option>
+                                    <option value="">※ここから選択肢</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
                     <p>価格</p>
                     <div>
                         <p>
@@ -171,7 +178,7 @@
                             </select>
                         </p>
                     </div>
-                    <p>走行距離</p>
+                    <p>走行距離<input type="submit" name=""></p>
                     <p>オートマ/ミッション</p>
                     <p>乗車定員数</p>
                     <p>色</p>
