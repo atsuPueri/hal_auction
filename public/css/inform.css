@@ -8,10 +8,7 @@ a {
     color: red;
     text-decoration: none;
 }
-a:visited {
-    /* display: none; */
-    background-color: red;
-}
+
 span {
     background-color: #2388b8;
     border-radius: 3px;
@@ -26,7 +23,12 @@ time {
     margin-right: 40px;
 }
 p {
-    color: #1c448d;
     display: inline-block;
     text-decoration: underline;
+}
+a:link {
+    color: red;
+}
+a:visited {
+    color: black;
 }
