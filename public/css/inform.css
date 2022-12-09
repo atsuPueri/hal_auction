@@ -1,8 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* border: solid 1px red; */
+}
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5%;
+}
+h1 {
+    padding: 15px;
+    color: gray;
+    font-size: 28px;
+    border-bottom: 1px dotted gray;
+}
 li {
-    border-bottom: 1px dotted #000;
+    border-bottom: 1px dotted gray;
     list-style: none;
-    padding: 10px;
-    width: 800px;
+    padding: 15px;
+    /* width: 800px; */
 }
 a {
     color: red;
@@ -26,7 +42,6 @@ time {
     margin-right: 40px;
 }
 p {
-    color: #1c448d;
     display: inline-block;
     text-decoration: underline;
 }
