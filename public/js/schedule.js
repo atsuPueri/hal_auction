@@ -125,6 +125,7 @@ window.addEventListener('load', () => {
                     }
 
                     if (element_top < draggable_bottom) {
+                        console.log(element_top, draggable_bottom);
                         return;
                     }
                 }
@@ -146,6 +147,28 @@ window.addEventListener('load', () => {
                 return;
             }
 
+            const draggable_top = catch_draggable_element.offsetTop;
+            const draggable_bottom = draggable_top + catch_draggable_element.offsetHeight;
+
+            const event_row = target.getElementsByClassName('draggable');
+            for (const element of event_row) {
+
+                // 選択している物の時はスキップ
+                if (element === catch_draggable_element) {
+                    continue;
+                }
+                
+                const element_bottom = element.offsetTop + element.offsetHeight;
+
+                
+                if (
+                    !(element_bottom <= draggable_top) &&
+                    !(draggable_bottom <= element.offsetTop)
+                ) {
+                    return;
+                }
+            }
+            
             // 要素を移動させる
             target.insertBefore(catch_draggable_element, null);
         });
