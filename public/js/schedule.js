@@ -91,10 +91,11 @@ window.addEventListener('load', () => {
             sizeElement.draggable = true;
 
             // サイズ変更の処理
-                sizeElement.addEventListener('drag', event => {
+            sizeElement.addEventListener('drag', event => {
                 // 親要素
-                const parentElement = event.target.parentElement;
-                let height = parentElement.offsetHeight + event.offsetY;
+                const target = event.target;
+                const draggable = target.parentElement;
+                let height = draggable.offsetHeight + event.offsetY;
 
                 // 切り替え単位
                 const switchng_unit = base_height;
@@ -105,7 +106,25 @@ window.addEventListener('load', () => {
                     return;
                 }
 
-                parentElement.style.height = height + 'px';
+                // 現在の大きさが他要素を侵害しないかチェック
+                const now_row = draggable.parentElement.getElementsByClassName('draggable');
+                for (const element of now_row) {
+                    // 選択している物の時はスキップ
+                    if (element === draggable) {
+                        continue;
+                    }
+
+                    // bottom位置を計算
+                    const draggable_bottom = draggable.offsetTop + height;
+                    const element_top = element.offsetTop;
+                    
+                    console.log("element_top:", element_top , " < " + "draggable_bottom:", draggable_bottom, "=", element_top <= draggable_bottom);
+                    if (element_top < draggable_bottom) {
+                        return;
+                    }
+                }
+
+                draggable.style.height = height + 'px';
             });
         }
 
