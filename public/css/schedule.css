@@ -10,6 +10,11 @@ h1 {
   margin: 0 0 5vh 5vh;
   font-size: 24px;
 }
+button {
+  position: relative;
+  left: 70vw;
+  margin-bottom: 3vh;
+}
 
 #days {
   background-color: rgb(179, 179, 179);
@@ -23,7 +28,11 @@ h1 {
   text-align: center;
   width: 19%;
 }
-
+.menu {
+  position: fixed;
+  height: 100%;
+  /* padding: 15px 40px 15px 42px; */
+}
 #container {
   background-color: rgb(179, 179, 179);
   width: 80%;
@@ -65,4 +74,19 @@ h1 {
 }/*# sourceMappingURL=style.css.map */
 .time {
   margin: 4.5vh 0 2vh 0;
+}
+
+/* .content {
+  position: absolute;
+  width: 80%;
+  z-index: -9999;
+} */
+.content2 {
+  position: fixed;
+  left: 1vw;
+  top: 40vh;
+  background-color: rgba(136, 132, 120);
+  height: 58vh;
+  width: 20vw;
+  z-index: 0;
 }
