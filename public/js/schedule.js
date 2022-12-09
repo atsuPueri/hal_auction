@@ -117,8 +117,13 @@ window.addEventListener('load', () => {
                     // bottom位置を計算
                     const draggable_bottom = draggable.offsetTop + height;
                     const element_top = element.offsetTop;
+                    const element_bottom = element_top + element.offsetHeight;
                     
-                    console.log("element_top:", element_top , " < " + "draggable_bottom:", draggable_bottom, "=", element_top <= draggable_bottom);
+                    //  選択しているものより上のものは関係ない
+                    if (element_bottom < draggable.offsetTop) {
+                        continue;
+                    }
+
                     if (element_top < draggable_bottom) {
                         return;
                     }
