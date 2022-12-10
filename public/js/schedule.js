@@ -11,9 +11,8 @@ window.addEventListener('load', () => {
         timeElement.style.height = base_height + base_height_unit;
     }
 
-    // ドラッグアンドドロップの処理
-    const drag_zone = document.getElementById('drag_zone');
-    const row_HTMLCollection = drag_zone.getElementsByClassName('row');
+    // ----  ドラッグアンドドロップの処理  ----  \\
+    const row_HTMLCollection = document.getElementsByClassName('row');
 
     // 横のrowに移動できるように保持する
     let catch_draggable_element;
@@ -125,7 +124,6 @@ window.addEventListener('load', () => {
                     }
 
                     if (element_top < draggable_bottom) {
-                        console.log(element_top, draggable_bottom);
                         return;
                     }
                 }
@@ -138,7 +136,7 @@ window.addEventListener('load', () => {
         row.addEventListener('dragenter', event => {
             const target = event.target;
 
-            // 自分自身、もしくは他のドラッグ要素に入れ子にさせないため。
+            // row以外に入れ子にさせないため。
             if (!target.classList.contains('row')) {
                 return;
             }

@@ -56,6 +56,18 @@ button {
   width: 20%;
   position: relative;
 }
+
+/* 大きさを増やすために追加 */
+#registerd {
+  height: 100%;
+}
+
+#registered .row {
+  margin: 0 5px;
+  background-color: white;
+  height: 58vh;
+}
+
 #container .row .draggable {
   background-color: skyblue;
   display: block;
@@ -64,6 +76,17 @@ button {
   border-radius: 5px;
   cursor: move;
 }
+
+/* 登録済みの要素 */
+#registered .row .draggable {
+  background-color: skyblue;
+  display: block;
+  position: absolute;
+  width: 90%;
+  border-radius: 5px;
+  cursor: move;
+}
+
 #container .row .draggable .size {
   position: absolute;
   bottom: 0px;
@@ -83,7 +106,7 @@ button {
 } */
 .content2 {
   position: fixed;
-  left: 1vw;
+  left: 10vw;
   top: 40vh;
   background-color: rgba(136, 132, 120);
   height: 58vh;
