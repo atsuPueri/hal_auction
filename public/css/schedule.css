@@ -99,17 +99,17 @@ button {
   margin: 4.5vh 0 2vh 0;
 }
 
-/* .content {
-  position: absolute;
-  width: 80%;
-  z-index: -9999;
-} */
 .content2 {
   position: fixed;
-  left: 10vw;
-  top: 40vh;
+  left: 0.5vw;
+  top: 50vh;
   background-color: rgba(136, 132, 120);
   height: 58vh;
-  width: 20vw;
+  width: 11vw;
   z-index: 0;
+}
+
+input,
+label {
+    margin: .4rem 0;
 }
