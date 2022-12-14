@@ -1,5 +1,6 @@
 //チャットのページを表示した時に動く
 const socketio = io();
+socketio.emit('test', '');
 
 //ボタンが押されたら動く
 const btn = document.getElementById("topBtn");
@@ -20,7 +21,7 @@ btn.addEventListener("click", function(event){
     //     item : item_list
     // };
     // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
-    socketio.emit('c2s-chat', sendData);
+    socketio.emit('del_car', JSON.stringify (selected_items));
 });
 
 // socketio.on('s2c-chat', function(msg){

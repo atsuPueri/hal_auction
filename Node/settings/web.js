@@ -29,9 +29,4 @@ module.exports = function(app) {
     app.get('/auction', (request, response) => {
         response.render('auction');
     });
-
-    const php = require('../util/php.js');
-    php("/test", (m) => {
-        console.log(m);
-    });
 }

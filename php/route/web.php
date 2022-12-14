@@ -20,7 +20,10 @@ switch ($request_path) {
     // -----テスト用
     case "/test":
         // $list = db_get($sql);
-        // return enc($list);
+        $list = [
+            "AAA" => "VAL"
+        ];
+        return enc($list);
 
 
     // -----車両テーブル

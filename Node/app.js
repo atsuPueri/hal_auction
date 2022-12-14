@@ -1,6 +1,7 @@
 "use strict"
 
 const express = require('express');
+const php = require('./util/php.js');
 const app = express();
 
 const http_socket = require('http').Server(app);
@@ -17,5 +18,22 @@ http_socket.listen(9000);
 
 // クライアントからサーバーにコネクションしたとき
 io_socket.on('connection', (stream) => {
-    
+    const php = require('./util/php.js');
+    stream.on('del_car', request_message => {
+
+        let car_ids = JSON.parse(request_message).join(",");
+        php('/del_car?car_id=' + car_ids , response_message => {
+            console.log(response_message);
+
+            //test
+            response_message = true;
+            
+            if(response_message === true){
+                php('/get_car' , response_message => {
+
+                });
+                io_socket.to(複数の場合).emit('update_table', msg);
+            }
+        });
+    });
 });
