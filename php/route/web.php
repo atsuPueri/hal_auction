@@ -23,7 +23,7 @@ switch ($request_path) {
             "model_year" => $_GET['model_year'],
             "mileage" => $_GET['mileage'],
             "is_actual_driving" => $_GET['is_actual_driving'],
-            "clor" => $_GET['clor'],
+            "color" => $_GET['color'],
             "vehicle_inspection_expiration_date" => $_GET['vehicle_inspection_expiration_date'],
             "automatic_or_mission" => $_GET['automatic_or_mission'],
             "displacement" => $_GET['displacement'],
@@ -36,6 +36,27 @@ switch ($request_path) {
 
         $list = db_change($sql);
         return enc($list);
+
+    case "/upd_car":
+        $sql = "UPDATE car ";
+        $sql = add_and($sql, "car_type_id", "=", $_GET['car_type_id'] ?? '','SET');
+        $sql = add_and($sql, "purchase_price", "=", $_GET['purchase_price'] ?? '','SET');
+        $sql = add_and($sql, "body_type", "=", $_GET['body_type'] ?? '','SET');
+        $sql = add_and($sql, "model_year", "=", $_GET['model_year'] ?? '','SET');
+        $sql = add_and($sql, "mileage", "=", $_GET['mileage'] ?? '','SET');
+        $sql = add_and($sql, "is_actual_driving", "=", $_GET['is_actual_driving'] ?? '','SET');
+        $sql = add_and($sql, "color", "=", $_GET['color'] ?? '','SET');
+        $sql = add_and($sql, "vehicle_inspection_expiration_date", "=", $_GET['vehicle_inspection_expiration_date'] ?? '','SET');
+        $sql = add_and($sql, "automatic_or_mission", "=", $_GET['automatic_or_mission'] ?? '','SET');
+        $sql = add_and($sql, "displacement", "=", $_GET['displacement'] ?? '','SET');
+        $sql = add_and($sql, "number_of_passengers", "=", $_GET['number_of_passengers'] ?? '','SET');
+        $sql = add_and($sql, "equipment", "=", $_GET['equipment'] ?? '','SET');
+        //WHERE句
+        $sql = add_and($sql, "car_id", "=", $_GET["car_id"] ?? '');
+        
+        $list = db_change($sql);
+        return enc($list);
+        
 
     case "/del_car":
         //車両を取得
@@ -69,10 +90,30 @@ switch ($request_path) {
     // ---------------------------------出品テーブル
     case "/get_exhibit":
         //出品を取得
-        $sql = "SELECT * FROM exhibit ";
-        $sql = add_and($sql, "car_id", "=", $_GET["car_id"] ?? '');
-
-        $list = db_get("SELECT * FROM exhibit");
+        $sql = "SELECT *
+        FROM 
+        exhibit AS e LEFT JOIN car AS c 
+        ON e.car_id = c.car_id 
+        LEFT JOIN car_type AS ct 
+        ON c.car_type_id = ct.car_type_id ";
+        
+        $sql = add_and($sql, "e.car_id", "=", $_GET["car_id"] ?? '');
+        $sql = add_and($sql, "e.time_to", ">=", $_GET["time_to"] ?? '');
+        $sql = add_and($sql, "c.car_type_id", "=", $_GET["car_type_id"] ?? '');
+        $sql = add_and($sql, "ct.name", "LIKE", "'%" . ($_GET['keyword'] ?? '') . "%'");
+        $sql = add_and($sql, "c.equipment", "=", $_GET["equipment"] ?? '');
+        if(isset($_GET["mileage_max"])){
+            //maxがある場合
+            $sql = add_and($sql, "c.mileage", "BETWEEN", $_GET["mileage_min"] ?? 0  . " AND " . $_GET["mileage_max"]);
+        }elseif(isset($_GET["mileage_min"])){
+            //minだけの場合
+            $sql = add_and($sql, "c.mileage", ">=", $_GET["mileage_min"] ?? '');
+        }
+        $sql = add_and($sql, "c.color", "=", $_GET["color"] ?? '');
+        $sql = add_and($sql, "c.automatic_or_mission", "=", $_GET["automatic_or_mission"] ?? '');
+        $sql = add_and($sql, "c.number_of_passengers", "=", $_GET["number_of_passengers"] ?? '');
+       
+        $list = db_get($sql);
         return enc($list);
 
     case "/add_exhibit":
@@ -162,10 +203,30 @@ switch ($request_path) {
             "status" => $_GET['status']
         ]);
         $sql = "INSERT INTO user ";
+        //パスワードをハッシュ化
+
+
+
         $sql .= into_make($into_make);
 
         $list = db_change($sql);
         return enc($list);
+
+    case "/upd_user":
+        $sql = "UPDATE user ";
+        $sql = add_and($sql, "login_id", "=", $_GET['login_id'] ?? '','SET');
+        $sql = add_and($sql, "hash_password", "=", $_GET['hash_password'] ?? '','SET');
+        $sql = add_and($sql, "user_name", "=", $_GET['user_name'] ?? '','SET');
+        $sql = add_and($sql, "phone_number", "=", $_GET['phone_number'] ?? '','SET');
+        $sql = add_and($sql, "post_code", "=", $_GET['post_code'] ?? '','SET');
+        $sql = add_and($sql, "address", "=", $_GET['address'] ?? '','SET');
+        $sql = add_and($sql, "apartment", "=", $_GET['apartment'] ?? '','SET');
+        $sql = add_and($sql, "status", "=", $_GET['status'] ?? '','SET');
+        //WHERE句
+        $sql = add_and($sql, "user_id", "=", $_GET["user_id"] ?? '');
+        
+        $list = db_change($sql);
+        return enc($list);    
 
     
     // ---------------------------------お気に入り出品テーブル
@@ -226,6 +287,23 @@ switch ($request_path) {
         $list = db_change($sql);
         return enc($list);
 
+    case "/upd_favorite_car_type":
+        $sql = "UPDATE favorite_car_type ";
+        $sql = add_and($sql, "user_id", "=", $_GET['user_id'] ?? '','SET');
+        $sql = add_and($sql, "car_type_id", "=", $_GET['car_type_id'] ?? '','SET');
+        $sql = add_and($sql, "maker_id", "=", $_GET['maker_id'] ?? '','SET');
+        $sql = add_and($sql, "keyword", "=", $_GET['keyword'] ?? '','SET');
+        $sql = add_and($sql, "equipment", "=", $_GET['equipment'] ?? '','SET');
+        $sql = add_and($sql, "mileage", "=", $_GET['mileage'] ?? '','SET');
+        $sql = add_and($sql, "clor", "=", $_GET['clor'] ?? '','SET');
+        $sql = add_and($sql, "automatic_or_mission", "=", $_GET['automatic_or_mission'] ?? '','SET');
+        $sql = add_and($sql, "number_of_passengers", "=", $_GET['number_of_passengers'] ?? '','SET');
+        //WHERE句
+        $sql = add_and($sql, "favorite_car_type_id", "=", $_GET["favorite_car_type_id"] ?? '');
+        
+        $list = db_change($sql);
+        return enc($list);    
+
     case "/del_favorite_car_type":
         //お気に入り車種を削除
         $sql = "SELECT * FROM favorite_car_type 
@@ -235,10 +313,34 @@ switch ($request_path) {
         return  enc($list);
 
 
+    // ---------------------------------通知テーブル
+    case "/get_notification":
+        //お気に入り車種を取得
+        $sql = "SELECT * FROM notification ";
+        $sql = add_and($sql, "user_id", "=", $_GET["user_id"] ?? '');
+
+        $list = db_get($sql);
+        return  enc($list);
+
+    case "/add_notification":
+        $into_make = ([
+            "user_id" => $_GET['user_id'],
+            "notification_type" => $_GET['notification_type'],
+            "car_id" => $_GET['car_id'],
+            "time" => $_GET['time']
+        ]);
+        $sql = "INSERT INTO notification ";
+        $sql .= into_make($into_make);
+
+        $list = db_change($sql);
+        return enc($list);
+
+
+
     // ---------------------------------その他   
     default:
         return enc([
-            'html' => '',
+            'data' => '存在しないURLです',
             'status' => 404
         ]);
 }
