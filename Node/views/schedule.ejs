@@ -52,7 +52,7 @@
         </aside>
             <main class="main">
                 <h1>スケジュール登録</h1>
-                <button>登録</button>
+                <button id="schedule_registration">登録</button>
             <div class="content">
                 <div id="days">
                     <div class="day">
@@ -103,26 +103,26 @@
                     </div>
             
                     <div id="drag_zone">
-                        <div class="row">
+                        <div class="row" data-week="monday">
                             <div class="draggable" draggable="true">
                                 アルファード
                                 <div class="size"></div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" data-week="tuesday">
                             <div class="draggable" draggable="true">
                                 プリウス
                                 <div class="size"></div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" data-week="wednesday">
                             <div class="draggable" draggable="true">
                                 ハスラー
                                 <div class="size"></div>
                             </div>
                         </div>
-                        <div class="row"></div>
-                        <div class="row"></div>
+                        <div class="row" data-week="thursday"></div>
+                        <div class="row" data-week="friday"></div>
                     </div>
                 </div>
             </div>
@@ -145,5 +145,6 @@
             <!-- <footer class="footer">フッター</footer> -->
     </div>
     <script src="../js/side.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

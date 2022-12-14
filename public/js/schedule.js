@@ -171,4 +171,45 @@ window.addEventListener('load', () => {
             target.insertBefore(catch_draggable_element, null);
         });
     }
+
+    
+    // Nodeと連携
+    const schedule_registration = document.getElementById('schedule_registration');
+    schedule_registration.addEventListener('click', event => {
+        const socket = io();
+        
+        const row_HTMLCollection = document.getElementsByClassName('row');
+        const  draggable_list = [];
+        for (const key of Object.keys(row_HTMLCollection)) {
+            const draggable = row_HTMLCollection.getElementById('draggable');
+            const car_info = {
+                id: draggable.dataset.id,
+                row: draggable.parentElement.dataset.week,
+                first: draggable.offsetTop / base_height,
+                last: (draggable.offsetTop + draggable.offsetHeight) / base_height ,
+            };
+        }
+        const request_message = "";
+
+    });
 });
+
+
+
+// draggableを生成する
+function set_draggable(id, row, first, last) {
+    const draggable = document.createElement('div');
+    draggable.classList.add('draggable');
+    draggable.draggable = true;
+    
+    draggable.dataset.id = id;
+    if (row) {
+
+    }
+
+    const size = document.createElement('div');
+    size.classList.add('size');
+
+    draggable.appendChild(size);
+}
+
