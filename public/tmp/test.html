@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>FlexBox Exercise #3 - Image carousel / Responsive </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/test.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+      </head>
+      
+      <body>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <div class="carousel">
+                        <div class="carousel__nav">
+                         <span id="moveLeft" class="carousel__arrow">
+                             <button>戻る</button>
+                          </span>
+                          <span id="moveRight" class="carousel__arrow" >
+                            <button>次へ</button>
+                          </span>
+                        </div>
+                        <div class="carousel-item carousel-item--1">
+                          <div class="carousel-item__image">
+                              <form action="#">
+                                <input type="text" placeholder="名前"  required>
+                                <input type="text" placeholder="ログインID"  required>
+                                <input type="password" placeholder="パスワード"  required>
+                              </form>
+                          </div>
+                        </div>
+                        <div class="carousel-item carousel-item--2">
+                          <div class="carousel-item__image">                
+                            <input type="text" placeholder="電話番号"  required>
+                            <input type="text" placeholder="郵便番号" required>
+                            <input type="text" placeholder="住所"  required>
+                            <input type="text" placeholder="マンション名" required></div>
+                        </div>        
+                      </div>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                <h1>ログイン</h1>
+                <input type="text" placeholder="ログインIDを入力してください。">
+                <input type="password" placeholder="パスワードを入力してください。">
+                <button>ログインする</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>ログインする</h1>
+                    <p>アカウントを既にお持ちの方はこちらからログインしてください</p>
+                    <button class="ghost" id="signIn">ログイン画面へ</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>アカウントを作成する</h1>
+                    <p>アカウントをお持ちでない方はこちらから登録してください</p>
+                    <button class="ghost" id="signUp">登録画面へ</button>
+                </div>
+                </div>
+            </div>
+      
+      <script src="../js/test.js"></script>
+      <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+        });
+    </script>
+      </body>
+</html>
