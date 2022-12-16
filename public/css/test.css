@@ -1,17 +1,19 @@
-@charset "UTF-8";
 
 * {
   box-sizing: border-box;
 }
 
 html, body {
-    background: rgb(193, 192, 192);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
+  -webkit-justify-content: center;
     align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    margin: -20px 0 50px;
+  -webkit-align-items: center;
 }
 
 body {
@@ -30,6 +32,8 @@ body {
 }
 
 .carousel-item {
+  visibility:visible;
+    display: flex;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -60,7 +64,6 @@ body {
 }
 
 .carousel-item__subtitle {
-    font-family: 'Open Sans', sans-serif;
     letter-spacing: 3px;
     font-size: 10px;
     text-transform: uppercase;
@@ -75,7 +78,6 @@ body {
 
 .carousel-item__title {
     margin: 15px 0 0 0;
-    font-family: 'Playfair Display', serif;
     font-size: 44px;
     line-height: 45px;
     letter-spacing: 3px;
@@ -93,7 +95,6 @@ body {
     visibility: hidden;
     transition: 0.6s all ease-in-out;
     margin-top: 35px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     color: #7e7e7e;
     line-height: 22px;
@@ -109,7 +110,6 @@ body {
 .carousel-item__btn {
     width: 35%;
     color: #2C2C2C;
-    font-family: 'Open Sans', sans-serif;
     letter-spacing: 3px;
     font-size: 11px;
     text-transform: uppercase;
@@ -156,6 +156,11 @@ body {
     margin-top: -7px;
 }
 
+.active{
+   z-index: 1;
+  display: flex;
+  visibility:visible;
+}
 
 .active .carousel-item__subtitle, .active .carousel-item__title, .active .carousel-item__description,.active .carousel-item__btn{
     transform: translateY(0);
