@@ -17,6 +17,7 @@ require('./settings/web.js')(app);
 http_socket.listen(9000);
 
 // クライアントからサーバーにコネクションしたとき
+// 削除の時
 io_socket.on('connection', (stream) => {
     const php = require('./util/php.js');
     stream.on('del_car', request_message => {
@@ -30,10 +31,15 @@ io_socket.on('connection', (stream) => {
             
             if(response_message === true){
                 php('/get_car' , response_message => {
-
+                    
                 });
                 io_socket.to(複数の場合).emit('update_table', msg);
             }
         });
     });
+
+    stream.on('register_car', request_message => {
+        
+    });
 });
+
