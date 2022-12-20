@@ -49,7 +49,7 @@
     </aside>
         <main class="main">
             <h1>車両情報登録</h1>
-              <form class="form" action="#" method="post">
+              <form class="form" action="" method="post">
                   <!-- 車種名 -->
                   <div class="item">
                     <label class="label_left" for="name">車種名</label>
@@ -89,7 +89,7 @@
                   <!-- 実走行 -->
                   <div class="item">
                       <label class="label_left" for="rnu">実走行</label>
-                      <select name="rnu" id="rnu">
+                      <select name="run" id="run">
                           <option value="">以下から選択してください</option>
                           <option value="0">可能</option>
                           <option value="1">不可能</option>
@@ -127,7 +127,7 @@
                   <!-- 乗車人数 -->
                   <div class="item">
                       <label class="label_left" for="co">乗車人数</label>
-                      <select name="auto" id="auto">
+                      <select name="ride" id="ride">
                           <option value="">以下から選択してください</option>
                           <!-- 乗車人数繰り返し処理　htmlファイルのため消してます-->
                           {# <?php for($number = 1; $number <= 12 ;$number ++){ ?>
@@ -167,7 +167,7 @@
               
                   <!--   名前 -->
                   <div class="btns">
-                    <input type="submit" value="登録"><br>
+                    <input type="submit" value="登録" id="entryBtn"><br>
                     <input type="reset" value="リセット">
                   </div>
               </form>
@@ -175,5 +175,7 @@
         <footer class="footer">フッター</footer>
 </div>
       <script src="../js/side.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="../js/carentry.js"></script>
   </body>
 </html>
