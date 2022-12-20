@@ -174,6 +174,18 @@ window.addEventListener('load', () => {
 
     
     // Nodeと連携
+
+    /** week要素*/
+    const camp_week = document.getElementById('camp-week');
+
+    const now_date = new Date();
+    const now_week = getWeek(now_date);
+
+    // 初期値設定
+    camp_week.value = now_week;
+    
+
+    /** 登録ボタン たぶん未完 */
     const schedule_registration = document.getElementById('schedule_registration');
     schedule_registration.addEventListener('click', event => {
         const socket = io();
@@ -194,22 +206,32 @@ window.addEventListener('load', () => {
     });
 });
 
-
-
-// draggableを生成する
-function set_draggable(id, row, first, last) {
+/**
+ * draggableを生成する
+ * @param {Number} id 
+ * @param {Number} rowKey
+ * @param {*} first 
+ * @param {*} last 
+ */
+function set_draggable(id, rowKey, first, last) {
     const draggable = document.createElement('div');
     draggable.classList.add('draggable');
     draggable.draggable = true;
-    
     draggable.dataset.id = id;
-    if (row) {
 
-    }
+    const drag_zone = document.getElementById('drag_zone');
+    const row_HTMLCollection = drag_zone.getElementsByClassName('row');
+
+    row_HTMLCollection[row]
 
     const size = document.createElement('div');
     size.classList.add('size');
 
     draggable.appendChild(size);
+}
+
+function DateToNumber(date)
+{
+    
 }
 

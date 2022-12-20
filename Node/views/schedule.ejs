@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/schedule.css">
     <!-- HTMLが読み込まれてから実行 defer -->
-    <script src="../js/schedule.js" defer></script>
     <script src="../js/jquery-3.6.0.min.js"></script>
     <title>スケジュール登録</title>
 </head>
@@ -54,7 +53,7 @@
                 <h1>スケジュール登録</h1>
 
                 <!-- 2022/12/12 修正渡邉 -->
-                <input type="week" name="week" id="camp-week"min="2022-w1" required>
+                <input type="week" name="week" id="camp-week" min="2022-w1" required>
                 <button id="schedule_registration">登録</button>
             <div class="content">
                 <div id="days">
@@ -156,6 +155,10 @@
             <!-- <footer class="footer">フッター</footer> -->
     </div>
     <script src="../js/side.js"></script>
+
+    
+    <script src="../js/functions.js"></script>
+    <script src="../js/schedule.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
