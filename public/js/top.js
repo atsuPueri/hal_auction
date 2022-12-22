@@ -1,13 +1,14 @@
-//チャットのページを表示した時に動く
-const socketio = io();
-socketio.emit('test', '');
+//管理者topページの時に動く
 
-//ボタンが押されたら動く
-const btn = document.getElementById("topBtn");
+const socketio = io();
+
+//削除ボタンが押されたら動く
+const btn = document.getElementById("deleteBtn");
 btn.addEventListener("click", function(event){
     event.preventDefault();
 
     const item_list = document.getElementsByClassName('item');
+    console.log(item_list);
     const selected_items = [];
     for (const element of item_list) {
         if (element.checked === true) {
@@ -15,11 +16,6 @@ btn.addEventListener("click", function(event){
         }
     }
 
-    console.log(selected_items);
-    // const sendData = {
-        
-    //     item : item_list
-    // };
     // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
     socketio.emit('del_car', JSON.stringify (selected_items));
 });

@@ -1,17 +1,14 @@
-const { describe } = require("node:test");
-
-//チャットのページを表示した時に動く
+//車両情報登録した時に動く
 const socketio = io();
-socketio.emit('test', '');
 
-//ボタンが押されたら動く
+//登録ボタンが押されたら動く
 const entryBtn = document.getElementById("entryBtn");
 entryBtn.addEventListener("click", function(event){
     event.preventDefault();
     
     const carName = document.getElementById("name");
     const make = document.getElementById("meka");
-    const date = document.getElementById("date");
+    const price = document.getElementById("price");
     const bodyType = document.getElementById("bodyType");
     const yearType = document.getElementById("yearType");
     const loadResult = document.getElementById("loadResult");
@@ -22,23 +19,39 @@ entryBtn.addEventListener("click", function(event){
     const co = document.getElementById("co");
     const ride = document.getElementById("ride");
     const drive = document.getElementById("drive");
-    const equipment = document.getElementById("equipment");
+    // const equipment = document.getElementById("equipment");
+    const ornamentsList = document.getElementsByClassName("ornaments");
+
+    console.log(auto.value);
+
+    let selected_items = "";
+    for (const element of ornamentsList) {
+        if (element.checked === true) {
+            selected_items += "1";
+        } else {
+            selected_items += "0";
+        }
+    }
+
+    //console.log(selected_items);
 
     const sendData = {
-        carName : carName,
-        make : make,
-        date : date,
-        bodyType : bodyType,
-        yearType : yearType,
-        loadResult : loadResult,
-        run : run,
-        color : color,
-        vehicleInspection : vehicleInspection,
-        auto : auto,
-        co : co,
-        ride : ride,
-        drive : drive,
-        equipment : equipment,
+        carName : carName.value,
+        make : make.value,
+        price : price.value,
+        bodyType : bodyType.value,
+        yearType : yearType.value,
+        loadResult : loadResult.value,
+        run : run.value,
+        color : color.value,
+        vehicleInspection : vehicleInspection.value,
+        auto : auto.value,
+        co : co.value,
+        ride : ride.value,
+        drive : drive.value,
+        equipment : selected_items
+        // equipment : equipment.value,
+        // selected_items, selected_items
     };
     // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
     socketio.emit('register_car', JSON.stringify (sendData));
