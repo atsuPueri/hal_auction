@@ -45,6 +45,7 @@ h1 {
   }
   
   .btns{
+    margin-top: 10vh;
     display: flex;
     justify-content: center;
   }
@@ -66,3 +67,18 @@ h1 {
     padding: 10px 20px;
     margin: 0 5px;
   }
+
+/* 2022/12/22 チェックボックスにcss追加(横並び) 渡邉*/
+.flex {
+    display: flex;
+    justify-content: space-around;
+
+}
+.flex .item {
+    width: 22vw;
+}
+.flex .item label {
+    width: 10vw;
+    white-space: nowrap;
+    padding-right:  15vw;
+}
