@@ -25,7 +25,7 @@ input {
 
 table{
   width: 80%;
-  margin: 10vh 5vw 5vh 7vw;
+  margin: 5vh 5vw 5vh 7vw;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -62,4 +62,11 @@ table tr:nth-child(odd){
   transform: rotate(-45deg);
   top: 10px;
   left: 12px
+}
+#linkbutton {
+  margin-left: 65vw;
+}
+#linkbutton button{
+  border: solid 1px ;
+  padding: 0.5vw;
 }
