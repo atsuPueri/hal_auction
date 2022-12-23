@@ -15,9 +15,9 @@
         <h1>HALオークション</h1>
         <nav>
             <ul>
-                <li><a href="inform.html"><img src="../img/alarm.png" alt="通知" width="35px"></a></li>
-                <li><a href="favolite.html"><img src="../img/star.png" alt="お気に入り" width="35px"></a></li>
-                <li><a href="login.html"><img src="../img/user.png" alt="ログイン/登録" width="35px"></a></li>
+                <li><a href="inform.html"><img src="../img/alarm.png" alt="通知" width="40px"></a></li>
+                <li><a href="favorite.html"><img src="../img/star.png" alt="お気に入り" width="40px"></a></li>
+                <li><a href="login.html"><img src="../img/user.png" alt="ログイン/登録" width="40px"></a></li>
             </ul>
         </nav>
     </header>
@@ -25,9 +25,9 @@
         <div id="bana">
             <div id="held">
                 <h2>オークション開催中</h2>
-                <p>車種名</p>
-                <p>入札額￥〇〇</p>
-                <p>残り時間</p>
+                <p>車種名：インサイト</p>
+                <p>現在の落札金額：￥100,000</p>
+                <p>残り時間：5分13秒10</p>
                 <form>
                     <button id="button">詳細を確認</button>
                 </form>
@@ -39,13 +39,13 @@
         <div id="main_flex">
             <div>
                 <div id="schedule">
-                    <h2>オークション予定</h2>
+                    <h3>オークション予定</h3>
                     <div class="while">
                         <div class="vehicle">
                             <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <form>
+                            <p>インサイト</p>
+                            <p>￥20,000</p>
+                            <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </div>
@@ -53,7 +53,15 @@
                             <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
-                            <form>
+                            <form class="detail">
+                                <button>詳細を確認</button>
+                            </form>
+                        </div>
+                        <div class="vehicle">
+                            <p><img src="../img/SELENA.png" alt="オークション予定の車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </div>
@@ -61,7 +69,15 @@
                             <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
-                            <form>
+                            <form class="detail">
+                                <button>詳細を確認</button>
+                            </form>
+                        </div>
+                        <div class="vehicle">
+                            <p><img src="../img/SELENA.png" alt="オークション予定の車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </div>
@@ -75,7 +91,15 @@
                             <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
-                            <form>
+                            <form class="detail">
+                                <button>詳細を確認</button>
+                            </form>
+                        </div>
+                        <div class="vehicle">
+                            <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -83,7 +107,7 @@
                             <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
-                            <form>
+                            <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -91,7 +115,15 @@
                             <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
-                            <form>
+                            <form class="detail">
+                                <button>詳細を確認</button>
+                            </form>
+                        </div>
+                        <div class="vehicle">
+                            <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -140,52 +172,89 @@
             </div>
             <div id="search">
                 <form>
-                    <div class="flex">
+                    <div id="search_text">
                         <p><input type="text" name=""></p>
                         <p><button type="submit" name=""><img src="../img/search.png" alt="検索ボタン" width="20px"></button></p>
                     </div>
-                    <div class="flex">
-                        <div>
+                    <div class="margin_bottom">
                         <p>メーカー</p>
-                            <p>
-                                <select name="">
-                                    <option value="">すべてのメーカー</option>
-                                    <option value="">※ここから選択肢</option>
-                                </select>
-                            </p>
-                        </div>
-                        <div>
+                        <p>
+                            <select name="">
+                                <option value="">すべてのメーカー∨</option>
+                                <option value="">※ここから選択肢</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="margin_bottom">
                         <p>車種</p>
+                        <p>
+                            <select name="">
+                                <option value="">すべての車種∨</option>
+                                <option value="">※ここから選択肢</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="margin_bottom">
+                        <p>価格</p>
+                        <div id="price">
                             <p>
                                 <select name="">
-                                    <option value="">すべての車種</option>
+                                    <option value="">下限なし∨</option>
+                                    <option value="">※ここから選択肢</option>
+                                </select>
+                            </p>
+                            <p>~</p>
+                            <p>
+                                <select name="">
+                                    <option value="">上限なし∨</option>
                                     <option value="">※ここから選択肢</option>
                                 </select>
                             </p>
                         </div>
                     </div>
-                    <div>
-                    <p>価格</p>
-                    <div>
+                    <div class="margin_bottom">
+                        <p>走行距離<input type="text" name="">km</p>
+                    </div>
+                    <div class="margin_bottom">
+                        <div id="search_select">
+                            <p><input type="radio" name="" value="">オートマ</p>
+                            <p><input type="radio" name="" value="">ミッション</p>
+                        </div>
+                    </div>
+                    <div class="margin_bottom">
+                        <p>乗車定員数</p>
                         <p>
                             <select name="">
-                                <option value="">下限なし</option>
-                                <option value="">※ここから選択肢</option>
-                            </select>
-                        </p>
-                        <p>~</p>
-                        <p>
-                            <select name="">
-                                <option value="">上限なし</option>
-                                <option value="">※ここから選択肢</option>
+                                <option value="">指定しない∨</option>
+                                <option value="">4人</option>
+                                <option value="">30人以上</option>
                             </select>
                         </p>
                     </div>
-                    <p>走行距離<input type="submit" name=""></p>
-                    <p>オートマ/ミッション</p>
-                    <p>乗車定員数</p>
-                    <p>色</p>
+                    <div class="margin_bottom">
+                        <p>色</p>
+                        <div class="color_pared">
+                            <p><img src="../img/color/white.jpg" alt="white" width="30px"></p>
+                            <p><img src="../img/color/gray.jpg" alt="gray" width="30px"></p>
+                            <p><img src="../img/color/red.jpg" alt="red" width="30px"></p>
+                            <p><img src="../img/color/pink.jpg" alt="pink" width="30px"></p>
+                            <p><img src="../img/color/orange.jpg" alt="orange" width="30px"></p>
+                            <p><img src="../img/color/yellow.jpg" alt="yellow" width="30px"></p>
+                            <p><img src="../img/color/yellow-green.jpg" alt="yellow-green" width="30px"></p>
+                            <p><img src="../img/color/green.jpg" alt="green" width="30px"></p>
+                            <p><img src="../img/color/blue.jpg" alt="blue" width="30px"></p>
+                        </div>
+                        <div class="color_pared">
+                            <p><img src="../img/color/purple.jpg" alt="purple" width="30px"></p>
+                            <p><img src="../img/color/dark-blue.jpg" alt="dark-blue" width="30px"></p>
+                            <p><img src="../img/color/black.jpg" alt="black" width="30px"></p>
+                        </div>
+                    </div>
                     <p>装備品</p>
+                        <p><input type="checkbox" name="" value="">エアコン</p>
+                        <p><input type="checkbox" name="" value="">エアバック</p>
+                        <p><input type="checkbox" name="" value="">ETC</p>
+                        <p><input type="checkbox" name="" value="">テレビ</p>
                 </form>
             </div>
         </div>

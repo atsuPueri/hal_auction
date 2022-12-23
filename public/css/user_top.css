@@ -1,13 +1,25 @@
 @charset "utf-8";
-
+/** 全体 **/
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    /* border: solid 1px red; */
+}
+h1 {
+    font-size: 45px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 25px;
+}
 /** header **/
 header {
     display: flex;
     justify-content: space-between;
     border-bottom: solid 1px black;
-}
-header h1 {
-    font-size: 40px;
 }
 header ul {
     display: flex;
@@ -18,13 +30,11 @@ header ul li {
 header ul li:first-child {
     border-left: none;
 }
-
 /** main **/
 /** オークション開催中 **/
-
 /*追加変更(2022/12/02) 渡邉 */
 #bana {
-    margin: 10% 0;
+    margin-top: 8%;
     display: flex;
     justify-content: space-between;
 }
@@ -32,10 +42,6 @@ header ul li:first-child {
 #bana img {
     width: 50%;
     margin: 0 10vw 0 0;
-}
-/*追加変更(2022/12/02) 渡邉 */
-#bana h2{
-    font-size: 24px;
 }
 /*追加変更(2022/12/02) 渡邉 */
 #bak {
@@ -46,7 +52,7 @@ header ul li:first-child {
 }
 /*追加変更(2022/12/02) 渡邉 */
 #held {
-    margin: 0 auto;
+    margin: 3% auto;
 }
 /*追加変更(2022/12/02) 渡邉 */
 #held h2 {
@@ -57,12 +63,13 @@ header ul li:first-child {
     border: 1px solid black;
     border-radius: 120px;
     margin: 3vh 0 0 3vw;
-    padding: 2vh 3vw 2vh 3vw;
+    padding: 2vh 2vw 2vh 2vw;
 }
 /** オークション予定 **/
 #main_flex {
     display: flex;
     padding: 5%;
+    padding-top: 8%;
 }
 .while {
     display: flex;
@@ -70,15 +77,34 @@ header ul li:first-child {
 .vehicle {
     border: solid 1px black;
     width: 15%;
+    margin-left: 0.1%;
 }
 .vehicle img {
     width: 100%;
-    background-color: orange;
 }
+.detail {
+    color: brown;
+    text-align: right;
+    padding-right: 3%;
+}
+/** チェックリスト **/
+.next {
+    font-size: 2em;
+    height: 3%;
+    margin: auto auto;
+}
+#check_list {
+    margin-top: 8%;
+}
+/** 検索 **/
 #search {
-    border: solid 1px black
+    border: solid 1px black;
+    padding: 1%;
 }
-.flex {
+#search p {
+    font-size: 16px;
+}
+#search_text {
     display: flex;
 }
 
@@ -150,4 +176,28 @@ header ul li:first-child {
 
 .slick-dots .slick-active button{
     background:#333;/*ドットボタンの現在地表示の色*/
+    justify-content: space-between;
+    margin: 3% auto;
+}
+input[type="text"] {
+    border: solid 1px black;
+}
+#search_select {
+    display: flex;
+}
+#search_maker {
+    margin-bottom: 3%;
+}
+select {
+    border: solid 1px black;
+}
+.margin_bottom {
+    margin-bottom: 3%;
+}
+#price {
+    display: flex;
+}
+.color_pared {
+    display: flex;
+    overflow-wrap: normal;
 }
