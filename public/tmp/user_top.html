@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>トップページ</title>
-    <link rel="stylesheet" href="../css/destyle.css">
-    <link rel="stylesheet" href="../css/user_top.css">
+    <link rel="stylesheet" type="text/css" href="../css/destyle.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="../css/user_top.css">
+
 </head>
 <body>
     <header>
@@ -82,33 +84,10 @@
                     </div>
                 </div>
                 <div id="check_list">
-                    <h3>チェックリスト</h3>
-                    <div class="while">
-                        <div class="vehicle">
-                            <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <form class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </div>
-                        <div class="vehicle">
-                            <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <form class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </div>
-                        <div class="vehicle">
-                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <form class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </div>
-                        <div class="vehicle">
+                    <h2>チェックリスト</h2>
+                    <!--  2022/12/22　スライダー　渡邉-->
+                    <ul class="while">
+                        <li class="vehicle">
                             <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
@@ -123,8 +102,16 @@
                             <form class="detail">
                                 <button>詳細を確認</button>
                             </form>
-                        </div>
-                        <div class="vehicle">
+                        </li>
+                        <li class="vehicle">
+                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form class="detail">
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                        <li class="vehicle">
                             <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
@@ -132,8 +119,55 @@
                                 <button>詳細を確認</button>
                             </form>
                         </div>
-                        <p class="next">></p>
-                    </div>
+                        <div class="vehicle">
+                            <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form class="detail">
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                        <li class="vehicle">
+                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form>
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                        <li class="vehicle">
+                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form>
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                        <li class="vehicle">
+                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form>
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                        <li class="vehicle">
+                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form>
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                        <li class="vehicle">
+                            <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                            <p>車種名</p>
+                            <p>￥〇〇</p>
+                            <form>
+                                <button>詳細を確認</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div id="search">
@@ -225,5 +259,8 @@
             </div>
         </div>
     </main>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="../js/slider.js"></script>
 </body>
 </html>
