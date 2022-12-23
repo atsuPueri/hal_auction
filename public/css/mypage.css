@@ -35,6 +35,9 @@ main {
     margin-top: 8%;
     margin-bottom: 3%;
 }
+#inform a {
+    display: flex;
+}
 /** お気に入りリスト **/
 #favorite {
     margin-bottom: 3%;
@@ -55,6 +58,11 @@ main {
     text-align: right;
     padding-right: 3%;
 }
+/** 購入履歴 **/
+#purchase_stack {
+    margin-bottom: 3%;
+}
+/** チェックリスト **/
 .next {
     font-size: 2em;
     height: 3%;
