@@ -50,18 +50,29 @@
         <main class="main">
             <h1>車両情報登録</h1>
               <form class="form" action="" method="post">
-                  <!-- 車種名 -->
+                
+                <!-- メーカー名 -->
+                <div class="item">
+                  <label class="label_left" for="meka">メーカー名</label>
+                  <!-- <input id="meka" type="text" placeholder="メーカー名を入力" required><br> -->
+                
+                  <select name="make" id="make">
+                  <% for (let column of makerData) { %>
+                    <option value="<%= column.maker_id %>"><%= column.name %></option>
+                  <% } %>
+                  </select>
+                  <div id="carInfo" data-car="<%= JSON.stringify(carData) %>"></div>
+                </div>
+                
+                <!-- 車種名 -->
                   <div class="item">
                     <label class="label_left" for="name">車種名</label>
-                    <input id="name" type="text" placeholder="車種名を入力" required><br>
+                    <!-- <input id="name" type="text" placeholder="車種名を入力" required><br> -->
+                    
+                    <select name="name" id="name">
+                    </select>
                   </div>
-                
-                  <!-- メーカー名 -->
-                  <div class="item">
-                    <label class="label_left" for="meka">メーカー名</label>
-                    <input id="meka" type="text" placeholder="メーカー名を入力" required><br>
-                  </div>
-                
+                  
                   <!--  仕入価格 -->
                   <div class="item">
                     <label  class="label_left" for="price">仕入価格</label>
@@ -93,7 +104,7 @@
                           <option value="">以下から選択してください</option>
                           <option value="1">可能</option>
                           <option value="0">不可能</option>
-                        </select><br>
+                      </select><br>
                   </div> 
 
                   <!-- 色 -->
@@ -111,7 +122,7 @@
                   <!-- オートマ/ミッション -->
                   <div class="item">
                       <label class="label_left" for="auto">オートマ/ミッション</label>
-                      <select name="auto" id="auto">
+                      <select name="auto" id="auto" required>
                           <option value="">以下から選択してください</option>
                           <option value="1">オートマ車</option>
                           <option value="0">ミッション車</option>
@@ -329,6 +340,12 @@
         </main>
         <footer class="footer">フッター</footer>
 </div>
+
+<!-- todo:test -->
+<select name="run" id="run">
+  
+  
+</select>
       <script src="../js/side.js"></script>
       <script src="/socket.io/socket.io.js"></script>
       <script src="../js/carentry.js"></script>

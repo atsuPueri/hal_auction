@@ -1,13 +1,38 @@
 //車両情報登録した時に動く
 const socketio = io();
 
+//車種名によってメーカー名の表示を変える
+const makeName = document.getElementById("make");
+makeName.addEventListener('change', function(){
+    const carJson = document.getElementById("carInfo").dataset.car;
+    const carParseObj = JSON.parse(carJson);
+
+    const name = document.getElementById("name");
+    //子要素(option)を削除
+    while(name.firstChild){
+        name.removeChild(name.firstChild);
+    }
+
+    const carData = [];
+    for (const column of carParseObj) {
+        if (column.maker_id == makeName.value) {
+            carData.push(column);
+            const option = document.createElement("option");
+            option.value = column.car_type_id;
+            option.textContent = column.name;
+            name.appendChild(option);
+        }
+    }
+
+});
+
 //登録ボタンが押されたら動く
 const entryBtn = document.getElementById("entryBtn");
 entryBtn.addEventListener("click", function(event){
     event.preventDefault();
     
     const carName = document.getElementById("name");
-    const make = document.getElementById("meka");
+    const make = document.getElementById("make");
     const price = document.getElementById("price");
     const bodyType = document.getElementById("bodyType");
     const yearType = document.getElementById("yearType");
@@ -33,8 +58,6 @@ entryBtn.addEventListener("click", function(event){
         }
     }
 
-    //console.log(selected_items);
-
     const sendData = {
         carName : carName.value,
         make : make.value,
@@ -53,6 +76,7 @@ entryBtn.addEventListener("click", function(event){
         // equipment : equipment.value,
         // selected_items, selected_items
     };
+    console.log(sendData);
     // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
     socketio.emit('register_car', JSON.stringify (sendData));
 });

@@ -27,13 +27,12 @@ io_socket.on('connection', (stream) => {
             console.log(response_message);
             
             //test
-            response_message = true;
+            // response_message = true;
 
             if(response_message === true){
                 php('/get_car' , response_message => {
-                    
-                });
-                io_socket.emit('update_table', msg);
+                    io_socket.emit('update_table', response_message);
+                });              
             }
         });
     });
@@ -42,22 +41,24 @@ io_socket.on('connection', (stream) => {
     stream.on('register_car', request_message => {
         let car_info = JSON.parse(request_message);
         
-        //test
-        //console.log('/add_car?car_type_id=' + car_info.make + '&purchase_price=' + car_info.price + '&body_type=' + car_info.bodyType + '&model_year="' + car_info.yearType + '"&mileage=' + car_info.loadResult + '&is_actual_driving=' + car_info.run + '&color=' + car_info.color + '&vehicle_inspection_expiration_date="' + car_info.vehicleInspection + '"&automatic_or_mission=' + car_info.auto + '&displacement=' + car_info.co + '&number_of_passengers=' + car_info.ride + '&drive_system=' + car_info.drive + '&equipment="' + car_info.equipment + '"');
+        //todo:test
+        // console.log(`/add_car?car_type_id=${car_info.make}&purchase_price=${car_info.price}&body_type=${car_info.bodyType}&model_year=${car_info.yearType}&mileage=${car_info.loadResult}&is_actual_driving=${car_info.run}&color=${car_info.color}&vehicle_inspection_expiration_date=${car_info.vehicleInspection}&automatic_or_mission=${car_info.auto}&displacement=${car_info.co}&number_of_passengers=${car_info.ride}&drive_system=${car_info.drive}&equipment=${car_info.equipment}`);
         
-        php('/add_car?car_type_id=' + car_info.make + '&purchase_price=' + car_info.price + '&body_type=' + car_info.bodyType + '&model_year="' + car_info.yearType + '"&mileage=' + car_info.loadResult + '&is_actual_driving=' + car_info.run + '&color=' + car_info.color + '&vehicle_inspection_expiration_date="' + car_info.vehicleInspection + '"&automatic_or_mission=' + car_info.auto + '&displacement=' + car_info.co + '&number_of_passengers=' + car_info.ride + '&drive_system=' + car_info.drive + '&equipment="' + car_info.equipment + '"', response_message => {
+
+        php(`/add_car?car_type_id=${car_info.make}&purchase_price=${car_info.price}&body_type=${car_info.bodyType}&model_year=${car_info.yearType}&mileage=${car_info.loadResult}&is_actual_driving=${car_info.run}&color=${car_info.color}&vehicle_inspection_expiration_date=${car_info.vehicleInspection}&automatic_or_mission=${car_info.auto}&displacement=${car_info.co}&number_of_passengers=${car_info.ride}&drive_system=${car_info.drive}&equipment=${car_info.equipment}`, response_message => {
             console.log(response_message);
             
-            //test
-            response_message = true;
+            //todo:test
+            //response_message = true;
 
             if(response_message === true){
                 php('/get_car' , response_message => {
-                    
+                    // io_socket.emit('update_table', response_message);
+                    console.log("成功");
                 });
-                io_socket.emit('update_table', msg);
             }
         });
     });
+
 });
 

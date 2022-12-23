@@ -44,7 +44,7 @@ switch ($request_path) {
             "model_year" => $_GET['model_year'],
             "mileage" => $_GET['mileage'],
             "is_actual_driving" => $_GET['is_actual_driving'],
-            "clor" => $_GET['clor'],
+            "color" => $_GET['color'],
             "vehicle_inspection_expiration_date" => $_GET['vehicle_inspection_expiration_date'],
             "automatic_or_mission" => $_GET['automatic_or_mission'],
             "displacement" => $_GET['displacement'],

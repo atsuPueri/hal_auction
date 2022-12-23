@@ -8,7 +8,6 @@ btn.addEventListener("click", function(event){
     event.preventDefault();
 
     const item_list = document.getElementsByClassName('item');
-    console.log(item_list);
     const selected_items = [];
     for (const element of item_list) {
         if (element.checked === true) {

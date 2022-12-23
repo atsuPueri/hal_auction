@@ -2,6 +2,21 @@ module.exports = function(app) {
 
     const php = require('../util/php.js');
 
+    //php呼び出し方
+    app.get('/test', (request, response) => {
+        php('/get_car_type', response_message => {
+            const carTypeData = JSON.parse(response_message);
+            php('/get_maker', response_message => {
+                const makerData = JSON.parse(response_message);
+                response.render('carentry', {
+                    carData : carTypeData.data,
+                    makerData : makerData.data
+                });
+            });
+        });
+    });
+
+
     app.get('/', (request, response) => {
         response.render('top');
     });
@@ -11,7 +26,16 @@ module.exports = function(app) {
     })
 
     app.get('/carentry', (request, response) => {
-        response.render('carentry');
+        php('/get_car_type', response_message => {
+            const carTypeData = JSON.parse(response_message);
+            php('/get_maker', response_message => {
+                const makerData = JSON.parse(response_message);
+                response.render('carentry', {
+                    carData : carTypeData.data,
+                    makerData : makerData.data
+                });
+            });
+        });
     });
 
     app.get('/user', (request, response) => {
