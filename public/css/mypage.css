@@ -64,8 +64,6 @@ span {
 }
 .vehicle {
     border: solid 1px black;
-    width: 15%;
-    margin-left: 0.1%;
 }
 .vehicle img {
     width: 100%;
@@ -89,8 +87,7 @@ span {
 スライダーのためのcss
 ===================================*/
 .slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
-    width:94%;
-    margin:0 auto;
+    width: 1000px;
  }
  
  .slider img {
