@@ -1,4 +1,4 @@
-$('.slider').slick({
+$('.while').slick({
     dots: true,
     infinite: false,
     speed: 300,
