@@ -1,0 +1,62 @@
+@charset "utf-8";
+/** 全体 **/
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    /* border: solid 1px red; */
+}
+h1 {
+    font-size: 45px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 25px;
+}
+/** header **/
+header {
+    border-bottom: solid 1px black;
+}
+/** main **/
+main {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+}
+/** プロフィール **/
+#profile {
+    margin-top: 5%;
+    margin-right: 10%;
+}
+/** 新着情報 **/
+#inform {
+    margin-top: 8%;
+    margin-bottom: 3%;
+}
+/** お気に入りリスト **/
+#favorite {
+    margin-bottom: 3%;
+}
+.while {
+    display: flex;
+}
+.vehicle {
+    border: solid 1px black;
+    width: 15%;
+    margin-left: 0.1%;
+}
+.vehicle img {
+    width: 100%;
+}
+.detail {
+    color: brown;
+    text-align: right;
+    padding-right: 3%;
+}
+.next {
+    font-size: 2em;
+    height: 3%;
+    margin: auto auto;
+}

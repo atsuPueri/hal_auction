@@ -3,24 +3,21 @@
 * {
     margin: 0;
     padding: 0;
-    font-size: 20px;
-    border: solid 1px red;
+    font-size: 18px;
+    /* border: solid 1px red; */
 }
 h1 {
-    font-size: 50px;
+    font-size: 45px;
 }
 h2 {
     font-size: 30px;
 }
-.next {
-    font-size: 3em;
-    height: 3%;
-    margin: auto auto;
+h3 {
+    font-size: 25px;
 }
 /** header **/
 header {
     display: flex;
-    width: 100%;
     justify-content: space-between;
     border-bottom: solid 1px black;
 }
@@ -33,13 +30,11 @@ header ul li {
 header ul li:first-child {
     border-left: none;
 }
-
 /** main **/
 /** オークション開催中 **/
-
 /*追加変更(2022/12/02) 渡邉 */
 #bana {
-    margin: 8% 0;
+    margin-top: 8%;
     display: flex;
     justify-content: space-between;
 }
@@ -74,6 +69,7 @@ header ul li:first-child {
 #main_flex {
     display: flex;
     padding: 5%;
+    padding-top: 8%;
 }
 .while {
     display: flex;
@@ -81,13 +77,57 @@ header ul li:first-child {
 .vehicle {
     border: solid 1px black;
     width: 15%;
+    margin-left: 0.1%;
 }
 .vehicle img {
     width: 100%;
 }
-#search {
-    border: solid 1px black
+.detail {
+    color: brown;
+    text-align: right;
+    padding-right: 3%;
 }
-.flex {
+/** チェックリスト **/
+.next {
+    font-size: 2em;
+    height: 3%;
+    margin: auto auto;
+}
+#check_list {
+    margin-top: 8%;
+}
+/** 検索 **/
+#search {
+    border: solid 1px black;
+    padding: 1%;
+}
+#search p {
+    font-size: 16px;
+}
+#search_text {
     display: flex;
+    justify-content: space-between;
+    margin: 3% auto;
+}
+input[type="text"] {
+    border: solid 1px black;
+}
+#search_select {
+    display: flex;
+}
+#search_maker {
+    margin-bottom: 3%;
+}
+select {
+    border: solid 1px black;
+}
+.margin_bottom {
+    margin-bottom: 3%;
+}
+#price {
+    display: flex;
+}
+.color_pared {
+    display: flex;
+    overflow-wrap: normal;
 }
