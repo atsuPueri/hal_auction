@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-12-14 08:27:46
+-- 生成日時: 2022-12-26 05:20:22
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.6
 
@@ -225,10 +225,11 @@ CREATE TABLE `user` (
   `login_id` text NOT NULL,
   `hash_password` text NOT NULL,
   `user_name` text NOT NULL,
-  `phone_number` int(11) NOT NULL COMMENT 'ハイフン区切り',
+  `phone_number` text NOT NULL COMMENT 'ハイフン区切り',
   `post_code` text NOT NULL COMMENT 'ハイフン区切り',
   `address` text NOT NULL,
   `apartment` text DEFAULT NULL,
+  `credit_card_number` int(16) NOT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
