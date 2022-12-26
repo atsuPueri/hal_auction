@@ -2,7 +2,6 @@
 require_once __DIR__.'/../function.php';
 $request_path = require(__DIR__ . '/route.php');
 
-
 switch ($request_path) {
 
     // ---------------------------------車両テーブル
@@ -200,12 +199,14 @@ switch ($request_path) {
             "post_code" => $_GET['post_code'],
             "address" => $_GET['address'],
             "apartment" => $_GET['apartment'],
+            "credit_card_number" => $_GET['credit_card_number'],
             "status" => $_GET['status']
         ]);
         $sql = "INSERT INTO user ";
+        
         //パスワードをハッシュ化
-
-
+        $hash_password = md5($_GET['hash_password']);
+        $into_make['hash_password'] = $hash_password;
 
         $sql .= into_make($into_make);
 
@@ -221,6 +222,7 @@ switch ($request_path) {
         $sql = add_and($sql, "post_code", "=", $_GET['post_code'] ?? '','SET');
         $sql = add_and($sql, "address", "=", $_GET['address'] ?? '','SET');
         $sql = add_and($sql, "apartment", "=", $_GET['apartment'] ?? '','SET');
+        $sql = add_and($sql, "credit_card_number", "=", $_GET['credit_card_number'] ?? '','SET');
         $sql = add_and($sql, "status", "=", $_GET['status'] ?? '','SET');
         //WHERE句
         $sql = add_and($sql, "user_id", "=", $_GET["user_id"] ?? '');
