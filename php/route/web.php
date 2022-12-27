@@ -13,7 +13,23 @@ switch ($request_path) {
         $list = db_get($sql);
         return enc($list);
 
-    case "/add_car":    
+    case "/get_car_join":    
+        //車種とメーカーをJOINした車両を取得
+        $sql = "SELECT c.*, 
+        ct.name AS car_type_name, 
+        ct.img_name AS car_type_img_name, 
+        m.name AS maker_name, 
+        m.img_name AS maker_img_name
+        FROM car AS c LEFT JOIN car_type AS ct
+        ON c.car_type_id = ct.car_type_id 
+        LEFT JOIN maker AS m 
+        ON ct.maker_id = m.maker_id ";
+        $sql = add_and($sql, "car_id", "=", $_GET["car_id"] ?? '');
+
+        $list = db_get($sql);
+        return enc($list);
+
+    case "/add_car":
        //車両を登録
        $into_make = ([
             "car_type_id" => $_GET['car_type_id'],
@@ -95,22 +111,21 @@ switch ($request_path) {
         ON e.car_id = c.car_id 
         LEFT JOIN car_type AS ct 
         ON c.car_type_id = ct.car_type_id ";
-        
-        $sql = add_and($sql, "e.car_id", "=", $_GET["car_id"] ?? '');
-        $sql = add_and($sql, "e.time_to", ">=", $_GET["time_to"] ?? '');
-        $sql = add_and($sql, "c.car_type_id", "=", $_GET["car_type_id"] ?? '');
-        $sql = add_and($sql, "ct.name", "LIKE", "'%" . ($_GET['keyword'] ?? '') . "%'");
-        $sql = add_and($sql, "c.equipment", "=", $_GET["equipment"] ?? '');
-        if(isset($_GET["mileage_max"])){
+        $sql = add_and($sql, "e.car_id", "=", $_GET["car_id"] ?? '');//車両ID
+        $sql = add_and($sql, "e.time_to", ">=", $_GET["time_to"] ?? '');//時間
+        $sql = add_and($sql, "c.car_type_id", "=", $_GET["car_type_id"] ?? '');//車種
+        $sql = add_and($sql, "ct.name", "LIKE", "'%" . ($_GET['keyword'] ?? '') . "%'");//車種（キーワード検索）
+        $sql = add_and($sql, "c.equipment", "=", $_GET["equipment"] ?? '');//装備品
+        if(isset($_GET["mileage_max"])){//走行距離
             //maxがある場合
             $sql = add_and($sql, "c.mileage", "BETWEEN", $_GET["mileage_min"] ?? 0  . " AND " . $_GET["mileage_max"]);
         }elseif(isset($_GET["mileage_min"])){
             //minだけの場合
             $sql = add_and($sql, "c.mileage", ">=", $_GET["mileage_min"] ?? '');
         }
-        $sql = add_and($sql, "c.color", "=", $_GET["color"] ?? '');
-        $sql = add_and($sql, "c.automatic_or_mission", "=", $_GET["automatic_or_mission"] ?? '');
-        $sql = add_and($sql, "c.number_of_passengers", "=", $_GET["number_of_passengers"] ?? '');
+        $sql = add_and($sql, "c.color", "=", $_GET["color"] ?? '');//色
+        $sql = add_and($sql, "c.automatic_or_mission", "=", $_GET["automatic_or_mission"] ?? '');//オートマ・ミッション
+        $sql = add_and($sql, "c.number_of_passengers", "=", $_GET["number_of_passengers"] ?? '');//乗車人数
        
         $list = db_get($sql);
         return enc($list);
@@ -189,7 +204,7 @@ switch ($request_path) {
         $list = db_get($sql);
         return  enc($list);
 
-    case "/add_user":    
+    case "/add_user":
         //ユーザーを登録
         $into_make = ([
             "login_id" => $_GET['login_id'],
