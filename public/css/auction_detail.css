@@ -1,0 +1,67 @@
+@charset "utf-8";
+/** 全体 **/
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    /* border: solid 1px red; */
+}
+h2 {
+    font-size: 25px;
+}
+/** header **/
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px gray;
+}
+header a {
+    font-size: 45px;
+    font-weight: bold;
+    padding: 15px 0;
+    color: gray;
+}
+header nav {
+    margin: auto 0;
+}
+header ul {
+    display: flex;
+    
+}
+header ul li {
+    padding: 5px;
+}
+/** main **/
+main {
+    display: flex;
+    justify-content: space-around;
+}
+#detail {
+    display: flex;
+    justify-content: space-around;
+    margin: 3% 0;
+}
+#right {
+    width: 30%;
+    margin: auto 0;
+}
+.now {
+    display: flex;
+}
+.now h2 {
+    margin: auto 0;
+}
+#right p {
+    margin: 3%;
+}
+input[type="text"] {
+    width: 100%;
+    border: solid 1px black;
+}
+button {
+    border: solid 1px black;
+    width: 100%;
+    padding: 2%;
+    text-align: center;
+    background-color: orange;
+}

@@ -6,29 +6,30 @@
     font-size: 18px;
     /* border: solid 1px red; */
 }
-h1 {
-    font-size: 45px;
-}
 h2 {
-    font-size: 30px;
-}
-h3 {
     font-size: 25px;
 }
 /** header **/
 header {
     display: flex;
     justify-content: space-between;
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px gray;
+}
+header a {
+    font-size: 45px;
+    font-weight: bold;
+    padding: 15px 0;
+    color: gray;
+}
+header nav {
+    margin: auto 0;
 }
 header ul {
     display: flex;
+    
 }
 header ul li {
-    border-left: solid 1px black;
-}
-header ul li:first-child {
-    border-left: none;
+    padding: 5px;
 }
 /** main **/
 /** オークション開催中 **/
@@ -50,31 +51,34 @@ header ul li:first-child {
     clip-path: polygon(25% 0,100% 0%,100% 100%,0% 100%);
     background-color: orange;
 }
+#bak img {
+    width: 50%;
+}
 /*追加変更(2022/12/02) 渡邉 */
 #held {
     margin: 3% auto;
+    text-align: center;
 }
 /*追加変更(2022/12/02) 渡邉 */
 #held h2 {
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
+    font-size: 30px;
+    text-align: center;
 }
 /*buttonタグにidを追加(2022/12/02) 渡邉 */
 #button {
     border: 1px solid black;
     border-radius: 120px;
-    margin: 3vh 0 0 3vw;
+    margin: 3vh 0 0 0;
     padding: 2vh 2vw 2vh 2vw;
 }
 /** オークション予定 **/
 #main_flex {
     display: flex;
+    justify-content: space-around;
     padding: 5%;
     padding-top: 8%;
 }
-.slider {
-    display: flex;
-
-} 
 .vehicle {
     border: solid 1px black;
     width: 15%;
@@ -82,128 +86,98 @@ header ul li:first-child {
 .vehicle img{
     width: 100%;
 }
-
 .detail {
     color: brown;
     text-align: right;
     padding-right: 3%;
 }
 /** 観覧履歴 **/
-.next {
-    font-size: 2em;
-    height: 3%;
-    margin: auto auto;
-}
 #check_list {
-    margin-top: 8%;
+    margin-top: 3%;
 }
 /** 検索 **/
 #search {
     border: solid 1px black;
     padding: 1%;
 }
-#search p {
-    font-size: 16px;
-}
 #search_text {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
 }
-
-/*==================================================
-スライダーのためのcss
-===================================*/
-.slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
+input[type="text"] {
+    border: solid 1px black;
+}
+select {
+    border: solid 1px black;
+}
+.margin_bottom {
+    margin-bottom: 3%;
+}
+#price {
+    display: flex;
+}
+#search_select {
+    display: flex;
+}
+.color_pared {
+    display: flex;
+}
+.color_pared input[type="radio"] {
+    display: none;
+}
+/** スライダー **/
+.slider {
     width: 1000px;
- }
- 
- .slider img {
-     width:100%; /*スライダー内の画像を横幅100%に */
-     height:auto;
- }
- 
- /*slickのJSで書かれるタグ内、スライド左右の余白調整*/
- 
- .slider .slick-slide {
-     margin:0 10px;
- }
- 
- /*矢印の設定*/
- 
- /*戻る、次へ矢印の位置*/
- .slick-prev, 
- .slick-next {
-     position: absolute;/*絶対配置にする*/
-     top: 42%;
-     cursor: pointer;/*マウスカーソルを指マークに*/
-     outline: none;/*クリックをしたら出てくる枠線を消す*/
-     border-top: 2px solid #666;/*矢印の色*/
-     border-right: 2px solid #666;/*矢印の色*/
-     height: 15px;
-     width: 15px;
- }
- 
- .slick-prev {/*戻る矢印の位置と形状*/
-     left: -1.5%;
-     transform: rotate(-135deg);
- }
- 
- .slick-next {/*次へ矢印の位置と形状*/
-     right: -1.5%;
-     transform: rotate(45deg);
- }
- 
- /*ドットナビゲーションの設定*/
- 
- .slick-dots {
-   text-align:center;
-   margin:20px 0 0 0;
- }
- 
- .slick-dots li {
-     display:inline-block;
-   margin:0 5px;
- }
- 
- .slick-dots button {
-     color: transparent;
-     outline: none;
-     width:8px;/*ドットボタンのサイズ*/
-     height:8px;/*ドットボタンのサイズ*/
-     display:block;
-     border-radius:50%;
-     background:#ccc;/*ドットボタンの色*/
- }
- 
- .slick-dots .slick-active button{
-     background:#333;/*ドットボタンの現在地表示の色*/
- }
- 
- 
- /*========= レイアウトのためのCSS ===============*/
- 
- body{
-   background:#eee;
- }
- 
- h2,p {
-     text-align:center;
-     padding:20px;
- }
- 
- ul{
-   margin:0;
-   padding: 0;
-   list-style: none;
- }
- 
- a{
-   color: #333;
- }
- 
- a:hover,
- a:active{
-   text-decoration: none;
- }
- #schedule {
-    margin: 4vh 10vw 3vh 4vw;
- }
+}
+.slider img {
+    width:100%;
+    height:auto;
+}
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+.slider .slick-slide {
+    margin:0 10px;
+}
+/*矢印の設定*/
+/*戻る、次へ矢印の位置*/
+.slick-prev, .slick-next {
+    position: absolute;/*絶対配置にする*/
+    top: 42%;
+    cursor: pointer;/*マウスカーソルを指マークに*/
+    outline: none;/*クリックをしたら出てくる枠線を消す*/
+    border-top: 2px solid #666;/*矢印の色*/
+    border-right: 2px solid #666;/*矢印の色*/
+    height: 15px;
+    width: 15px;
+}
+.slick-prev {
+    /*戻る矢印の位置と形状*/
+    left: -1.5%;
+    transform: rotate(-135deg);
+}
+.slick-next {
+    /*次へ矢印の位置と形状*/
+    right: -1.5%;
+    transform: rotate(45deg);
+}
+/*ドットナビゲーションの設定*/
+.slick-dots {
+    text-align:center;
+    margin:20px 0 0 0;
+}
+.slick-dots li {
+    display:inline-block;
+    margin:0 5px;
+}
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width: 8px;/*ドットボタンのサイズ*/
+    height: 8px;/*ドットボタンのサイズ*/
+    display: block;
+    border-radius: 50%;
+    background: #ccc;/*ドットボタンの色*/
+}
+.slick-dots .slick-active button {
+    background: #333;/*ドットボタンの現在地表示の色*/
+}

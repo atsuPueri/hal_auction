@@ -6,15 +6,35 @@
     font-size: 18px;
     /* border: solid 1px red; */
 }
-h1 {
-    font-size: 45px;
-}
+
 h2 {
     font-size: 30px;
     margin-bottom: 18%;
 }
 h3 {
     font-size: 25px;
+}
+/** header **/
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px gray;
+}
+header a {
+    font-size: 45px;
+    font-weight: bold;
+    padding: 15px 0;
+    color: gray;
+}
+header nav {
+    margin: auto 0;
+}
+header ul {
+    display: flex;
+    
+}
+header ul li {
+    padding: 5px;
 }
 /** header **/
 header {
@@ -82,14 +102,12 @@ span {
 #purchase_stack {
     margin-bottom: 3%;
 }
-/*==================================================
-スライダーのためのcss
-===================================*/
-.slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
+/** スライダー **/
+.slider {
     width: 1000px;
- }
+}
 .slider img {
-    width:100%; /*スライダー内の画像を横幅100%に */
+    width:100%;
     height:auto;
 }
 /*slickのJSで書かれるタグ内、スライド左右の余白調整*/
@@ -98,8 +116,7 @@ span {
 }
 /*矢印の設定*/ 
 /*戻る、次へ矢印の位置*/
-.slick-prev, 
-.slick-next {
+.slick-prev, .slick-next {
     position: absolute;/*絶対配置にする*/
     top: 42%;
     cursor: pointer;/*マウスカーソルを指マークに*/
@@ -109,32 +126,34 @@ span {
     height: 15px;
     width: 15px;
 }
-.slick-prev {/*戻る矢印の位置と形状*/
+.slick-prev {
+    /*戻る矢印の位置と形状*/
     left: -1.5%;
     transform: rotate(-135deg);
 }
-.slick-next {/*次へ矢印の位置と形状*/
+.slick-next {
+    /*次へ矢印の位置と形状*/
     right: -1.5%;
     transform: rotate(45deg);
 }
 /*ドットナビゲーションの設定*/
 .slick-dots {
-    text-align:center;
-    margin:20px 0 0 0;
+    text-align: center;
+    margin: 20px 0 0 0;
 }
 .slick-dots li {
-    display:inline-block;
-    margin:0 5px;
+    display: inline-block;
+    margin: 0 5px;
 }
 .slick-dots button {
     color: transparent;
     outline: none;
-    width:8px;/*ドットボタンのサイズ*/
-    height:8px;/*ドットボタンのサイズ*/
-    display:block;
-    border-radius:50%;
-    background:#ccc;/*ドットボタンの色*/
+    width: 8px;/*ドットボタンのサイズ*/
+    height: 8px;/*ドットボタンのサイズ*/
+    display: block;
+    border-radius: 50%;
+    background: #ccc;/*ドットボタンの色*/
 }
 .slick-dots .slick-active button{
-    background:#333;/*ドットボタンの現在地表示の色*/
+    background: #333;/*ドットボタンの現在地表示の色*/
 }

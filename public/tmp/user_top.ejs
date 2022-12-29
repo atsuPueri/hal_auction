@@ -11,16 +11,7 @@
 
 </head>
 <body>
-    <header>
-        <h1>HALオークション</h1>
-        <nav>
-            <ul>
-                <li><a href="inform.html"><img src="../img/alarm.png" alt="通知" width="40px"></a></li>
-                <li><a href="favorite.html"><img src="../img/star.png" alt="お気に入り" width="40px"></a></li>
-                <li><a href="login.html"><img src="../img/user.png" alt="ログイン/登録" width="40px"></a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('header') %>
     <main>
         <div id="bana">
             <div id="held">
@@ -28,7 +19,7 @@
                 <p>車種名：インサイト</p>
                 <p>現在の落札金額：￥100,000</p>
                 <p>残り時間：5分13秒10</p>
-                <form>
+                <form action="auction_detail.ejs">
                     <button id="button">詳細を確認</button>
                 </form>
             </div>
@@ -39,14 +30,14 @@
         <div id="main_flex">
             <div>
                 <div id="schedule">
-                    <h3>オークション予定</h3>
+                    <h2>オークション予定</h2>
                     <ul class="slider">
                         <li class="vehicle">
                             <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
                             <p>インサイト</p>
                             <p>￥20,000</p>
                             <p>開催中</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -55,7 +46,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと5分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -64,7 +55,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと20分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -73,7 +64,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと60分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -82,21 +73,21 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと100分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
                     </ul>
                 </div>
-                <div id="schedule">
-                    <h3>オークション予定</h3>
+                <div id="check_list">
+                    <h2>観覧履歴</h2>
                     <ul class="slider">
                         <li class="vehicle">
                             <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
                             <p>インサイト</p>
                             <p>￥20,000</p>
                             <p>開催中</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -105,7 +96,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと5分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -114,7 +105,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと20分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -123,7 +114,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと60分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -132,7 +123,7 @@
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと100分で開催</p>
-                            <form class="detail">
+                            <form action="car_detail.ejs" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
@@ -183,7 +174,8 @@
                         </div>
                     </div>
                     <div class="margin_bottom">
-                        <p>走行距離<input type="text" name="">km</p>
+                        <p>走行距離</p>
+                        <p><input type="text" name="">km</p>
                     </div>
                     <div class="margin_bottom">
                         <div id="search_select">
@@ -204,20 +196,20 @@
                     <div class="margin_bottom">
                         <p>色</p>
                         <div class="color_pared">
-                            <p><img src="../img/color/white.jpg" alt="white" width="30px"></p>
-                            <p><img src="../img/color/gray.jpg" alt="gray" width="30px"></p>
-                            <p><img src="../img/color/red.jpg" alt="red" width="30px"></p>
-                            <p><img src="../img/color/pink.jpg" alt="pink" width="30px"></p>
-                            <p><img src="../img/color/orange.jpg" alt="orange" width="30px"></p>
-                            <p><img src="../img/color/yellow.jpg" alt="yellow" width="30px"></p>
-                            <p><img src="../img/color/yellow-green.jpg" alt="yellow-green" width="30px"></p>
-                            <p><img src="../img/color/green.jpg" alt="green" width="30px"></p>
-                            <p><img src="../img/color/blue.jpg" alt="blue" width="30px"></p>
+                            <p><input type="radio" name="" value="" id="white"><label for="white"><img src="../img/color/white.jpg" alt="white" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="gray"><label for="gray"><img src="../img/color/gray.jpg" alt="gray" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="red"><label for="red"><img src="../img/color/red.jpg" alt="red" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="pink"><label for="pink"><img src="../img/color/pink.jpg" alt="pink" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="orange"><label for="orange"><img src="../img/color/orange.jpg" alt="orange" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="yellow"><label for="yellow"><img src="../img/color/yellow.jpg" alt="yellow" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="yellow-green"><label for="yellow-green"><img src="../img/color/yellow-green.jpg" alt="yellow-green" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="green"><label for="green"><img src="../img/color/green.jpg" alt="green" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="blue"><label for="blue"><img src="../img/color/blue.jpg" alt="blue" width="30px"></label></p>
                         </div>
                         <div class="color_pared">
-                            <p><img src="../img/color/purple.jpg" alt="purple" width="30px"></p>
-                            <p><img src="../img/color/dark-blue.jpg" alt="dark-blue" width="30px"></p>
-                            <p><img src="../img/color/black.jpg" alt="black" width="30px"></p>
+                            <p><input type="radio" name="" value="" id="purple"><label for="purple"><img src="../img/color/purple.jpg" alt="purple" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="dark-blue"><label for="dark-blue"><img src="../img/color/dark-blue.jpg" alt="dark-blue" width="30px"></label></p>
+                            <p><input type="radio" name="" value="" id="black"><label for="black"><img src="../img/color/black.jpg" alt="black" width="30px"></label></p>
                         </div>
                     </div>
                     <p>装備品</p>
