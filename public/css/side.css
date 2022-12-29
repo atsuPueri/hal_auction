@@ -1,0 +1,90 @@
+  /** =======================
+   * Contenedor Principal
+   ===========================*/
+
+  
+   .accordion {
+    width: 100%;
+    max-width: 360px;
+    background: rgb(164, 162, 162);
+    margin-top: 5vw;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+  
+  .accordion .link {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 42px;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-top: 1px solid #CCC;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+  }
+  
+  .accordion li:last-child .link { border-bottom: 1px solid #CCC; }
+  
+  .accordion li i {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    font-size: 18px;
+    color: #595959;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+  }
+  
+  .accordion li i.fa-chevron-down {
+    right: 12px;
+    left: auto;
+    font-size: 16px;
+  }
+  
+  .accordion li.open .link { color: #b63b4d; }
+  
+  .accordion li.open i { color: #b63b4d; }
+  
+  .accordion li.open i.fa-chevron-down {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  
+  /**
+   * Submenu
+   -----------------------------*/
+  
+  
+  .submenu {
+    display: none;
+    background: #dfdfdf;
+    font-size: 14px;
+  }
+  
+  .submenu li { 
+    border-bottom: 1px solid #dfdfdf; 
+    border-right: 1px solid rgb(164, 162, 162);
+  }
+  
+  .submenu a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+    padding-left: 42px;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+  }
+  
+  .submenu a:hover {
+    background: #b63b4d;
+    color: #FFF;
+  }

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/destyle.css">
+    <link rel="stylesheet" href="../css/side.css">
+    <link rel="stylesheet" href="../css/grid.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/schedule.css">
+    <!-- HTMLが読み込まれてから実行 defer -->
+    <script src="../js/script.js" defer></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <title>スケジュール登録</title>
+</head>
+<body>
+    <div class="top">
+        <header class="header">
+          <h1>HAL中古車販売</h1>
+        </header>
+        <aside class="menu">
+            <ul id="accordion" class="accordion">
+                <li>
+                  <div class="link"><i class="fa fa-database"></i>車両管理<i class="fa fa-chevron-down"></i></div>
+                  <ul class="submenu">
+                    <li><a href="top.ejs">車両一覧</a></li>
+                    <li><a href="carentry.ejs">車両情報登録</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="link"><i class="fa fa-code"></i>会員管理<i class="fa fa-chevron-down"></i></div>
+                  <ul class="submenu">
+                    <li><a href="user.ejs">会員情報一覧</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="link"><i class="fa fa-mobile"></i>出品管理<i class="fa fa-chevron-down"></i></div>
+                  <ul class="submenu">
+                    <li><a href="schedule.ejs">スケジュール登録</a></li>
+                    <li><a href="#">出品一覧</a></li>
+                    <li><a href="exhibit.ejs">出品情報登録</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="link"><i class="fa fa-globe"></i>オークション管理<i class="fa fa-chevron-down"></i></div>
+                  <ul class="submenu">
+                    <li><a href="auction.ejs">オークション一覧</a></li>
+                  </ul>
+                </li>
+              </ul>
+        </aside>
+            <main class="main">
+                <h1>スケジュール登録</h1>
+                <div id="days">
+                    <div class="day">
+                        <div class="day_of_week">月</div>
+                        <div class="day_num">31</div>
+                    </div>
+                    <div class="day">
+                        <div class="day_of_week">火</div>
+                        <div class="day_num">1</div>
+                    </div>
+                    <div class="day">
+                        <div class="day_of_week">水</div>
+                        <div class="day_num">2</div>
+                    </div>
+                    <div class="day">
+                        <div class="day_of_week">木</div>
+                        <div class="day_num">3</div>
+                    </div>
+                    <div class="day">
+                        <div class="day_of_week">金</div>
+                        <div class="day_num">4</div>
+                    </div>
+                </div>
+            
+                <div id="container">
+                    <div id="time_container">
+                        <div class="time">9:00</div>
+                        <div class="time">9:30</div>
+                        <div class="time">10:00</div>
+                        <div class="time">10:30</div>
+                        <div class="time">11:00</div>
+                        <div class="time">11:30</div>
+                        <div class="time">12:00</div>
+                        <div class="time">12:30</div>
+                        <div class="time">13:00</div>
+                        <div class="time">13:30</div>
+                        <div class="time">14:00</div>
+                        <div class="time">14:30</div>
+                        <div class="time">15:00</div>
+                        <div class="time">15:30</div>
+                        <div class="time">16:00</div>
+                        <div class="time">16:30</div>
+                        <div class="time">17:00</div>
+                        <div class="time">17:30</div>
+                        <div class="time">18:00</div>
+                        <div class="time">18:30</div>
+                        <div class="time">19:00</div>
+                    </div>
+            
+                    <div id="drag_zone">
+                        <div class="row">
+                            <div class="draggable" draggable="true">
+                                アルファード
+                                <div class="size"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="draggable" draggable="true">
+                                プリウス
+                                <div class="size"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="draggable" draggable="true">
+                                ハスラー
+                                <div class="size"></div>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row"></div>
+                    </div>
+                </div>    
+            </main>
+            <footer class="footer">フッター</footer>
+    </div>
+    <script src="../js/side.js"></script>
+</body>
+</html>
