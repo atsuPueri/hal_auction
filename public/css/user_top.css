@@ -3,33 +3,11 @@
 * {
     margin: 0;
     padding: 0;
-    font-size: 18px;
+    font-size: 16px;
     /* border: solid 1px red; */
 }
 h2 {
-    font-size: 25px;
-}
-/** header **/
-header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: solid 1px gray;
-}
-header a {
-    font-size: 45px;
-    font-weight: bold;
-    padding: 15px 0;
-    color: gray;
-}
-header nav {
-    margin: auto 0;
-}
-header ul {
-    display: flex;
-    
-}
-header ul li {
-    padding: 5px;
+    font-size: 20px !important;
 }
 /** main **/
 /** オークション開催中 **/
@@ -62,7 +40,7 @@ header ul li {
 /*追加変更(2022/12/02) 渡邉 */
 #held h2 {
     margin-bottom: 5vh;
-    font-size: 30px;
+    font-size: 25px !important;
     text-align: center;
 }
 /*buttonタグにidを追加(2022/12/02) 渡邉 */
@@ -75,7 +53,7 @@ header ul li {
 /** オークション予定 **/
 #main_flex {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 5%;
     padding-top: 8%;
 }
@@ -109,7 +87,7 @@ input[type="text"] {
     border: solid 1px black;
 }
 select {
-    border: solid 1px black;
+    border: solid 1px black !important;
 }
 .margin_bottom {
     margin-bottom: 3%;
