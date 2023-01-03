@@ -1,0 +1,29 @@
+@charset "utf-8";
+/** 全体 **/
+* {
+    margin: 0;
+    padding: 0;
+    /* border: solid 1px red; */
+}
+/** header **/
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px gray;
+}
+header a {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px 0;
+    color: gray;
+}
+header nav {
+    margin: auto 0;
+}
+header ul {
+    display: flex;
+    
+}
+header ul li {
+    padding: 5px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録確認ページ</title>
+    <link rel="stylesheet" href="../css/destyle.css">
+    <link rel="stylesheet" href="../css/login_check.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <form id="form" action="#">
+                <h1>確認</h1>
+                <table>
+                    <tr>
+                        <td><p>名前</p></td>
+                        <td><p>あああああ</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>ログインID</p></td>
+                        <td><p>いいいいい</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>パスワード</p></td>
+                        <td><p>うううううう</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>電話番号</p></td>
+                        <td><p>68900876</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>郵便番号</p></td>
+                        <td><p>098789098</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>住所</p></td>
+                        <td><p>ええええええええええええええ</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>マンション名</p></td>
+                        <td><p>おおおおおおおお</p></td>
+                    </tr>
+                </table>
+                <div id="button">
+                    <button>戻る</button>
+                    <button onclick="clickEvent()">登録</button>
+                </div>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <form action="login.html">
+                        <h1>ログインページはこちら</h1>
+                        <p>アカウントを既にお持ちの方はこちらからログインしてください</p>
+                        <button class="ghost" id="signUp">ログイン画面へ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function clickEvent() {
+            alert("登録が完了しました。");
+        }
+    </script>
+</body>
+</html>

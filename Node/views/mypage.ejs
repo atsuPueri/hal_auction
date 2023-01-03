@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ</title>
+    <link rel="stylesheet" href="../css/destyle.css">
+    <link rel="stylesheet" href="../css/mypage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+</head>
+<body>
+    <%- include('header') %>
+    <main>
+        <div id="profile">
+            <h2>マイページ</h2>
+            <p id="img"><img src="../img/user.png" alt="アイコン" width="200px"></p>
+            <p id="name">ハル タロウ</p>
+            <p id="logout"><buutton>ログアウト</buutton></p>
+            <div>
+                <div class="bottom">
+                    <p>ログインID</p>
+                    <p>hal_tarou123</p>
+                </div>
+                <div class="bottom">
+                    <p>パスワード</p>
+                    <p>●●●●●●●●</p>
+                </div>
+                <div class="bottom">
+                    <p>電話番号</p>
+                    <p>〇〇〇-〇〇〇〇-1234</p>
+                </div>
+                <div class="bottom">
+                    <p>住所</p>
+                    <p>〒530-〇〇〇〇</p>
+                    <p>大阪府大阪市北区</p>
+                </div>
+                <div class="bottom">
+                    <p>クレジットカード</p>
+                    <p>番号</p>
+                    <p>××××-××××-××××-××××</p>
+                    <p></p>
+                    <p>有効期限</p>
+                    <p>□□/□□</p>
+                    <p>セキュリティーコード</p>
+                    <p>●●●</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="inform">
+                <h3>新着情報</h3>
+                <ul>
+                    <li class="list">
+                        <a href="#a">
+                            <time>2022/12/01</time>
+                            <p>入札が完了しました。</p>
+                            <span>NEW!</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="#a">
+                            <time>2022/12/01</time>
+                            <p>オークションが終了しました。</p>
+                            <span>NEW!</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="#a">
+                            <time>2022/12/01</time>
+                            <p>入札金額が上回られました。</p>
+                            <span>NEW!</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <time>2022/12/01</time>
+                            <p>オークション終了まで残り5分です。</p>
+                        </a>
+                    </li>
+                    <li id="a">
+                        <a href="">
+                            <time>2022/12/01</time>
+                            <p>まもなくオークションが開催されます。</p>
+                        </a>
+                    </li>
+                  </ul>
+            </div>
+            <div id="favorite">
+                <h3>お気に入りリスト</h3>
+                <ul class="slider">
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div id="purchase_stack">
+                <h3>購入履歴</h3>
+                <ul class="slider">
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>観覧履歴</h3>
+                <ul class="slider">
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/hasure.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                    <li class="vehicle">
+                        <p><img src="../img/SELENA.png" alt="チェックした車両写真"></p>
+                        <p>車種名</p>
+                        <p>￥〇〇</p>
+                        <form action="detail.html" class="detail">
+                            <button>詳細を確認</button>
+                        </form>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="../js/slider.js"></script>
+</body>
+</html>

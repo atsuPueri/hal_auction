@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詳細ページ</title>
+    <link rel="stylesheet" type="text/css" href="../css/destyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/auction_detail.css">
+</head>
+<body>
+    <%- include('header') %>
+    <main>
+        <div>
+            <p><img src="../img/hasure.png" alt="車"></p>
+            <h2>車両情報※内容が分かりません</h2>
+            <div id="detail">
+                <div>
+                    <p>メーカー：××××</p>
+                    <p>車種名：〇〇〇〇</p>
+                    <p>仕入れ価格：□□□□</p>
+                    <p>ボディタイプ：△△△△</p>
+                    <p>年式：☆☆☆</p>
+                    <p>走行距離：××××</p>
+                    <p>色：〇〇〇〇</p>
+                </div>
+                <div>
+                    <p>車検有効期限：□□□□</p>
+                    <p>オートマ</p>
+                    <p>排気量：☆☆☆</p>
+                    <p>乗車定員数：××××</p>
+                    <p>駆動方式：〇〇〇〇</p>
+                    <p>装備品：△△、△△△△、△△△、△△</p>    
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div class="now">
+                <h2>現在の落札金額</h2>
+                <p>￥20,000</p>
+            </div>
+            <div class="now">
+                <h2>残り時間</h2>
+                <p>10分25秒21</p>
+            </div>
+            <p><input type="text" name=""></p>
+            <p><button onclick="clickEvent()">自動入札</button></p>
+            <p><input type="text" name=""></p>
+            <p><button onclick="clickEvent()">入札</button></p>
+        </div>
+        <script>
+            function clickEvent() {
+                var result = confirm("入札しますか？");
+                if(result) {
+                    console.log('入札完了');
+                    alert("入札完了")
+                }else {
+                    console.log('入札未完了');
+                }
+            }
+        </script>
+    </main>
+</body>
+</html>
