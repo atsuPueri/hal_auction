@@ -10,15 +10,18 @@ module.exports = function(app) {
         response.render('mypage');
     });
 
-    app.get('/schedule', (request, response) => {
-        response.render('schedule');
+    app.get('/favorite', (request, response) => {
+        response.render('favorite');
     });
 
-    app.get('/exhibit', (request, response) => {
-        response.render('exhibit');
+    app.get('/auction_detail', (request, response) => {
+        response.render('auction_detail');
     });
 
     app.get('/auction', (request, response) => {
         response.render('auction');
+    });
+    app.get('/error', (request, response) => {
+        response.render('error');
     });
 }

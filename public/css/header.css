@@ -8,6 +8,7 @@
 /** header **/
 header {
     display: flex;
+    padding: 2vh 3vw 0 3vw;
     justify-content: space-between;
     border-bottom: solid 1px gray;
 }

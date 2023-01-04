@@ -54,7 +54,7 @@ h2 {
 #main_flex {
     display: flex;
     justify-content: space-between;
-    padding: 5%;
+    padding: 5vh 2vw 5vh 4vw;
     padding-top: 8%;
 }
 .vehicle {
