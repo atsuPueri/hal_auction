@@ -7,28 +7,29 @@
     <title>ログイン/登録ページ</title>
     <link rel="stylesheet" href="../css/destyle.css">
     <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="login_check.html">
-            <h1>登録</h1>
-            <input type="text" placeholder="名前"  required>
-            <input type="text" placeholder="ログインID"  required>
-            <input type="password" placeholder="パスワード"  required>
-            <input type="text" placeholder="電話番号"  required>
-            <input type="text" placeholder="郵便番号" required>
-            <input type="text" placeholder="住所"  required>
-            <input type="text" placeholder="マンション名" required>
-            <button>登録する</button>
+            <form action="login_check">
+                <h1>登録</h1>
+                <input type="text" placeholder="名前"  required id="name">
+                <input type="text" placeholder="ログインID"  required id="login">
+                <input type="password" placeholder="パスワード"  required id="pass">
+                <input type="text" placeholder="電話番号"  required id="tel">
+                <input type="text" placeholder="郵便番号" required id="postal">
+                <input type="text" placeholder="住所"  required id="address">
+                <input type="text" placeholder="マンション名" required id="apartment">
+                <button type="submit" id="register">登録する</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
-            <h1>ログイン</h1>
-            <input type="text" placeholder="ログインIDを入力してください。">
-            <input type="password" placeholder="パスワードを入力してください。">
-            <button>ログインする</button>
+            <form action="user_top">
+                <h1>ログイン</h1>
+                <input type="text" placeholder="ログインIDを入力してください。">
+                <input type="password" placeholder="パスワードを入力してください。">
+                <button>ログインする</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -60,4 +61,7 @@
         });
     </script>
 </body>
+    <script src="../js/side.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/login.js"></script>
 </html>

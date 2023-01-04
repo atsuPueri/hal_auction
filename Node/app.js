@@ -60,5 +60,25 @@ io_socket.on('connection', (stream) => {
         });
     });
 
+
+    // ユーザー側
+    stream.on('login', request_message => {
+        let user_info = JSON.parse(request_message);
+
+        //todo:test
+        // console.log(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}`);
+        
+        php(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}`, response_message => {
+            console.log(response_message);
+            
+            //todo:test
+            //response_message = true;
+
+            if(response_message === true){
+                //user_topに戻す
+                console.log("成功");
+            }
+        });
+    });
 });
 

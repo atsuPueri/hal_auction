@@ -53,4 +53,48 @@ module.exports = function(app) {
     app.get('/auction', (request, response) => {
         response.render('auction');
     });
+
+    app.get('/user_top', (request, response) => {
+        response.render('user_top');
+    });
+
+    app.get('/auction_detail', (request, response) => {
+        response.render('auction_detail');
+    });
+
+    app.get('/car_detail', (request, response) => {
+        response.render('car_detail');
+    });
+
+    app.get('/evaluation', (request, response) => {
+        response.render('evaluation');
+    });
+
+    app.get('/exhibit', (request, response) => {
+        response.render('exhibit');
+    });
+
+    app.get('/favorite', (request, response) => {
+        response.render('favorite');
+    });
+
+    app.get('/inform', (request, response) => {
+        response.render('inform');
+    });
+
+    app.get('/login_check', (request, response) => {
+        response.render('login_check');
+    });
+
+    app.get('/login', (request, response) => {
+        response.render('login');
+    });
+
+    app.get('/mypage', (request, response) => {
+        response.render('mypage');
+    });
+
+    // app.get('/', (request, response) => {
+    //     response.render('');
+    // });
 }
