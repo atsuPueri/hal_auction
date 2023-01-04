@@ -247,7 +247,6 @@ switch ($request_path) {
         $list = db_change($sql);
         return enc($list);    
 
-    
     // ---------------------------------お気に入り出品テーブル
     case "/get_favorite_exhibit":
         //お気に入り出品を取得
