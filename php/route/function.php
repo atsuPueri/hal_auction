@@ -26,7 +26,7 @@ function db_get($param){
 function db_change($param){
     $link=mysqli_connect('localhost','root','','hal_auction');
     mysqli_set_charset($link,'utf8');
-
+    
     $result = mysqli_query($link,$param);
 
     //処理が正しく行われなかったとき

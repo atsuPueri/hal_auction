@@ -1,5 +1,7 @@
 <?php
 
+//-----SQL実行関数
+
 //SELECT
 function db_get($param){    
     $link=mysqli_connect('localhost','root','','hal_auction');
@@ -39,55 +41,65 @@ function db_change($param){
     return $list;
 }
 
-//ANDで繋いでSQL文を生成 SELECT DELETE
-function add_and($sql, $column, $operator, $val, $where = "WHERE") {
+
+//-----SQL生成関数
+
+//ANDもしくはカンマで繋いでSQL文を生成 SELECT DELETE
+function add_and($sql, $column, $operator, $val, $middle = "WHERE") {
     //値が入っていなかった場合空で返す
     if (($val ?? '') === '') {
         return $sql;
     }
+
     static $flg = true;
+    static $flg_middle;
+
+    if($flg){
+        $flg_middle = $middle;
+    }
+    //句が変わったとき
+    if($flg_middle != $middle){
+        $flg = true;
+        $flg_middle = $middle;
+    }
+
     $sql .= "\n";
     // 一回目のみtrue
-    if ($flg) {
-        $sql .= $where;
-        $flg = false;
-    } else {
-        $sql .= "AND";
+    if($middle == "SET"){
+        if ($flg) {
+            $sql .= $middle;
+            $flg = false;
+        } else {
+            $sql .= ",";
+        }
     }
-    
+    if($middle == "WHERE"){
+        if ($flg) {
+            $sql .= $middle;
+            $flg = false;
+        } else {
+            $sql .= "AND";
+        }
+    }
     $sql .= " {$column} {$operator} {$val} ";
     return $sql;
 }
 
 //INSERT文を生成
-function into_make(array $associative_array, bool $mode = true): string {
+function into_make(array $associative_array): string {
+
     // insert文作成
     $keys = [];
     $values = [];
     foreach ($associative_array as $key => $value) { // 添え字と中身をそれぞれ配列に格納
         $keys[] = $key;
-
-        // 文字列が渡されたときはシングルで囲いそれ以外の時は囲わない
-        if ($mode) {
-            if (is_string($value)) {
-                $values[] = "'" . $value . "'";
-            } else if (is_int($value)) {
-                $values[] = (string)$value;
-            } else if (is_bool($value)) {
-                $values[] = $value ? "true" : "false";
-            } else if (is_null($value)) {
-                $values[] = "null";
-            }
-        } else {
-            $values[] = $value;
-        }
+        $values[] = $value;
     }
-
 
     $column = implode(", ", $keys); // A,B,C 　この形で格納
     $data = implode(", ", $values); // 'A','B','C','D' 
     $sql = "({$column}) VALUES ({$data}) ";
-
+    
     return $sql;
 }
 

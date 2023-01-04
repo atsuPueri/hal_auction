@@ -66,9 +66,9 @@ io_socket.on('connection', (stream) => {
         let user_info = JSON.parse(request_message);
 
         //todo:test
-        // console.log(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}`);
-        
-        php(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}`, response_message => {
+        // console.log(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}&credit_card_number=${user_info.login}&status=${user_info.login}`);
+        // '/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login;
+        php('/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login, response_message => {
             console.log(response_message);
             
             //todo:test
