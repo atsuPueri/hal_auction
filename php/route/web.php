@@ -218,15 +218,12 @@ switch ($request_path) {
             "status" => $_GET['status']
         ]);
         $sql = "INSERT INTO user ";
-
-  echo json_encode( $sql );
     
         //パスワードをハッシュ化
         $hash_password = md5($_GET['hash_password']);
-        $into_make['hash_password'] = '"'+$hash_password+'"';
+        $into_make['hash_password'] = '"'.$hash_password.'"';
 
         $sql .= into_make($into_make);
-        echo $sql;
         $list = db_change($sql);
         return enc($list);
 

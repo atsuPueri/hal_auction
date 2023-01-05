@@ -1,3 +1,6 @@
+const { response } = require('express');
+const { request } = require('http');
+
 module.exports = function(app) {
 
     const php = require('../util/php.js');
@@ -82,8 +85,27 @@ module.exports = function(app) {
         response.render('inform');
     });
 
-    app.get('/login_check', (request, response) => {
-        response.render('login_check');
+    app.post('/login_check', (request, response) => {
+        response.render('login_check',{
+            user_info:request.body
+        });
+    });
+
+    app.post('/user_add', (request, response) => {
+        php('/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login, response_message => {
+            // console.log(response_message);
+            
+            response_message = JSON.parse(response_message);
+            //todo:test
+            //response_message = true;
+
+            if(response_message.status === true){
+                //user_topに戻す
+                response.redirect('/user_top');
+            } else {
+                
+            }
+        });
     });
 
     app.get('/login', (request, response) => {

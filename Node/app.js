@@ -1,5 +1,6 @@
 "use strict"
 
+const { json } = require('body-parser');
 const express = require('express');
 const php = require('./util/php.js');
 const app = express();
@@ -62,23 +63,24 @@ io_socket.on('connection', (stream) => {
 
 
     // ユーザー側
-    stream.on('login', request_message => {
-        let user_info = JSON.parse(request_message);
+    // stream.on('login', request_message => {
+    //     let user_info = JSON.parse(request_message);
 
-        //todo:test
-        // console.log(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}&credit_card_number=${user_info.login}&status=${user_info.login}`);
-        // '/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login;
-        php('/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login, response_message => {
-            console.log(response_message);
+    //     //todo:test
+    //     // console.log(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}&credit_card_number=${user_info.login}&status=${user_info.login}`);
+    //     // '/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login;
+    //     php('/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login, response_message => {
+    //         // console.log(response_message);
             
-            //todo:test
-            //response_message = true;
+    //         response_message = JSON.parse(response_message);
+    //         //todo:test
+    //         //response_message = true;
 
-            if(response_message === true){
-                //user_topに戻す
-                console.log("成功");
-            }
-        });
-    });
+    //         if(response_message.status === true){
+    //             //user_topに戻す
+    //             console.log("成功");
+    //         }
+    //     });
+    // });
 });
 

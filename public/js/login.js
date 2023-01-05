@@ -5,7 +5,6 @@ const socketio = io();
 //登録ボタンが押されたら動く
 const btn = document.getElementById("register");
 btn.addEventListener("click", function(event){
-    event.preventDefault();
 
     const name = document.getElementById("name");
     const login = document.getElementById("login");

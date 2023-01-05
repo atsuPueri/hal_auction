@@ -11,12 +11,13 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in-container">
-            <form id="form" action="#">
+            <form id="form" action="/user_add">
+                <input type="hidden" name="name" value="<%= user_info.name%>">
                 <h1>確認</h1>
                 <table>
                     <tr>
                         <td><p>名前</p></td>
-                        <td><p>あああああ</p></td>
+                        <td><p><%= user_info.name%></p></td>
                     </tr>
                     <tr>
                         <td><p>ログインID</p></td>
