@@ -1,5 +1,6 @@
 const { response } = require('express');
 const { request } = require('http');
+const { loadavg } = require('os');
 
 module.exports = function(app) {
 
@@ -21,7 +22,19 @@ module.exports = function(app) {
 
 
     app.get('/', (request, response) => {
-        response.render('top');
+        php('/get_car', response_message => {
+            const carData = JSON.parse(response_message);
+            let makerData = [];
+            // console.log(carData.data);
+            for (const column of carData.data) {
+                php('/get_car_join?car_id='+column.car_id, response_message => {
+                    console.log(JSON.parse(response_message));
+                });
+            }
+            // console.log(makerData);
+            response.render('top', {
+            });
+        });
     });
 
     app.get('/top', (request, response) => {
@@ -42,7 +55,12 @@ module.exports = function(app) {
     });
 
     app.get('/user', (request, response) => {
-        response.render('user');
+        php('/get_user', response_message => {
+            const userData = JSON.parse(response_message);
+            response.render('user', {
+                userData : userData.data
+            });
+        });
     });
 
     app.get('/schedule', (request, response) => {
@@ -58,7 +76,16 @@ module.exports = function(app) {
     });
 
     app.get('/user_top', (request, response) => {
-        response.render('user_top');
+        php('/get_car_type', response_message => {
+            const carTypeData = JSON.parse(response_message);
+            php('/get_maker', response_message => {
+                const makerData = JSON.parse(response_message);
+                response.render('user_top', {
+                    carData : carTypeData.data,
+                    makerData : makerData.data
+                });
+            });
+        });
     });
 
     app.get('/auction_detail', (request, response) => {
@@ -92,20 +119,23 @@ module.exports = function(app) {
     });
 
     app.post('/user_add', (request, response) => {
-        php('/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login, response_message => {
-            // console.log(response_message);
+        // console.log(request.body);
+
+        php('/add_user?login_id="'+request.body.login+'"&hash_password="'+request.body.pass+'"&user_name="'+request.body.name+'"&phone_number="'+request.body.tel+'"&post_code="'+request.body.postal+'"&address="'+request.body.address+'"&apartment="'+request.body.apartment+'"&credit_card_number='+request.body.card, response_message => {
             
             response_message = JSON.parse(response_message);
-            //todo:test
-            //response_message = true;
-
+            //ユーザーの登録が正常に動いたか
             if(response_message.status === true){
-                //user_topに戻す
                 response.redirect('/user_top');
             } else {
-                
+                response.redirect('/error');
+
             }
         });
+    });
+
+    app.get('/error', (request, response) => {
+        response.render('error');
     });
 
     app.get('/login', (request, response) => {

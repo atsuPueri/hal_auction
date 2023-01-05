@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/destyle.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../css/user_top.css">
-
+    <script src="../js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <%- include('header') %>
@@ -141,8 +141,10 @@
                         <p>メーカー</p>
                         <p>
                             <select name="">
-                                <option value="">すべてのメーカー∨</option>
-                                <option value="">※ここから選択肢</option>
+                                <option value="">すべての車種∨</option>
+                                <% for (let column of makerData) { %>
+                                    <option value="<%= column.maker_id %>"><%= column.name %></option>
+                                <% } %>
                             </select>
                         </p>
                     </div>
@@ -151,7 +153,9 @@
                         <p>
                             <select name="">
                                 <option value="">すべての車種∨</option>
-                                <option value="">※ここから選択肢</option>
+                                <% for (let column of carData) { %>
+                                    <option value="<%= column.car_id %>"><%= column.name %></option>
+                                <% } %>
                             </select>
                         </p>
                     </div>
@@ -224,5 +228,7 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="../js/slider.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+      <script src="../js/user_top.js"></script>
 </body>
 </html>

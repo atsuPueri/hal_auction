@@ -49,138 +49,28 @@
             <h1>会員情報一覧</h1>
             <table>
                 <tr>
-                  <th>会員ID</th>
-                  <th>ログインID</th>
-                  <th>名前</th>
-                  <th>電話番号</th>
-                  <th>住所</th>
-                  <th>会員状態</th>
-                  <th>項目</th>
-                  <th>項目</th>
-                </tr>
+                <th>会員ID</th>
+                <th>ログインID</th>
+                <th>名前</th>
+                <th>電話番号</th>
+                <th>住所</th>
+                <th>会員状態</th>
+                <th>項目</th>
+                <th>項目</th>
+              </tr>
+              <% for (let column of userData) { %>
                 <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
+                  <td><%= column.user_id %></td>
+                  <td><%= column.login_id %></td>
+                  <td><%= column.user_name %></td>
+                  <td><%= column.phone_number %></td>
+                  <td><%= column.address %></td>
+                  <td><%= column.status %></td>
                   <td><a>詳細確認</a></td>
                   <td><a>退会</a></td>
                 </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <!-- <td><a class="withdrawalBtn" value="0">退会</a></td> -->
-                  <td><button type="button" class="withdrawalBtn" value="0">退会</button></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <!-- <td><a class="withdrawalBtn" value="1">退会</a></td> -->
-                  <td><button type="button" class="withdrawalBtn" value="1">退会</button></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-                <tr>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td>データ</td>
-                  <td><a>詳細確認</a></td>
-                  <td><a>退会</a></td>
-                </tr>
-              </table>
+              <% } %>
+            </table>
             
         </main>
         <footer class="footer">フッター</footer>

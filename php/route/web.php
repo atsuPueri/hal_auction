@@ -48,7 +48,7 @@ switch ($request_path) {
         ]);
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
-
+        echo $sql;
         $list = db_change($sql);
         return enc($list);
 
@@ -214,8 +214,8 @@ switch ($request_path) {
             "post_code" => $_GET['post_code'],
             "address" => $_GET['address'],
             "apartment" => $_GET['apartment'],
-            // "credit_card_number" => $_GET['credit_card_number'],
-            "status" => $_GET['status']
+            "credit_card_number" => $_GET['credit_card_number'],
+            // "status" => $_GET['status']
         ]);
         $sql = "INSERT INTO user ";
     

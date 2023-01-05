@@ -11,8 +11,15 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in-container">
-            <form id="form" action="/user_add">
+            <form id="form" action="/user_add" method="post">
                 <input type="hidden" name="name" value="<%= user_info.name%>">
+                <input type="hidden" name="login" value="<%= user_info.login%>">
+                <input type="hidden" name="pass" value="<%= user_info.pass%>">
+                <input type="hidden" name="tel" value="<%= user_info.tel%>">
+                <input type="hidden" name="postal" value="<%= user_info.postal%>">
+                <input type="hidden" name="address" value="<%= user_info.address%>">
+                <input type="hidden" name="apartment" value="<%= user_info.apartment%>">
+                <input type="hidden" name="card" value="<%= user_info.card%>">
                 <h1>確認</h1>
                 <table>
                     <tr>
@@ -21,32 +28,36 @@
                     </tr>
                     <tr>
                         <td><p>ログインID</p></td>
-                        <td><p>いいいいい</p></td>
+                        <td><p><%= user_info.login%></p></td>
                     </tr>
                     <tr>
                         <td><p>パスワード</p></td>
-                        <td><p>うううううう</p></td>
+                        <td><p><%= user_info.pass%></p></td>
                     </tr>
                     <tr>
                         <td><p>電話番号</p></td>
-                        <td><p>68900876</p></td>
+                        <td><p><%= user_info.tel%></p></td>
                     </tr>
                     <tr>
                         <td><p>郵便番号</p></td>
-                        <td><p>098789098</p></td>
+                        <td><p><%= user_info.postal%></p></td>
                     </tr>
                     <tr>
                         <td><p>住所</p></td>
-                        <td><p>ええええええええええええええ</p></td>
+                        <td><p><%= user_info.address%></p></td>
                     </tr>
                     <tr>
                         <td><p>マンション名</p></td>
-                        <td><p>おおおおおおおお</p></td>
+                        <td><p><%= user_info.apartment%></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>クレジットカード番号</p></td>
+                        <td><p><%= user_info.card%></p></td>
                     </tr>
                 </table>
                 <div id="button">
                     <button>戻る</button>
-                    <button onclick="clickEvent()">登録</button>
+                    <button>登録</button>
                 </div>
             </form>
         </div>
@@ -62,10 +73,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function clickEvent() {
-            alert("登録が完了しました。");
-        }
-    </script>
 </body>
 </html>
