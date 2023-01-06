@@ -1,4 +1,7 @@
 /* グリッドデザイン */
+h1 {
+  margin-top: 3vh;
+}
 .top {
     display: grid;
     grid-template-areas:
