@@ -13,7 +13,8 @@ h2 {
 /** オークション開催中 **/
 /*追加変更(2022/12/02) 渡邉 */
 #bana {
-    margin-top: 8%;
+    margin-top: 10%;
+    margin-bottom: 5%;
     display: flex;
     justify-content: space-between;
 }
@@ -40,8 +41,13 @@ h2 {
 /*追加変更(2022/12/02) 渡邉 */
 #held h2 {
     margin-bottom: 5vh;
-    font-size: 25px !important;
+    font-size: 35px !important;
     text-align: center;
+}
+#held p {
+    font-size: 20px;
+    text-align: start;
+    margin: 1vh 0 1vh 0;
 }
 /*buttonタグにidを追加(2022/12/02) 渡邉 */
 #button {
