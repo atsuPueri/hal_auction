@@ -22,17 +22,10 @@ module.exports = function(app) {
 
 
     app.get('/', (request, response) => {
-        php('/get_car', response_message => {
-            const carData = JSON.parse(response_message);
-            let makerData = [];
-            // console.log(carData.data);
-            for (const column of carData.data) {
-                php('/get_car_join?car_id='+column.car_id, response_message => {
-                    console.log(JSON.parse(response_message));
-                });
-            }
-            // console.log(makerData);
+        php('/get_car_join', response_message => {
+            console.log(JSON.parse(response_message).data);
             response.render('top', {
+                makerData : JSON.parse(response_message).data
             });
         });
     });
