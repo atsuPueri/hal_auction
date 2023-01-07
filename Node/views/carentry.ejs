@@ -56,7 +56,8 @@
                   <label class="label_left" for="meka">メーカー名</label>
                   <!-- <input id="meka" type="text" placeholder="メーカー名を入力" required><br> -->
                 
-                  <select name="make" id="make">
+                  <select name="make" id="make" required>
+                    <option value="">以下から選択してください</option>
                   <% for (let column of makerData) { %>
                     <option value="<%= column.maker_id %>"><%= column.name %></option>
                   <% } %>
@@ -70,37 +71,38 @@
                     <!-- <input id="name" type="text" placeholder="車種名を入力" required><br> -->
                     
                     <select name="name" id="name">
+                      <option value="">以下から選択してください</option>
                     </select>
                   </div>
                   
                   <!--  仕入価格 -->
                   <div class="item">
                     <label  class="label_left" for="price">仕入価格</label>
-                    <input id="price" type="text" placeholder="仕入価格を入力" required><br>
+                    <input id="price" type="number" placeholder="仕入価格を入力" required><br>
                   </div>
                 
                   <!-- ボディータイプ -->
                   <div class="item">
                     <label class="label_left" for="bodyType">ボディータイプ</label>
-                    <input id="bodyType" type="text" placeholder="ボディータイプを入力" required><br>
+                    <input id="bodyType" type="number" placeholder="ボディータイプを入力" required><br>
                   </div>
                 
                   <!-- 年式 -->
                   <div class="item">
                       <label class="label_left" for="yearType">年式</label>
-                      <input id="yearType" type="text" placeholder="年式を入力" required><br>
+                      <input id="yearType" type="number" placeholder="年式を入力" required><br>
                   </div>
 
                   <!-- 走行距離 -->
                   <div class="item">
                       <label class="label_left" for="loadResult">走行距離</label>
-                      <input id="loadResult" type="text" placeholder="走行距離を入力" required><br>
+                      <input id="loadResult" type="number" min="0" placeholder="走行距離を入力" required><br>
                   </div>
 
                   <!-- 実走行 -->
                   <div class="item">
                       <label class="label_left" for="rnu">実走行</label>
-                      <select name="run" id="run">
+                      <select name="run" id="run" required>
                           <option value="">以下から選択してください</option>
                           <option value="1">可能</option>
                           <option value="0">不可能</option>
@@ -110,7 +112,7 @@
                   <!-- 色 -->
                   <div class="item">
                       <label class="label_left" for="color">色</label>
-                      <input id="color" type="text" placeholder="色を入力" required><br>
+                      <input id="color" type="number" min="0" max="11" placeholder="色を入力" required><br>
                   </div>  
                   
                   <!-- 車検有効期限 -->
@@ -132,13 +134,13 @@
                   <!-- 排気量 -->
                   <div class="item">
                       <label class="label_left" for="co">排気量</label>
-                      <input id="co" type="text" placeholder="排気量を入力" required><br>
+                      <input id="co" type="munber" min="0" placeholder="排気量を入力" required><br>
                   </div>                 
   
                   <!-- 乗車人数 -->
                   <div class="item">
                       <label class="label_left" for="co">乗車人数</label>
-                      <select name="ride" id="ride">
+                      <select name="ride" id="ride" required>
                           <option value="">以下から選択してください</option>
                           <!-- 乗車人数繰り返し処理　htmlファイルのため消してます-->
                           {# <?php for($number = 1; $number <= 12 ;$number ++){ ?>
@@ -162,7 +164,7 @@
                   <!-- 駆動方式 -->
                   <div class="item">
                       <label class="label_left" for="drive">駆動方式</label>
-                      <input id="drive" type="text" placeholder="駆動方式を入力" required><br>
+                      <input id="drive" type="number" min="0" placeholder="駆動方式を入力" required><br>
                   </div> 
 
                   <!-- 削除おけ？ -->

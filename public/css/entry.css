@@ -29,9 +29,10 @@ h1 {
  .form input[type="email"] ,
  .form input[type="password"] {
       padding: 10px;
-      width: 65%;
   }
-  
+  input {
+    border-bottom: solid 1px black;
+  }
  .form textarea{
     padding: 10px;
     height: 100px;
@@ -41,7 +42,9 @@ h1 {
   
  .form select{
     height: 35px;
-    width:  10%;
+    width:  15%;
+    text-align: center;
+    border-bottom: solid 1px ;
   }
   
   .btns{
