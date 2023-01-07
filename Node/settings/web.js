@@ -7,34 +7,39 @@ module.exports = function(app) {
     const php = require('../util/php.js');
 
     //php呼び出し方
-    app.get('/test', (request, response) => {
-        php('/get_car_type', response_message => {
-            const carTypeData = JSON.parse(response_message);
-            php('/get_maker', response_message => {
-                const makerData = JSON.parse(response_message);
-                response.render('carentry', {
-                    carData : carTypeData.data,
-                    makerData : makerData.data
-                });
-            });
-        });
-    });
-
+    // app.get('/test', (request, response) => {
+    //     php('/get_car_type', response_message => {
+    //         const carTypeData = JSON.parse(response_message);
+    //         php('/get_maker', response_message => {
+    //             const makerData = JSON.parse(response_message);
+    //             response.render('carentry', {
+    //                 carData : carTypeData.data,
+    //                 makerData : makerData.data
+    //             });
+    //         });
+    //     });
+    // });
 
     app.get('/', (request, response) => {
         php('/get_car_join', response_message => {
-            console.log(JSON.parse(response_message).data);
+            // console.log(JSON.parse(response_message).data);
             response.render('top', {
-                makerData : JSON.parse(response_message).data
+                carData : JSON.parse(response_message).data
             });
         });
     });
 
     app.get('/top', (request, response) => {
-        response.render('top');
+        php('/get_car_join', response_message => {
+            // console.log(JSON.parse(response_message).data);
+            response.render('top', {
+                carData : JSON.parse(response_message).data
+            });
+        });
     })
 
     app.get('/carentry', (request, response) => {
+        console.log("成功1");
         php('/get_car_type', response_message => {
             const carTypeData = JSON.parse(response_message);
             php('/get_maker', response_message => {
@@ -44,6 +49,18 @@ module.exports = function(app) {
                     makerData : makerData.data
                 });
             });
+        });
+    });
+
+
+    app.get('/test1/:id', (request, response) => {
+        php('/get_car_join?car_id='+request.params.id, response_message => {
+                php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+                    response.render('test1', {
+                        carData : JSON.parse(response_message).data,
+                        color : JSON.parse(response_msg)
+                    });
+                });
         });
     });
 
@@ -73,9 +90,15 @@ module.exports = function(app) {
             const carTypeData = JSON.parse(response_message);
             php('/get_maker', response_message => {
                 const makerData = JSON.parse(response_message);
-                response.render('user_top', {
-                    carData : carTypeData.data,
-                    makerData : makerData.data
+                php('/get_car_join', response_message => {
+                    php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+                        response.render('user_top', {
+                            carData : carTypeData.data,
+                            makerData : makerData.data,
+                            carData : JSON.parse(response_message).data,
+                            color : JSON.parse(response_msg)
+                        });
+                    });
                 });
             });
         });

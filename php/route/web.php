@@ -350,6 +350,11 @@ switch ($request_path) {
         $list = db_change($sql);
         return enc($list);
 
+    case "/color":
+        $color_number = $_GET['color'];
+        $color_array = ["白色" , "灰色" , "赤色" , "ピンク色" , "オレンジ色" , "黄色" , "薄緑" , "緑" , "青色" , "紫色" , "紺色" , "黒色"];
+        return enc($color_array[$color_number]);
+
 
 
     // ---------------------------------その他   

@@ -70,126 +70,20 @@
                 <th>終了時刻</th>
                 <th>項目</th>
               </tr>
+              <% for (let column of carData) { %>
               <tr>
-                <td><input type="checkbox" name="car" value="1" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
+                <td><input type="checkbox" name="car" value="column.car_id" class="item"></td>
+                <td><%= column.car_id %></td>
+                <td><%= column.car_type_name %></td>
+                <td>価格</td>
+                <td><%= column.maker_name %></td>
+                <td>開始時刻</td>
+                <td>終了時刻</td>
+                <td><a href="test1/<%= column.car_id %>">詳細表示</a></td>
+                
               </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="2" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="3" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="4" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="5" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="6" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="7" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="8" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="9" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="10" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a href="#" onclick="">詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="11" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a>詳細表示</a></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="car" value="12" class="item"></td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
-                <td><a>詳細表示</a></td>
-              </tr>
+              <% } %>
+            
             </table>
         </main>
         <footer class="footer">フッター</footer>

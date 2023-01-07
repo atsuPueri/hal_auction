@@ -114,4 +114,3 @@ function enc($data) {
 
 
 
-

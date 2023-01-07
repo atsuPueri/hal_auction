@@ -24,7 +24,7 @@
                 </form>
             </div>
             <div id="bak">
-                <img src="../img/hasure.png" alt="オークション開催中/次のオークション開催予定の車両写真">
+                <img src="../img/hustler.png" alt="オークション開催中/次のオークション開催予定の車両写真">
             </div>
         </div>
         <div id="main_flex">
@@ -32,58 +32,24 @@
                 <div id="schedule">
                     <h2>オークション予定</h2>
                     <ul class="slider">
+                        <% for (let column of carData) { %>
                         <li class="vehicle">
-                            <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
-                            <p>インサイト</p>
-                            <p>￥20,000</p>
-                            <p>開催中</p>
-                            <form action="car_detail" class="detail">
+                            <p><img src="../img/<%= column.car_type_img_name %>" alt="<%= column.car_type_name %>の画像"></p>
+                            <p><%= column.car_type_name %></p>
+                            <p>価格</p>
+                            <p>開催時刻~終了時刻</p>
+                            <form action="auction_detail" class="detail">
                                 <button>詳細を確認</button>
                             </form>
                         </li>
-                        <li class="vehicle">
-                            <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <p>あと5分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </li>
-                        <li class="vehicle">
-                            <p><img src="../img/SELENA.png" alt="オークション予定の車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <p>あと20分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </li>
-                        <li class="vehicle">
-                            <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <p>あと60分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </li>
-                        <li class="vehicle">
-                            <p><img src="../img/SELENA.png" alt="オークション予定の車両写真"></p>
-                            <p>車種名</p>
-                            <p>￥〇〇</p>
-                            <p>あと100分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
-                        </li>
+                        <% } %>
                     </ul>
                 </div>
                 <div id="check_list">
                     <h2>観覧履歴</h2>
                     <ul class="slider">
                         <li class="vehicle">
-                            <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
+                            <p><img src="../img/hustler.png" alt="オークション予定の車両写真"></p>
                             <p>インサイト</p>
                             <p>￥20,000</p>
                             <p>開催中</p>
@@ -92,7 +58,7 @@
                             </form>
                         </li>
                         <li class="vehicle">
-                            <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
+                            <p><img src="../img/hustler.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと5分で開催</p>
@@ -110,7 +76,7 @@
                             </form>
                         </li>
                         <li class="vehicle">
-                            <p><img src="../img/hasure.png" alt="オークション予定の車両写真"></p>
+                            <p><img src="../img/hustler.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと60分で開催</p>

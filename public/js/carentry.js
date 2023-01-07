@@ -29,8 +29,6 @@ makeName.addEventListener('change', function(){
 //登録ボタンが押されたら動く
 const entryBtn = document.getElementById("entryBtn");
 entryBtn.addEventListener("click", function(event){
-    event.preventDefault();
-    
     const carName = document.getElementById("name");
     const make = document.getElementById("make");
     const price = document.getElementById("price");
