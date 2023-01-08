@@ -175,4 +175,8 @@ module.exports = function(app) {
     // app.get('/', (request, response) => {
     //     response.render('');
     // });
+
+    app.get('/detail', (request, response) => {
+        response.render('detail');
+    });
 }
