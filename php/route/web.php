@@ -19,12 +19,18 @@ switch ($request_path) {
         ct.name AS car_type_name, 
         ct.img_name AS car_type_img_name, 
         m.name AS maker_name, 
-        m.img_name AS maker_img_name
+        m.img_name AS maker_img_name, 
+        ex.time_from AS time_from,
+        ex.time_to AS time_to,
+        ex.first_price AS first_price,
+        ex.lowest_price AS lowest_price 
         FROM car AS c LEFT JOIN car_type AS ct
         ON c.car_type_id = ct.car_type_id 
         LEFT JOIN maker AS m 
-        ON ct.maker_id = m.maker_id ";
-        $sql = add_and($sql, "car_id", "=", $_GET["car_id"] ?? '');
+        ON ct.maker_id = m.maker_id 
+        LEFT JOIN exhibit AS ex 
+        ON c.car_id = ex.car_id ";
+        $sql = add_and($sql, "c.car_id", "=", $_GET["car_id"] ?? '');
 
         $list = db_get($sql);
         return enc($list);
@@ -48,7 +54,6 @@ switch ($request_path) {
         ]);
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
-        echo $sql;
         $list = db_change($sql);
         return enc($list);
 
@@ -353,9 +358,37 @@ switch ($request_path) {
     case "/color":
         $color_number = $_GET['color'];
         $color_array = ["白色" , "灰色" , "赤色" , "ピンク色" , "オレンジ色" , "黄色" , "薄緑" , "緑" , "青色" , "紫色" , "紺色" , "黒色"];
-        return enc($color_array[$color_number]);
-
-
+        if(count($color_array) > $color_number){
+            return enc([
+                "data" => $color_array[$color_number],
+                "status" => true,
+            ]);
+        } else {
+            return enc([
+                "data" => "該当なし",
+                "status" => false,
+            ]);
+        }
+        
+    case "/login_user":
+        //ログイン時のパスワードチェック
+        $sql = "SELECT * FROM user ";
+        $sql = add_and($sql, "user_id", "=", $_GET["user_id"] ?? '');
+        $list = db_get($sql);
+        
+        $pass = md5('"'.$_GET['pass'].'"');
+        if($list["data"][0]["hash_password"] == $pass){
+            return enc([
+                "data" => "ログイン失敗",
+                "status" => true,
+            ]);
+        } else {
+            return enc([
+                "data" => "ログイン失敗",
+                "status" => false,
+            ]);
+        }
+        
 
     // ---------------------------------その他   
     default:

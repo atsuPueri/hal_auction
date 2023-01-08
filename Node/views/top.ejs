@@ -59,7 +59,7 @@
                 <button type="submit" id="">変更</button>
             </div>
 
-            <table>
+            <table id="table">
               <tr>
                 <th>項目</th>
                 <th>車両ID</th>
@@ -72,18 +72,16 @@
               </tr>
               <% for (let column of carData) { %>
               <tr>
-                <td><input type="checkbox" name="car" value="column.car_id" class="item"></td>
+                <td><input type="checkbox" name="car" value="<%= column.car_id %>" class="item"></td>
                 <td><%= column.car_id %></td>
                 <td><%= column.car_type_name %></td>
-                <td>価格</td>
+                <td><%= column.purchase_price %></td>
                 <td><%= column.maker_name %></td>
-                <td>開始時刻</td>
-                <td>終了時刻</td>
+                <td><%= column.time_from %></td>
+                <td><%= column.time_to %></td>
                 <td><a href="test1/<%= column.car_id %>">詳細表示</a></td>
-                
               </tr>
               <% } %>
-            
             </table>
         </main>
         <footer class="footer">フッター</footer>
@@ -93,3 +91,5 @@
       <script src="../js/top.js"></script>
   </body>
 </html>
+
+ 

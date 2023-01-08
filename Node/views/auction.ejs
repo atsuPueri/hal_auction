@@ -56,106 +56,64 @@
                 <table>
                     <h3>開催中オークション</h3>
                     <tr>
-                        <th>会員ID</th>
-                        <th>ログインID</th>
-                        <th>名前</th>
-                        <th>電話番号</th>
-                        <th>住所</th>
-                        <th>会員状態</th>
-                        <th>項目</th>
-                        <th>項目</th>
-                        <th>項目</th>
+                      <th>車両ID</th>
+                      <th>車種名</th>
+                      <th>現在価格</th>
+                      <th>最低落札価格</th>
+                      <th>開始時刻</th>
+                      <th>項目</th>
+                      <th>項目</th>
+                      <th>項目</th>
                     </tr>
-                    <tr>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td><a>変更</a></td>
-                        <td><a>削除</a></td>
-                        <td><a href="">詳細</a></td>
-
-                    </tr>
+                    <!-- <tr>
+                      <% for (let column of carData) { %>
+                        <tr>
+                            <td><%= column.car_id %></td>
+                            <td><%= column.car_type_name %></td>
+                            <td><%= column.first_price %></td>
+                            <td><%= column.lowest_price %></td>
+                            <td><%= column.time_from %></td>
+                            <td><a>変更</a></td>
+                            <td><a>削除</a></td>
+                            <td><a href="test1/<%= column.car_id %>">詳細表示</a></td>
+                        </tr>
+                        <% } %>
+                    </tr> -->
                 </table>
                 <form action="">
                     <input type="text">
                     <button><i class="gg-search"></i></button>
                 </form>
-                <table>
+                <table id="schedule_table">
                     <h3>開催予定オークション</h3>
                     <tr>
                         <th>車両ID</th>
                         <th>車種名</th>
-                        <th>最低落札価格</th>
                         <th>初期価格</th>
-                        <th>現在価格</th>
+                        <th>最低落札価格</th>
                         <th>開始時刻</th>
                         <th>項目</th>
                         <th>項目</th>
                         <th>項目</th>
                     </tr>
+                    <% for (let column of carData) { %>
                     <tr>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
+                        <td><%= column.car_id %></td>
+                        <td><%= column.car_type_name %></td>
+                        <td><%= column.first_price %></td>
+                        <td><%= column.lowest_price %></td>
+                        <td><%= column.time_from %></td>
                         <td><a>変更</a></td>
                         <td><a>削除</a></td>
-                        <td><a href="">詳細</a></td>
+                        <td><a href="test1/<%= column.car_id %>">詳細表示</a></td>
                     </tr>
-                    <tr>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td><a>変更</a></td>
-                        <td><a>削除</a></td>
-                        <td><a href="">詳細</a></td>
-                    </tr>
-                    <tr>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td><a>変更</a></td>
-                        <td><a>削除</a></td>
-                        <td><a href="">詳細</a></td>
-                    </tr>
-                    <tr>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td><a>変更</a></td>
-                        <td><a>削除</a></td>
-                        <td><a href="">詳細</a></td>
-                    </tr>
-                    <tr>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td>データ</td>
-                        <td><a>変更</a></td>
-                        <td><a>削除</a></td>
-                        <td><a href="">詳細</a></td>
-                    </tr>
-
+                    <% } %>
                 </table>
         </main>
         <footer class="footer">フッター</footer>
 </div>
       <script src="../js/side.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="../js/auction.js"></script>
   </body>
 </html>

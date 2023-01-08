@@ -14,6 +14,10 @@ makeName.addEventListener('change', function(){
     }
 
     const carData = [];
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = "以下から選択したしてください";
+    name.appendChild(option);
     for (const column of carParseObj) {
         if (column.maker_id == makeName.value) {
             carData.push(column);
@@ -75,8 +79,16 @@ entryBtn.addEventListener("click", function(event){
         // selected_items, selected_items
     };
     console.log(sendData);
-    // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
-    socketio.emit('register_car', JSON.stringify (sendData));
+    
+    // php(/color)と連動
+    const color_length = 12;
+
+    if(color.value < color_length){
+        // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
+        socketio.emit('register_car', JSON.stringify (sendData));
+    }
+    
+    
 });
 
 // socketio.on('s2c-chat', function(msg){

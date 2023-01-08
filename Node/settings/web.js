@@ -39,7 +39,6 @@ module.exports = function(app) {
     })
 
     app.get('/carentry', (request, response) => {
-        console.log("成功1");
         php('/get_car_type', response_message => {
             const carTypeData = JSON.parse(response_message);
             php('/get_maker', response_message => {
@@ -52,15 +51,18 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/test1', (request, response) => {
+    });
+
 
     app.get('/test1/:id', (request, response) => {
         php('/get_car_join?car_id='+request.params.id, response_message => {
-                php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
-                    response.render('test1', {
-                        carData : JSON.parse(response_message).data,
-                        color : JSON.parse(response_msg)
-                    });
+            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+                response.render('test1', {
+                    carData : JSON.parse(response_message).data,
+                    color : JSON.parse(response_msg).data
                 });
+            });
         });
     });
 
@@ -82,7 +84,11 @@ module.exports = function(app) {
     });
 
     app.get('/auction', (request, response) => {
-        response.render('auction');
+        php('/get_car_join', response_message => {
+            response.render('auction', {
+                carData : JSON.parse(response_message).data
+            });
+        });
     });
 
     app.get('/user_top', (request, response) => {
@@ -96,12 +102,16 @@ module.exports = function(app) {
                             carData : carTypeData.data,
                             makerData : makerData.data,
                             carData : JSON.parse(response_message).data,
-                            color : JSON.parse(response_msg)
+                            color : JSON.parse(response_msg).data
                         });
                     });
                 });
             });
         });
+    });
+
+    app.post('/login_user', (request, response) => {
+        response.render('auction_detail');
     });
 
     app.get('/auction_detail', (request, response) => {
@@ -134,21 +144,21 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/user_add', (request, response) => {
-        // console.log(request.body);
+    // app.post('/user_add', (request, response) => {
+    //     // console.log(request.body);
 
-        php('/add_user?login_id="'+request.body.login+'"&hash_password="'+request.body.pass+'"&user_name="'+request.body.name+'"&phone_number="'+request.body.tel+'"&post_code="'+request.body.postal+'"&address="'+request.body.address+'"&apartment="'+request.body.apartment+'"&credit_card_number='+request.body.card, response_message => {
+    //     php('/add_user?login_id="'+request.body.login+'"&hash_password="'+request.body.pass+'"&user_name="'+request.body.name+'"&phone_number="'+request.body.tel+'"&post_code="'+request.body.postal+'"&address="'+request.body.address+'"&apartment="'+request.body.apartment+'"&credit_card_number='+request.body.card, response_message => {
             
-            response_message = JSON.parse(response_message);
-            //ユーザーの登録が正常に動いたか
-            if(response_message.status === true){
-                response.redirect('/user_top');
-            } else {
-                response.redirect('/error');
+    //         response_message = JSON.parse(response_message);
+    //         //ユーザーの登録が正常に動いたか
+    //         if(response_message.status === true){
+    //             response.redirect('/user_top');
+    //         } else {
+    //             response.redirect('/error');
 
-            }
-        });
-    });
+    //         }
+    //     });
+    // });
 
     app.get('/error', (request, response) => {
         response.render('error');
