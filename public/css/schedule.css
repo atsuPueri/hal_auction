@@ -26,7 +26,7 @@ button {
 #days .day {
   background-color: rgb(179, 179, 179);
   text-align: center;
-  width: 19%;
+  width: 13.5%;
 }
 .menu {
   position: fixed;
@@ -95,8 +95,9 @@ button {
   height: 5px;
   cursor: ns-resize;
 }/*# sourceMappingURL=style.css.map */
+
 .time {
-  margin: 4.5vh 0 2vh 0;
+  /* margin: 4.5vh 0 2vh 0; */
 }
 
 .content2 {
