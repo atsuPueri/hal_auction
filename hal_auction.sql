@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-11-30 07:34:22
+-- 生成日時: 2022-12-26 05:20:22
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.6
 
@@ -41,7 +41,12 @@ CREATE TABLE `bid` (
 
 INSERT INTO `bid` (`bid_id`, `user_id`, `car_id`, `bid_price`, `time`) VALUES
 (1, 1, 5, 10000, '2022-11-30 13:52:30'),
-(4, 1, 5, 15000, '2022-11-30 13:52:30');
+(4, 1, 5, 15000, '2022-11-30 13:52:30'),
+(5, 1, 20, 30000, '2022-11-30 13:52:30'),
+(7, 1, 5, 40000, '2022-11-30 13:52:30'),
+(8, 0, 5, 40000, '2022-11-30 13:52:30'),
+(9, 2, 4, 100000, '2022-11-30 13:52:30'),
+(10, 5, 4, 100000, '2022-11-30 13:52:30');
 
 -- --------------------------------------------------------
 
@@ -65,6 +70,13 @@ CREATE TABLE `car` (
   `drive_system` int(11) NOT NULL,
   `equipment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `car`
+--
+
+INSERT INTO `car` (`car_id`, `car_type_id`, `purchase_price`, `body_type`, `model_year`, `mileage`, `is_actual_driving`, `color`, `vehicle_inspection_expiration_date`, `automatic_or_mission`, `displacement`, `number_of_passengers`, `drive_system`, `equipment`) VALUES
+(1, 6, 100000, 100, '2015', 90000, 1, 100, NULL, 1, 100, 4, 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,6 +133,13 @@ CREATE TABLE `exhibit` (
   `time_to` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- テーブルのデータのダンプ `exhibit`
+--
+
+INSERT INTO `exhibit` (`car_id`, `lowest_price`, `first_price`, `bid_increase`, `now_price`, `time_from`, `time_to`) VALUES
+(1, 100000, 10000, 10, 200000, '2022-11-30 13:52:40', '2022-11-30 13:52:30');
+
 -- --------------------------------------------------------
 
 --
@@ -128,6 +147,7 @@ CREATE TABLE `exhibit` (
 --
 
 CREATE TABLE `favorite_car_type` (
+  `favorite_car_type_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `car_type_id` int(11) DEFAULT NULL,
   `maker_id` int(11) DEFAULT NULL,
@@ -155,7 +175,7 @@ CREATE TABLE `favorite_exhibit` (
 --
 
 INSERT INTO `favorite_exhibit` (`user_id`, `car_id`) VALUES
-(3, 9);
+(3, 8);
 
 -- --------------------------------------------------------
 
@@ -183,6 +203,20 @@ INSERT INTO `maker` (`maker_id`, `name`, `img_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `notification`
+--
+
+CREATE TABLE `notification` (
+  `notification_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `notification_type` int(11) NOT NULL,
+  `car_id` int(11) DEFAULT NULL,
+  `time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `user`
 --
 
@@ -191,10 +225,11 @@ CREATE TABLE `user` (
   `login_id` text NOT NULL,
   `hash_password` text NOT NULL,
   `user_name` text NOT NULL,
-  `phone_number` int(11) NOT NULL COMMENT 'ハイフン区切り',
+  `phone_number` text NOT NULL COMMENT 'ハイフン区切り',
   `post_code` text NOT NULL COMMENT 'ハイフン区切り',
   `address` text NOT NULL,
   `apartment` text DEFAULT NULL,
+  `credit_card_number` int(16) NOT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -227,10 +262,22 @@ ALTER TABLE `exhibit`
   ADD PRIMARY KEY (`car_id`);
 
 --
+-- テーブルのインデックス `favorite_car_type`
+--
+ALTER TABLE `favorite_car_type`
+  ADD PRIMARY KEY (`favorite_car_type_id`);
+
+--
 -- テーブルのインデックス `maker`
 --
 ALTER TABLE `maker`
   ADD PRIMARY KEY (`maker_id`);
+
+--
+-- テーブルのインデックス `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`notification_id`);
 
 --
 -- テーブルのインデックス `user`
@@ -246,13 +293,13 @@ ALTER TABLE `user`
 -- テーブルのAUTO_INCREMENT `bid`
 --
 ALTER TABLE `bid`
-  MODIFY `bid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- テーブルのAUTO_INCREMENT `car`
 --
 ALTER TABLE `car`
-  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- テーブルのAUTO_INCREMENT `car_type`
@@ -261,16 +308,22 @@ ALTER TABLE `car_type`
   MODIFY `car_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- テーブルのAUTO_INCREMENT `exhibit`
+-- テーブルのAUTO_INCREMENT `favorite_car_type`
 --
-ALTER TABLE `exhibit`
-  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `favorite_car_type`
+  MODIFY `favorite_car_type_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- テーブルのAUTO_INCREMENT `maker`
 --
 ALTER TABLE `maker`
   MODIFY `maker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- テーブルのAUTO_INCREMENT `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- テーブルのAUTO_INCREMENT `user`
