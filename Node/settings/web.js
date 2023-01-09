@@ -65,7 +65,7 @@ module.exports = function(app) {
             response_message = JSON.parse(response_message);
             //ユーザーの登録が正常に動いたか
             if(response_message.status === true){
-                response.redirect('/top');
+                response.redirect('/error');
             } else {
                 response.redirect('/error');
             }
