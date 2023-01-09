@@ -13,52 +13,42 @@
     <main>
         <div>
             <p><img src="../img/hasure.png" alt="車"></p>
-            <h2>車両情報※内容が分かりません</h2>
+            <h2>車両情報</h2>
             <div id="detail">
                 <div>
-                    <p>メーカー：××××</p>
-                    <p>車種名：〇〇〇〇</p>
-                    <p>仕入れ価格：□□□□</p>
-                    <p>ボディタイプ：△△△△</p>
-                    <p>年式：☆☆☆</p>
-                    <p>走行距離：××××</p>
-                    <p>色：〇〇〇〇</p>
+                    <p>メーカー：<%= car_info.maker_name %></p>
+                    <p>車種名：<%= car_info.car_type_name %></p>
+                    <p>年式：<%= car_info.model_year %></p>
+                    <p>走行距離：<%= car_info.mileage %></p>
+                    <p>色：<%= car_info.color %></p>
                 </div>
                 <div>
-                    <p>車検有効期限：□□□□</p>
-                    <p>オートマ</p>
-                    <p>排気量：☆☆☆</p>
-                    <p>乗車定員数：××××</p>
-                    <p>駆動方式：〇〇〇〇</p>
-                    <p>装備品：△△、△△△△、△△△、△△</p>    
+                    <p>車検有効期限：<%= car_info.vehicle_inspection_expiration_date == null ? '有効期限切れ' : car_info.vehicle_inspection_expiration_date %></p>
+                    <p><%= car_info.automatic_or_mission == 0 ? 'ミッション' : 'オートマ' %></p>
+                    <p>排気量：<%= car_info.displacement %></p>
+                    <p>乗車定員数：<%= car_info.number_of_passengers %></p>
+                    <p>駆動方式：<%= car_info.drive_system %></p>
+                    <p>装備品：<%= car_info.equipment %></p>
                 </div>
             </div>
         </div>
         <div id="right">
             <div class="now">
                 <h2>現在の落札金額</h2>
-                <p>￥20,000</p>
+                <p id="now_price">￥20,000</p>
             </div>
             <div class="now">
                 <h2>残り時間</h2>
-                <p>10分25秒21</p>
+                <p id="left_time">10分25秒21</p>
             </div>
-            <p><input type="text" name=""></p>
-            <p><button onclick="clickEvent()">自動入札</button></p>
-            <p><input type="text" name=""></p>
-            <p><button onclick="clickEvent()">入札</button></p>
+            <p><input type="text" id="bit_text"></p>
+            <p><button id="bit_button">入札</button></p>
         </div>
-        <script>
-            function clickEvent() {
-                var result = confirm("入札しますか？");
-                if(result) {
-                    console.log('入札完了');
-                    alert("入札完了")
-                }else {
-                    console.log('入札未完了');
-                }
-            }
-        </script>
     </main>
+
+    <div id="from" data-from="<%= car_info.time_from %>"></div>
+    <div id="to"   data-from="<%= car_info.time_to %>"></div>
+
+    <script src="../js/auction_detail.js"></script>
 </body>
 </html>

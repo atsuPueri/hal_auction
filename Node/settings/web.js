@@ -51,7 +51,27 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/test1', (request, response) => {
+    app.post('/car_entry', (request, response) => {
+        let ornaments_total = 0;
+        for (const value of request.body.ornaments) {
+            ornaments_total += Number.parseInt(value);
+        }
+
+        console.log(request.body);   
+
+
+        
+        // php('add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.is_actual_driving+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacemen+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+request.body.ornaments, response_message => {
+        //     response_message = JSON.parse(response_message);
+        //     //ユーザーの登録が正常に動いたか
+        //     if(response_message.status === true){
+        //         // response.redirect('/user_top');
+        //         console.log("成功");
+        //     } else {
+        //         // response.redirect('/error');
+
+        //     }
+        // });
     });
 
 
@@ -91,8 +111,46 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/user_top', (request, response) => {
+    app.get('/detail/:id', (request, response) => {
+        php('/get_car_join?car_id='+request.params.id, response_message => {
+            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+                response.render('detail', {
+                    carData : JSON.parse(response_message).data,
+                    color : JSON.parse(response_msg).data
+                });
+            });
+        });
+    });
 
+    app.get('/user_top', (request, response) => {
+        // phpが非同期関数の為複数のテーブル情報が欲しいときにネストするしかなくなっている
+        php('/get_car_type', get_car_type_message => {
+            console.log(get_car_type_message, "---");
+
+            const carTypeData = JSON.parse(get_car_type_message);
+            php('/get_maker', get_maker_message => {
+                const makerData = JSON.parse(get_maker_message);
+
+                // 現在時刻以降を取得するため
+                const date = new Date();
+                php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => {
+
+                    php('/color?color='+JSON.parse(get_car_join_message).data[0].color, color_message => {
+                        
+                        response.render('user_top', {
+                            carData : carTypeData.data,
+                            makerData : makerData.data,
+                            carData : JSON.parse(get_car_join_message).data,
+                            color : JSON.parse(color_message).data
+                        });
+                    });
+                });
+            });
+        });
+
+    });
+
+    app.get('/user_top/:id', (request, response) => {
         // phpが非同期関数の為複数のテーブル情報が欲しいときにネストするしかなくなっている
         php('/get_car_type', response_message => {
             const carTypeData = JSON.parse(response_message);
@@ -108,6 +166,7 @@ module.exports = function(app) {
                         
                         console.log(JSON.parse(response_message).data);
                         response.render('user_top', {
+                            user_id : request.params.id,
                             carData : carTypeData.data,
                             makerData : makerData.data,
                             carData : JSON.parse(m).data,
@@ -117,31 +176,29 @@ module.exports = function(app) {
                 });
             });
         });
-
     });
 
-    app.get('/user_top/:id', (request, response) => {
-        php('/get_car_type', response_message => {
-            const carTypeData = JSON.parse(response_message);
-            php('/get_maker', response_message => {
-                const makerData = JSON.parse(response_message);
-                php('/get_car_join', response_message => {
-                    php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
-                        response.render('user_top', {
-                            user_id : request.params.id,
-                            carData : carTypeData.data,
-                            makerData : makerData.data,
-                            carData : JSON.parse(response_message).data,
-                            color : JSON.parse(response_msg).data
-                        });
-                    });
-                });
+    app.get('/auction_detail/:car_id', (request, response) => {
+        const car_id = request.params.car_id;
+
+        php(`/detail_info?car_id=${car_id}`, get_car_join_message => {
+
+            const parse_obj = JSON.parse(get_car_join_message);
+            const car_data = parse_obj.data;
+
+            console.log(car_data);
+            let car_info;
+            if (car_data !== undefined) {
+                car_info = car_data[0];
+            } else {
+                response.redirect('../error');
+            }
+
+            console.log(car_info, "-");
+            response.render('auction_detail', {
+                car_info: car_info
             });
         });
-    });
-
-    app.get('/auction_detail', (request, response) => {
-        response.render('auction_detail');
     });
 
     app.get('/car_detail', (request, response) => {
@@ -190,23 +247,23 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/error', (request, response) => {
-        response.render('error');
-    });
-
+    
     app.get('/login', (request, response) => {
         response.render('login');
     });
-
+    
     app.get('/mypage', (request, response) => {
         response.render('mypage');
     });
-
+    
     // app.get('/', (request, response) => {
-    //     response.render('');
-    // });
-
-    app.get('/detail', (request, response) => {
-        response.render('detail');
-    });
-}
+        //     response.render('');
+        // });
+        
+        app.get('/detail', (request, response) => {
+            response.render('detail');
+        });
+        app.get('/error', (request, response) => {
+            response.render('error');
+        });
+    }

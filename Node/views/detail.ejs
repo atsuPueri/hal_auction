@@ -17,7 +17,7 @@
                 <h2>スズキ　ハスラー</h2>
                 <div class="price">
                     <p>価格</p>
-                    <p id="price">1,200,000円</p>
+                    <p id="price"><%= carData[0].car_id %></p>
                 </div>
                 <p id="bak"><img src="../img/hustler.png" alt=""></p>
             </section>
@@ -27,7 +27,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">ボディータイプ</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].body_type %></span>
                             </li>
                         </ul>
                     </div>
@@ -35,7 +35,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">年式</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].model_year %>年</span>
                             </li>
                         </ul>
                     </div>
@@ -43,7 +43,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">走行距離</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].mileage %>km</span>
                             </li>
                         </ul>
                     </div>
@@ -51,7 +51,13 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result"></span>実走行</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right">
+                                    <% if(carData[0].is_actual_driving == 0 ){ %>
+                                        可能
+                                    <% } else { %>
+                                        不可能
+                                    <% } %>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -59,7 +65,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result"></span>色</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= color %></span>
                             </li>
                         <ul>
                     </div>
@@ -77,7 +83,13 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">オートマ/ミッション</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right">
+                                <% if(carData[0].automatic_or_mission == 0 ){ %>
+                                    ミッション
+                                <% } else { %>
+                                    オートマ
+                                <% } %>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -85,7 +97,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">排気量</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].displacement %>cc</span>
                             </li>
                         </ul>
                     </div>
@@ -93,7 +105,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">乗車人数</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].number_of_passengers %>人</span>
                             </li>
                         </ul>
                     </div>
@@ -101,7 +113,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">駆動方式</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].drive_system %></span>
                             </li>
                         </ul>
                     </div>

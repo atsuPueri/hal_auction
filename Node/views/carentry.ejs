@@ -49,7 +49,7 @@
     </aside>
         <main class="main">
             <h1>車両情報登録</h1>
-              <form class="form" action="" method="post">
+              <form class="form" action="/car_entry" method="post">
                 
                 <!-- メーカー名 -->
                 <div class="item">
@@ -70,7 +70,7 @@
                     <label class="label_left" for="name">車種名</label>
                     <!-- <input id="name" type="text" placeholder="車種名を入力" required><br> -->
                     
-                    <select name="name" id="name">
+                    <select name="car_type_name" id="name">
                       <option value="">以下から選択してください</option>
                     </select>
                   </div>
@@ -78,25 +78,25 @@
                   <!--  仕入価格 -->
                   <div class="item">
                     <label  class="label_left" for="price">仕入価格</label>
-                    <input id="price" type="number" placeholder="仕入価格を入力" required><br>
+                    <input id="price" type="number" placeholder="仕入価格を入力" required name="purchase_price"><br>
                   </div>
                 
                   <!-- ボディータイプ -->
                   <div class="item">
                     <label class="label_left" for="bodyType">ボディータイプ</label>
-                    <input id="bodyType" type="number" placeholder="ボディータイプを入力" required><br>
+                    <input id="bodyType" type="number" placeholder="ボディータイプを入力" required name="body_type"><br>
                   </div>
                 
                   <!-- 年式 -->
                   <div class="item">
                       <label class="label_left" for="yearType">年式</label>
-                      <input id="yearType" type="number" placeholder="年式を入力" required><br>
+                      <input id="yearType" type="number" placeholder="年式を入力" required name="year_type"><br>
                   </div>
 
                   <!-- 走行距離 -->
                   <div class="item">
                       <label class="label_left" for="loadResult">走行距離</label>
-                      <input id="loadResult" type="number" min="0" placeholder="走行距離を入力" required><br>
+                      <input id="loadResult" type="number" min="0" placeholder="走行距離を入力" required name="mileage"><br>
                   </div>
 
                   <!-- 実走行 -->
@@ -112,13 +112,13 @@
                   <!-- 色 -->
                   <div class="item">
                       <label class="label_left" for="color">色</label>
-                      <input id="color" type="number" min="0" max="11" placeholder="色を入力" required><br>
+                      <input id="color" type="number" min="0" max="11" placeholder="色を入力" required name="color"><br>
                   </div>  
                   
                   <!-- 車検有効期限 -->
                   <div class="item">
                       <label class="label_left" for="vehicleInspection">車検有効期限</label>
-                      <input id="vehicleInspection" type="text" placeholder="車検有効期限を入力" required><br>
+                      <input id="vehicleInspection" type="text" placeholder="車検有効期限を入力" required name="is_actual_driving"><br>
                   </div>  
 
                   <!-- オートマ/ミッション -->
@@ -134,7 +134,7 @@
                   <!-- 排気量 -->
                   <div class="item">
                       <label class="label_left" for="co">排気量</label>
-                      <input id="co" type="munber" min="0" placeholder="排気量を入力" required><br>
+                      <input id="co" type="munber" min="0" placeholder="排気量を入力" required name="displacement"><br>
                   </div>                 
   
                   <!-- 乗車人数 -->
@@ -164,7 +164,7 @@
                   <!-- 駆動方式 -->
                   <div class="item">
                       <label class="label_left" for="drive">駆動方式</label>
-                      <input id="drive" type="number" min="0" placeholder="駆動方式を入力" required><br>
+                      <input id="drive" type="number" min="0" placeholder="駆動方式を入力" required name="drive_system"><br>
                   </div> 
 
                   <!-- 削除おけ？ -->
@@ -183,152 +183,152 @@
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="aircon">エアコン</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="2147483648">
                     </div>
                     <div class="item">
                       <label class="label_left" for="powersta">パワステ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="1073741824">
                     </div>
                     <div class="item">
                       <label class="label_left" for="powerwindow">パワーウィンドウ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="536870912">
                     </div>
                     <div class="item">
                       <label class="label_left" for="doorlock">集中ドアロック</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="268435456">
                     </div>
                   </div>
 
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="abs">ABS</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="134217728">
                     </div>
                     <div class="item">
                       <label class="label_left" for="airback">エアバッグ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="67108864">
                     </div>
                     <div class="item">
                       <label class="label_left" for="etc">ETC</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="33554432">
                     </div>
                     <div class="item">
                       <label class="label_left" for="keylessentry">キーレスエントリー</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="16777216">
                     </div>
                   </div>
 
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="sumartkey">スマートキー</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="8388608">
                     </div>
                     <div class="item">
                       <label class="label_left" for="cd">CD</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="4194304">
                     </div>
                     <div class="item">
                       <label class="label_left" for="md">MD</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="2097152">
                     </div>
                     <div class="item">
                       <label class="label_left" for="dvd">DVDビデオ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="1048576">
                     </div>
                   </div>
 
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="tv">テレビ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="524288">
                     </div>
                     <div class="item">
                       <label class="label_left" for="nav">ナビゲーション</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="262144">
                     </div>
                     <div class="item">
                       <label class="label_left" for="backcamera">バックカメラ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="131072">
                     </div>
                     <div class="item">
                       <label class="label_left" for="electdoor">電動スライドドア</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="65536">
                     </div>
                   </div>
 
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="sunlurf">サンルーフ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="32768">
                     </div>
                     <div class="item">
                       <label class="label_left" for="sheet">本革シート</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="16384">
                     </div>
                     <div class="item">
                       <label class="label_left" for="airlparts">純正エアロパーツ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="8192">
                     </div>
                     <div class="item">
                       <label class="label_left" for="aluminumfoil">純正アルミホイール</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="4096">
                     </div>  
                   </div>
                   
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="slide">横滑り防止装置</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="2048">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="tigercushion">トラクッションコントロール</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="1024">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="cold">寒冷地帯仕様車</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="512">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="welfarevehicles">福祉車両</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="256">
                     </div>  
                   </div>
                   
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="lowdawn">ローダウン</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="128">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="nosmokecar">禁煙車</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="68">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="notpet">ペット同乗なし</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="32">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="exclusive">限定車</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="16">
                     </div>    
                   </div>        
                   
                   <div class="flex">
                     <div class="item">
                       <label class="label_left" for="testdrive">試乗、現車確認可能</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="8">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="operatinginstructions">取扱説明書</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="4">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="newcar">新車時保証書</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="2">
                     </div>                  
                     <div class="item">
                       <label class="label_left" for="sparetire">スペアタイヤ</label>
-                      <input type="checkbox" name="ornaments" class="ornaments">
+                      <input type="checkbox" name="ornaments" class="ornaments" value="1">
                     </div>
                   </div>
 

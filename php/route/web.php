@@ -54,9 +54,18 @@ switch ($request_path) {
             "drive_system" => $_GET['drive_system'],
             "equipment" => $_GET['equipment']
         ]);
+
+        $into_make["equipment"] = decbin($into_make["equipment"]);
+
+        $length = 32;
+        $count = $length - strlen($into_make["equipment"]);
+
+        $into_make["equipment"] = str_repeat('0', $count).$into_make["equipment"];
+
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
         $list = db_change($sql);
+        
         return enc($list);
 
     case "/upd_car":
@@ -289,6 +298,7 @@ switch ($request_path) {
         $sql = add_and($sql, "user_id", "=", $_GET["user_id"] ?? '');
 
         $list = db_get($sql);
+        
         return  enc($list);
 
     case "/add_favorite_car_type":
@@ -392,7 +402,44 @@ switch ($request_path) {
                 "status" => false
             ]);
         }
-        
+
+    case "/detail_info":
+        // 駆動方式とボディタイプを取る
+        //車種とメーカーをJOINした車両を取得
+        $sql = "SELECT c.*, 
+        ct.name AS car_type_name, 
+        ct.img_name AS car_type_img_name, 
+        m.name AS maker_name, 
+        m.img_name AS maker_img_name, 
+        ex.time_from AS time_from,
+        ex.time_to AS time_to,
+        ex.now_price AS now_price,
+        ex.first_price AS first_price,
+        ex.lowest_price AS lowest_price 
+        FROM car AS c LEFT JOIN car_type AS ct
+        ON c.car_type_id = ct.car_type_id 
+        LEFT JOIN maker AS m 
+        ON ct.maker_id = m.maker_id 
+        LEFT JOIN exhibit AS ex 
+        ON c.car_id = ex.car_id ";
+        $sql = add_and($sql, "c.car_id",    "=", $_GET["car_id"]  ?? '');
+        $sql = add_and($sql, "ex.time_to", ">=", $_GET["time_to"] ?? '');//時間
+
+        $list = db_get($sql);
+
+        //ボディタイプ
+        $body_type_list = ["セダン", "クーペ", "オープンカー", "ステーションワゴン", "ワンボックス", "ミニバン", "SUV", "ハッチバック"];
+        $list["data"][0]["body_type"] = $body_type_list[$list["data"][0]["body_type"]];
+
+        //駆動処理
+        $drive_system_list = ["FF", "FR", "MR", "4WD"];
+        $list["data"][0]["drive_system"] = $drive_system_list[$list["data"][0]["drive_system"]];
+
+        //色
+        $color_array = ["白色" , "灰色" , "赤色" , "ピンク色" , "オレンジ色" , "黄色" , "薄緑" , "緑" , "青色" , "紫色" , "紺色" , "黒色"];
+        $list["data"][0]["color"] = $color_array[$list["data"][0]["color"]];
+
+        return enc($list);
 
     // ---------------------------------その他   
     default:
