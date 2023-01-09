@@ -110,8 +110,24 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/login_user', (request, response) => {
-        response.render('auction_detail');
+    app.get('/user_top/:id', (request, response) => {
+        php('/get_car_type', response_message => {
+            const carTypeData = JSON.parse(response_message);
+            php('/get_maker', response_message => {
+                const makerData = JSON.parse(response_message);
+                php('/get_car_join', response_message => {
+                    php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+                        response.render('user_top', {
+                            user_id : request.params.id,
+                            carData : carTypeData.data,
+                            makerData : makerData.data,
+                            carData : JSON.parse(response_message).data,
+                            color : JSON.parse(response_msg).data
+                        });
+                    });
+                });
+            });
+        });
     });
 
     app.get('/auction_detail', (request, response) => {
@@ -144,21 +160,25 @@ module.exports = function(app) {
         });
     });
 
-    // app.post('/user_add', (request, response) => {
-    //     // console.log(request.body);
+    app.post('/user_add', (request, response) => {
+        php('/add_user?login_id="'+request.body.login+'"&hash_password="'+request.body.pass+'"&user_name="'+request.body.name+'"&phone_number="'+request.body.tel+'"&post_code="'+request.body.postal+'"&address="'+request.body.address+'"&apartment="'+request.body.apartment+'"&credit_card_number='+request.body.card, response_message => {
+            response_message = JSON.parse(response_message);
+            //ユーザーの登録が正常に動いたか
+            if(response_message.status === true){
+                response.redirect('/user_top');
+            } else {
+                response.redirect('/error');
 
-    //     php('/add_user?login_id="'+request.body.login+'"&hash_password="'+request.body.pass+'"&user_name="'+request.body.name+'"&phone_number="'+request.body.tel+'"&post_code="'+request.body.postal+'"&address="'+request.body.address+'"&apartment="'+request.body.apartment+'"&credit_card_number='+request.body.card, response_message => {
-            
-    //         response_message = JSON.parse(response_message);
-    //         //ユーザーの登録が正常に動いたか
-    //         if(response_message.status === true){
-    //             response.redirect('/user_top');
-    //         } else {
-    //             response.redirect('/error');
+            }
+        });
+    });
 
-    //         }
-    //     });
-    // });
+    app.post('/login_user', (request, response) => {
+        php('/login_user?login_id="'+request.body.login_id+'"&pass='+request.body.pass, response_message => {
+            response_message = JSON.parse(response_message);
+            response.redirect('/user_top/'+response_message.data);
+        });
+    });
 
     app.get('/error', (request, response) => {
         response.render('error');
