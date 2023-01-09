@@ -91,8 +91,18 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/user_top', (request, response) => {
+    app.get('/detail/:id', (request, response) => {
+        php('/get_car_join?car_id='+request.params.id, response_message => {
+            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+                response.render('detail', {
+                    carData : JSON.parse(response_message).data,
+                    color : JSON.parse(response_msg).data
+                });
+            });
+        });
+    });
 
+    app.get('/user_top', (request, response) => {
         // phpが非同期関数の為複数のテーブル情報が欲しいときにネストするしかなくなっている
         php('/get_car_type', get_car_type_message => {
             console.log(get_car_type_message, "---");
@@ -121,17 +131,25 @@ module.exports = function(app) {
     });
 
     app.get('/user_top/:id', (request, response) => {
+        // phpが非同期関数の為複数のテーブル情報が欲しいときにネストするしかなくなっている
         php('/get_car_type', response_message => {
             const carTypeData = JSON.parse(response_message);
             php('/get_maker', response_message => {
                 const makerData = JSON.parse(response_message);
-                php('/get_car_join', response_message => {
-                    php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
+
+                // 現在時刻以降を取得するため
+                const date = new Date();
+                // console.log(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`);
+                php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, m => {
+
+                    php('/color?color='+JSON.parse(m).data[0].color, response_msg => {
+                        
+                        console.log(JSON.parse(response_message).data);
                         response.render('user_top', {
                             user_id : request.params.id,
                             carData : carTypeData.data,
                             makerData : makerData.data,
-                            carData : JSON.parse(response_message).data,
+                            carData : JSON.parse(m).data,
                             color : JSON.parse(response_msg).data
                         });
                     });
