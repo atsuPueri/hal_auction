@@ -140,8 +140,27 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/auction_detail', (request, response) => {
-        response.render('auction_detail');
+    app.get('/auction_detail/:car_id', (request, response) => {
+        const car_id = request.params.car_id;
+
+        php(`/detail_info?car_id=${car_id}`, get_car_join_message => {
+
+            const parse_obj = JSON.parse(get_car_join_message);
+            const car_data = parse_obj.data;
+
+            console.log(car_data);
+            let car_info;
+            if (car_data !== undefined) {
+                car_info = car_data[0];
+            } else {
+                response.redirect('../error');
+            }
+
+            console.log(car_info, "-");
+            response.render('auction_detail', {
+                car_info: car_info
+            });
+        });
     });
 
     app.get('/car_detail', (request, response) => {
@@ -190,23 +209,23 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/error', (request, response) => {
-        response.render('error');
-    });
-
+    
     app.get('/login', (request, response) => {
         response.render('login');
     });
-
+    
     app.get('/mypage', (request, response) => {
         response.render('mypage');
     });
-
+    
     // app.get('/', (request, response) => {
-    //     response.render('');
-    // });
-
-    app.get('/detail', (request, response) => {
-        response.render('detail');
-    });
-}
+        //     response.render('');
+        // });
+        
+        app.get('/detail', (request, response) => {
+            response.render('detail');
+        });
+        app.get('/error', (request, response) => {
+            response.render('error');
+        });
+    }
