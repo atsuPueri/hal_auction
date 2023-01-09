@@ -19,9 +19,7 @@
                 <p>車種名：インサイト</p>
                 <p>現在の落札金額：￥100,000</p>
                 <p>残り時間：5分13秒10</p>
-                <form action="auction_detail">
-                    <button id="button">詳細を確認</button>
-                </form>
+                <a id="button">詳細を確認</a>
             </div>
             <div id="bak">
                 <img src="../img/hustler.png" alt="オークション開催中/次のオークション開催予定の車両写真">
@@ -38,9 +36,7 @@
                             <p><%= column.car_type_name %></p>
                             <p>価格</p>
                             <p>開催時刻~終了時刻</p>
-                            <form action="auction_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
+                            <a>詳細を確認</a>
                         </li>
                         <% } %>
                     </ul>
@@ -53,45 +49,35 @@
                             <p>インサイト</p>
                             <p>￥20,000</p>
                             <p>開催中</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
+                            <a>詳細を確認</a>
                         </li>
                         <li class="vehicle">
                             <p><img src="../img/hustler.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと5分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
+                            <a>詳細を確認</a>
                         </li>
                         <li class="vehicle">
                             <p><img src="../img/SELENA.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと20分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
+                            <a>詳細を確認</a>
                         </li>
                         <li class="vehicle">
                             <p><img src="../img/hustler.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと60分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
+                            <a>詳細を確認</a>
                         </li>
                         <li class="vehicle">
                             <p><img src="../img/SELENA.png" alt="オークション予定の車両写真"></p>
                             <p>車種名</p>
                             <p>￥〇〇</p>
                             <p>あと100分で開催</p>
-                            <form action="car_detail" class="detail">
-                                <button>詳細を確認</button>
-                            </form>
+                            <a>詳細を確認</a>
                         </li>
                     </ul>
                 </div>
@@ -101,7 +87,7 @@
                 <form>
                     <div id="search_text">
                         <p><input type="text" name=""></p>
-                        <p><button type="submit" name=""><img src="../img/search.png" alt="検索ボタン" width="20px"></button></p>
+                        <p><a type="submit" name=""><img src="../img/search.png" alt="検索ボタン" width="20px"></a></p>
                     </div>
                     <div class="margin_bottom">
                         <p>メーカー</p>
