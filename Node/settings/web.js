@@ -1,6 +1,7 @@
 const { response } = require('express');
 const { request } = require('http');
 const { loadavg } = require('os');
+const php_host = require('./php_host.js');
 
 module.exports = function(app, io_socket) {
 
@@ -79,18 +80,6 @@ module.exports = function(app, io_socket) {
         });
     });
 
-
-    app.get('/test1/:id', (request, response) => {
-        php('/get_car_join?car_id='+request.params.id, response_message => {
-            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
-                response.render('test1', {
-                    carData : JSON.parse(response_message).data,
-                    color : JSON.parse(response_msg).data
-                });
-            });
-        });
-    });
-
     app.get('/user', (request, response) => {
         php('/get_user', response_message => {
             const userData = JSON.parse(response_message);
@@ -150,7 +139,6 @@ module.exports = function(app, io_socket) {
                 });
             });
         });
-
     });
 
     app.get('/user_top/:id', (request, response) => {
@@ -259,14 +247,40 @@ module.exports = function(app, io_socket) {
         response.render('mypage');
     });
     
-    // app.get('/', (request, response) => {
-        //     response.render('');
-        // });
+    
         
-        app.get('/detail', (request, response) => {
-            response.render('detail');
+    app.get('/detail', (request, response) => {
+        response.render('detail');
+    });
+    app.get('/error', (request, response) => {
+        response.render('error');
+    });
+
+
+
+    app.get('/test1', (request, response) => {
+        response.render('test1');
+    });
+
+    app.get('/test1/:id', (request, response) => {
+        php('/add_favorite_car_type?car_id='+request.params.id, response_message => {
+            response.render('test1', {
+                carData : JSON.parse(response_message).data
+            });
         });
-        app.get('/error', (request, response) => {
-            response.render('error');
+    });
+
+    app.get('/test1/:car_id/:user_id', (request, response) => {
+        php('/add_favorite_car_type?favorite_car_type_id='+request.params.car_id+'&user_id='+request.params.user_id, response_message => {
+            // console.log(response_message);
+            php('/test1?car_id='+request.params.car_id, car_response => {
+                console.log(car_response);
+                if(JSON.parse(response_message).status === true){
+                    response.render('test1', {
+                        carData : JSON.parse(car_response).data
+                    });
+                }
+            });
         });
-    }
+    });
+}
