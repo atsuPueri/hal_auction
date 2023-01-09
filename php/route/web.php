@@ -13,7 +13,7 @@ switch ($request_path) {
         $list = db_get($sql);
         return enc($list);
 
-    case "/get_car_join":    
+    case "/get_car_join":
         //車種とメーカーをJOINした車両を取得
         $sql = "SELECT c.*, 
         ct.name AS car_type_name, 
@@ -22,6 +22,7 @@ switch ($request_path) {
         m.img_name AS maker_img_name, 
         ex.time_from AS time_from,
         ex.time_to AS time_to,
+        ex.now_price AS now_price,
         ex.first_price AS first_price,
         ex.lowest_price AS lowest_price 
         FROM car AS c LEFT JOIN car_type AS ct
@@ -30,7 +31,8 @@ switch ($request_path) {
         ON ct.maker_id = m.maker_id 
         LEFT JOIN exhibit AS ex 
         ON c.car_id = ex.car_id ";
-        $sql = add_and($sql, "c.car_id", "=", $_GET["car_id"] ?? '');
+        $sql = add_and($sql, "c.car_id",    "=", $_GET["car_id"]  ?? '');
+        $sql = add_and($sql, "ex.time_to", ">=", $_GET["time_to"] ?? '');//時間
 
         $list = db_get($sql);
         return enc($list);
