@@ -1,21 +1,21 @@
 //loginページの時に動く
 
-const socketio = io();
-//登録ボタンが押されたら動く
-const btn = document.getElementById("login_btn");
-btn.addEventListener("click", function(event){
+// const socketio = io();
+// //登録ボタンが押されたら動く
+// const btn = document.getElementById("login_btn");
+// btn.addEventListener("click", function(event){
 
-    const login_id = document.getElementById("login_id");
-    const pass = document.getElementById("pass");
+//     const login_id = document.getElementById("login_id");
+//     const pass = document.getElementById("pass");
     
-    const sendData = {
-        login_id : login_id.value,
-        pass : pass.value
-    };
+//     const sendData = {
+//         login_id : login_id.value,
+//         pass : pass.value
+//     };
 
-    // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
-    socketio.emit('login_info', JSON.stringify (sendData));
-});
+//     // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
+//     socketio.emit('login_info', JSON.stringify (sendData));
+// });
 
 //登録ボタンが押されたら動く
 // const btn = document.getElementById("register");
