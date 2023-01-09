@@ -64,7 +64,6 @@ switch ($request_path) {
 
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
-        var_dump($sql);
         $list = db_change($sql);
         
         return enc($list);
