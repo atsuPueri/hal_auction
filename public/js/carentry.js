@@ -49,7 +49,7 @@ entryBtn.addEventListener("click", function(event){
     // const equipment = document.getElementById("equipment");
     const ornamentsList = document.getElementsByClassName("ornaments");
 
-    console.log(auto.value);
+    console.log(element.checked);
 
     let selected_items = "";
     for (const element of ornamentsList) {
@@ -85,7 +85,7 @@ entryBtn.addEventListener("click", function(event){
 
     if(color.value < color_length){
         // クライアント(ブラウザ)→サーバ(Node.js)へSocket送信
-        socketio.emit('register_car', JSON.stringify (sendData));
+        // socketio.emit('register_car', JSON.stringify (sendData));
     }
     
     

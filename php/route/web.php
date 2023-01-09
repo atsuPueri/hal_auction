@@ -54,9 +54,18 @@ switch ($request_path) {
             "drive_system" => $_GET['drive_system'],
             "equipment" => $_GET['equipment']
         ]);
+
+        $into_make["equipment"] = decbin($into_make["equipment"]);
+
+        $length = 32;
+        $count = $length - strlen($into_make["equipment"]);
+
+        $into_make["equipment"] = str_repeat('0', $count).$into_make["equipment"];
+
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
         $list = db_change($sql);
+        
         return enc($list);
 
     case "/upd_car":
@@ -420,18 +429,15 @@ switch ($request_path) {
 
         //ボディタイプ
         $body_type_list = ["セダン", "クーペ", "オープンカー", "ステーションワゴン", "ワンボックス", "ミニバン", "SUV", "ハッチバック"];
-        $body_type = $_GET["body_type"];
-        $list["data"]["body_type"] = $body_type_list[$body_type];
+        $list["data"][0]["body_type"] = $body_type_list[$list["data"][0]["body_type"]];
 
         //駆動処理
         $drive_system_list = ["FF", "FR", "MR", "4WD"];
-        $drive_system = $_GET["drive_system"];
-        $list["data"]["drive_system"] = $drive_system_list[$drive_system];
+        $list["data"][0]["drive_system"] = $drive_system_list[$list["data"][0]["drive_system"]];
 
         //色
         $color_array = ["白色" , "灰色" , "赤色" , "ピンク色" , "オレンジ色" , "黄色" , "薄緑" , "緑" , "青色" , "紫色" , "紺色" , "黒色"];
-        $color_number = $_GET['color'];
-        $list["data"]["color"] = $color_array[$color_number];
+        $list["data"][0]["color"] = $color_array[$list["data"][0]["color"]];
 
         return enc($list);
 
