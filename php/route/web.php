@@ -375,19 +375,21 @@ switch ($request_path) {
     case "/login_user":
         //ログイン時のパスワードチェック
         $sql = "SELECT * FROM user ";
-        $sql = add_and($sql, "user_id", "=", $_GET["user_id"] ?? '');
+        $sql = add_and($sql, "login_id", "=", $_GET["login_id"] ?? '');
         $list = db_get($sql);
         
         $pass = md5('"'.$_GET['pass'].'"');
+        // var_dump($pass);
+        // var_dump($list["data"][0]["hash_password"]);
         if($list["data"][0]["hash_password"] == $pass){
             return enc([
-                "data" => "ログイン失敗",
-                "status" => true,
+                "data" => $list["data"][0]["user_id"],
+                "status" => true
             ]);
         } else {
             return enc([
-                "data" => "ログイン失敗",
-                "status" => false,
+                "data" => "",
+                "status" => false
             ]);
         }
         
