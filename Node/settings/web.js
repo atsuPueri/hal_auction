@@ -2,7 +2,7 @@ const { response } = require('express');
 const { request } = require('http');
 const { loadavg } = require('os');
 
-module.exports = function(app) {
+module.exports = function(app, io_socket) {
 
     const php = require('../util/php.js');
 
@@ -53,19 +53,26 @@ module.exports = function(app) {
 
     app.post('/car_entry', (request, response) => {
         let ornaments_total = 0;
-        for (const value of request.body.ornaments) {
-            ornaments_total += Number.parseInt(value);
+
+        if (request.body.ornaments !== undefined) {
+            for (const value of request.body.ornaments) {
+                ornaments_total += Number.parseInt(value);
+            }
         }
 
-        //console.log('add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.is_actual_driving+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+request.body.ornaments+'"');   
+        // console.log('add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.run+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+ornaments_total+'"');   
 
         
         
-        php('/add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.is_actual_driving+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+request.body.ornaments+'"', response_message => {
+        php('/add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.run+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+ornaments_total+'"', response_message => {
+            
             response_message = JSON.parse(response_message);
             //ユーザーの登録が正常に動いたか
             if(response_message.status === true){
-                response.redirect('/error');
+                php('/get_car_join', car_info_json => {
+                    io_socket.emit('update_table', car_info_json);
+                    response.redirect('/top');
+                });
             } else {
                 response.redirect('/error');
             }
@@ -110,12 +117,10 @@ module.exports = function(app) {
     });
 
     app.get('/detail/:id', (request, response) => {
-        php('/get_car_join?car_id='+request.params.id, response_message => {
-            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
-                response.render('detail', {
-                    carData : JSON.parse(response_message).data,
-                    color : JSON.parse(response_msg).data
-                });
+        php('/detail_info?car_id='+request.params.id, response_message => {
+            console.log(JSON.parse(response_message).data);
+            response.render('detail', {
+                carData : JSON.parse(response_message).data
             });
         });
     });

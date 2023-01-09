@@ -102,7 +102,7 @@ socketio.on('update_table', function(msg) {
 
         const link = document.createElement('td');
         const a = document.createElement('a');
-        a.href = "test1/" +column.car_id;
+        a.href = "detail/" +column.car_id;
         a.textContent = "詳細表示";
         link.appendChild(a);
         tr.appendChild(link);

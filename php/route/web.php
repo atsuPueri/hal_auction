@@ -47,7 +47,6 @@ switch ($request_path) {
             "mileage" => $_GET['mileage'],
             "is_actual_driving" => $_GET['is_actual_driving'],
             "color" => $_GET['color'],
-            "vehicle_inspection_expiration_date" => $_GET['vehicle_inspection_expiration_date'],
             "automatic_or_mission" => $_GET['automatic_or_mission'],
             "displacement" => $_GET['displacement'],
             "number_of_passengers" => $_GET['number_of_passengers'],
@@ -55,17 +54,26 @@ switch ($request_path) {
             "equipment" => $_GET['equipment']
         ]);
 
+        if ((($_GET['vehicle_inspection_expiration_date'] ?? '') === '')) {
+            $into_make["vehicle_inspection_expiration_date"] = $_GET['vehicle_inspection_expiration_date'];
+        }
+
         $into_make["equipment"] = decbin($into_make["equipment"]);
 
         $length = 32;
         $count = $length - strlen($into_make["equipment"]);
+        for($i=0;$i<$count;$i++){
+            $into_make["equipment"] = "0".$into_make["equipment"];
+        }
 
-        $into_make["equipment"] = str_repeat('0', $count).$into_make["equipment"];
+        $into_make["equipment"] = '"'.$into_make["equipment"].'"';
+
+        // $into_make["equipment"] = str_repeat('0', $count).$into_make["equipment"];
 
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
         $list = db_change($sql);
-        
+
         return enc($list);
 
     case "/upd_car":

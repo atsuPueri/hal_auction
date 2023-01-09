@@ -12,7 +12,7 @@ const io_socket = require('socket.io')(http_socket);
 require('./settings/bootstrap.js')(app, express);
 
 // ルーティング
-require('./settings/web.js')(app);
+require('./settings/web.js')(app, io_socket);
 
 // httpサーバー起動
 http_socket.listen(9000);
