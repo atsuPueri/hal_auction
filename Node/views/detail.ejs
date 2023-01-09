@@ -20,51 +20,61 @@
             <section>
                 <div>
                     <p>価格</p>
-                    <p id="price">1,200,000円</p>
+                    <p id="price"><%= carData[0].car_id %></p>
                 </div>
                 <div>
                     <p>ボディータイプ</p>
-                    <p>1,200,000円</p>
+                    <p><%= carData[0].body_type %></p>
                 </div>
                 <div>
-                    <p>年式</p>
-                    <p>1,200,000円</p>
+                    <p>年式</p>model_year
+                    <p><%= carData[0].model_year %>年</p>
                 </div>
                 <div>
                     <p>走行距離</p>
-                    <p>1,200,000円</p>
+                    <p><%= carData[0].mileage %>km</p>
                 </div>
                 <div>
                     <p>実走行</p>
-                    <p>1,200,000円</p>
+                    <p><% if(carData[0].is_actual_driving == 0 ){ %>
+                        可能
+                    <% } else { %>
+                        不可能
+                    <% } %></p>
                 </div>
                 <div>
                     <p>色</p>
-                    <p>1,200,000円</p>
+                    <p><%= color %></p>
                 </div>
                 <div>
                     <p>車検有効期限</p>
-                    <p>1,200,000円</p>
+                    <!-- <p></p> -->
                 </div>
                 <div>
                     <p>オートマ/ミッション</p>
-                    <p>1,200,000円</p>
+                    <p>
+                        <% if(carData[0].automatic_or_mission == 0 ){ %>
+                            ミッション
+                        <% } else { %>
+                            オートマ
+                        <% } %>
+                    </p>
                 </div>
                 <div>
                     <p>排気量</p>
-                    <p>1,200,000円</p>
+                    <p><%= carData[0].displacement %>cc</p>
                 </div>
                 <div>
                     <p>乗車人数</p>
-                    <p>1,200,000円</p>
+                    <p><%= carData[0].number_of_passengers %>人</p>
                 </div>
                 <div>
                     <p>駆動方式</p>
-                    <p>1,200,000円</p>
+                    <!-- <p></p> -->
                 </div>
                 <div>
                     <p></p>
-                    <p>1,200,000円</p>
+                    <!-- <p></p> -->
                 </div>
                 
             </section>
