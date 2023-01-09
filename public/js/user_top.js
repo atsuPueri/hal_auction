@@ -32,12 +32,12 @@ for (const column of parse_obj) {
     }
 }
 
-const path = window.location.pathname;
-const user_id = path.split('/')[3]; // /user_top/:userId
 
 const held = document.getElementById('held');
 const heldH2 = held.getElementsByTagName('h2')[0];
 const heldInPHTMLColection = held.getElementsByTagName('p');
+const heldButton = document.getElementById('button');
+heldButton.href = `./auction_detail/${mincolmn.car_id}`;
 
 const car_type_name = heldInPHTMLColection[0];
 const now_price     = heldInPHTMLColection[1];
@@ -49,13 +49,11 @@ now_price.textContent     = `現在の落札価格：${mincolmn.now_price}`;
 let from = new Date(mincolmn.time_from);
 let to   = new Date(mincolmn.time_to);
 
-console.log(parse_obj);
-
 setInterval(() => {
     const nowDate = new Date();
-
+    
     let baseDate;
-
+    
     if (nowDate.getTime() < from.getTime()) {
         baseDate = from;
         heldH2.textContent = "開催予定";
@@ -69,6 +67,16 @@ setInterval(() => {
     const h = Math.trunc(difference / (1000 * 3600)) % 24;
     const m = Math.trunc(difference / (1000 * 60)) % 60;
     const s = Math.floor(difference / (1000)) % 60; // 0.xxx ~ -0.xxx の区間を潰すためfloor
-
+    
     time_left.textContent = `残り時間: ${d}日 ${h}時 ${m}分 ${s}秒`;
 }, 1000);
+
+const path = window.location.pathname;
+const split = path.split('/');
+const user_id = split[2]; // /user_top/:userId
+if (typeof user_id !== 'undefined') {
+    const a_HTMLColection = document.getElementsByTagName('a');
+    for (const element of a_HTMLColection) {
+        element.href += "/" + user_id;
+    }
+}
