@@ -35,17 +35,18 @@
         <div id="right">
             <div class="now">
                 <h2>現在の落札金額</h2>
-                <p id="now_price">￥20,000</p>
+                <p id="now_price">￥<%= car_info.now_price %></p>
             </div>
             <div class="now">
                 <h2 id="left_time_txt">残り時間</h2>
                 <p id="left_time">10分25秒21</p>
             </div>
-            <p><input type="text" id="bit_text"></p>
+            <p><input type="number" id="bit_text" required></p>
             <p><button id="bit_button">入札</button></p>
         </div>
     </main>
 
+    <div id="car_id" data-car_id="<%= car_info.car_id %>"></div>
     <div id="from" data-from="<%= car_info.time_from %>"></div>
     <div id="to"   data-to="<%= car_info.time_to %>"></div>
 
