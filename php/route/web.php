@@ -54,7 +54,7 @@ switch ($request_path) {
             "equipment" => $_GET['equipment']
         ]);
 
-        if ((($_GET['vehicle_inspection_expiration_date'] ?? '') === '')) {
+        if (($_GET['vehicle_inspection_expiration_date'] ?? '') !== '') {
             $into_make["vehicle_inspection_expiration_date"] = $_GET['vehicle_inspection_expiration_date'];
         }
 
