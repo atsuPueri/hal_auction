@@ -36,14 +36,40 @@ main {
     display: flex;
     justify-content: space-around;
 }
-#detail {
+#contents {
     display: flex;
     justify-content: space-around;
-    margin: 3% 0;
+    margin: 1vw;
+}
+#img {
+    border: solid 1px;
+}
+#detail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20vh 5vw 0 10vw;
+}
+#detail p {
+    padding: 1vh;
+}
+#detail h2 {
+    font-size: 2vw;
+    position: absolute;
+    top: 20%;
+}
+#detail h2 span{
+    margin-left: 1vw;
+    /* display: none; */
+    font-size: 1.5vw;
+    color: red;
+}
+#detail p span {
+    font-weight: bold;
 }
 #right {
-    width: 30%;
-    margin: auto 0;
+    position: absolute;
+    right: 15%;
 }
 .now {
     display: flex;
@@ -55,12 +81,12 @@ main {
     margin: 3%;
 }
 input[type="text"] {
-    width: 100%;
+    width: 50%;
     border: solid 1px black;
 }
-button {
+#bit_button {
     border: solid 1px black;
-    width: 100%;
+    width: 50%;
     padding: 2%;
     text-align: center;
     background-color: orange;
