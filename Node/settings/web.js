@@ -234,7 +234,7 @@ module.exports = function(app, io_socket) {
     app.post('/login_user', (request, response) => {
         php('/login_user?login_id="'+request.body.login_id+'"&pass='+request.body.pass, response_message => {
             response_message = JSON.parse(response_message);
-            response.redirect('/user_top/'+response_message.data);
+            response.redirect('/user_top?user_id='+response_message.data);
         });
     });
 
