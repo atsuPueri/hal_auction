@@ -1,6 +1,7 @@
 const { response } = require('express');
 const { request } = require('http');
 const { loadavg } = require('os');
+const php_host = require('./php_host.js');
 
 module.exports = function(app, io_socket) {
 
@@ -53,36 +54,29 @@ module.exports = function(app, io_socket) {
 
     app.post('/car_entry', (request, response) => {
         let ornaments_total = 0;
-        for (const value of request.body.ornaments) {
-            ornaments_total += Number.parseInt(value);
+
+        if (request.body.ornaments !== undefined) {
+            for (const value of request.body.ornaments) {
+                ornaments_total += Number.parseInt(value);
+            }
         }
 
-        console.log(request.body);   
-
+        // console.log('add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.run+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+ornaments_total+'"');   
 
         
-        // php('add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.is_actual_driving+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacemen+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+request.body.ornaments, response_message => {
-        //     response_message = JSON.parse(response_message);
-        //     //ユーザーの登録が正常に動いたか
-        //     if(response_message.status === true){
-        //         // response.redirect('/user_top');
-        //         console.log("成功");
-        //     } else {
-        //         // response.redirect('/error');
-
-        //     }
-        // });
-    });
-
-
-    app.get('/test1/:id', (request, response) => {
-        php('/get_car_join?car_id='+request.params.id, response_message => {
-            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
-                response.render('test1', {
-                    carData : JSON.parse(response_message).data,
-                    color : JSON.parse(response_msg).data
+        
+        php('/add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.run+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+ornaments_total+'"', response_message => {
+            
+            response_message = JSON.parse(response_message);
+            //ユーザーの登録が正常に動いたか
+            if(response_message.status === true){
+                php('/get_car_join', car_info_json => {
+                    io_socket.emit('update_table', car_info_json);
+                    response.redirect('/top');
                 });
-            });
+            } else {
+                response.redirect('/error');
+            }
         });
     });
 
@@ -112,12 +106,10 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/detail/:id', (request, response) => {
-        php('/get_car_join?car_id='+request.params.id, response_message => {
-            php('/color?color='+JSON.parse(response_message).data[0].color, response_msg => {
-                response.render('detail', {
-                    carData : JSON.parse(response_message).data,
-                    color : JSON.parse(response_msg).data
-                });
+        php('/detail_info?car_id='+request.params.id, response_message => {
+            console.log(JSON.parse(response_message).data);
+            response.render('detail', {
+                carData : JSON.parse(response_message).data
             });
         });
     });
@@ -147,7 +139,6 @@ module.exports = function(app, io_socket) {
                 });
             });
         });
-
     });
 
     app.get('/user_top/:id', (request, response) => {
@@ -244,7 +235,7 @@ module.exports = function(app, io_socket) {
     app.post('/login_user', (request, response) => {
         php('/login_user?login_id="'+request.body.login_id+'"&pass='+request.body.pass, response_message => {
             response_message = JSON.parse(response_message);
-            response.redirect('/user_top/'+response_message.data);
+            response.redirect('/user_top?user_id='+response_message.data);
         });
     });
 
@@ -257,14 +248,40 @@ module.exports = function(app, io_socket) {
         response.render('mypage');
     });
     
-    // app.get('/', (request, response) => {
-        //     response.render('');
-        // });
+    
         
-        app.get('/detail', (request, response) => {
-            response.render('detail');
+    app.get('/detail', (request, response) => {
+        response.render('detail');
+    });
+    app.get('/error', (request, response) => {
+        response.render('error');
+    });
+
+
+
+    app.get('/test1', (request, response) => {
+        response.render('test1');
+    });
+
+    app.get('/test1/:id', (request, response) => {
+        php('/add_favorite_car_type?car_id='+request.params.id, response_message => {
+            response.render('test1', {
+                carData : JSON.parse(response_message).data
+            });
         });
-        app.get('/error', (request, response) => {
-            response.render('error');
+    });
+
+    app.get('/test1/:car_id/:user_id', (request, response) => {
+        php('/add_favorite_car_type?favorite_car_type_id='+request.params.car_id+'&user_id='+request.params.user_id, response_message => {
+            // console.log(response_message);
+            php('/test1?car_id='+request.params.car_id, car_response => {
+                console.log(car_response);
+                if(JSON.parse(response_message).status === true){
+                    response.render('test1', {
+                        carData : JSON.parse(car_response).data
+                    });
+                }
+            });
         });
-    }
+    });
+}
