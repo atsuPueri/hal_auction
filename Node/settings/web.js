@@ -2,7 +2,7 @@ const { response } = require('express');
 const { request } = require('http');
 const { loadavg } = require('os');
 
-module.exports = function(app) {
+module.exports = function(app, io_socket) {
 
     const php = require('../util/php.js');
 
@@ -164,7 +164,6 @@ module.exports = function(app) {
 
                     php('/color?color='+JSON.parse(m).data[0].color, response_msg => {
                         
-                        console.log(JSON.parse(response_message).data);
                         response.render('user_top', {
                             user_id : request.params.id,
                             carData : carTypeData.data,
@@ -181,12 +180,15 @@ module.exports = function(app) {
     app.get('/auction_detail/:car_id', (request, response) => {
         const car_id = request.params.car_id;
 
-        php(`/detail_info?car_id=${car_id}`, get_car_join_message => {
+        if (isNaN(car_id)) {
+            response.redirect('../user_top');
+            return;
+        }
 
+        php(`/detail_info?car_id=${car_id}`, get_car_join_message => {
             const parse_obj = JSON.parse(get_car_join_message);
             const car_data = parse_obj.data;
 
-            console.log(car_data);
             let car_info;
             if (car_data !== undefined) {
                 car_info = car_data[0];
@@ -194,7 +196,6 @@ module.exports = function(app) {
                 response.redirect('../error');
             }
 
-            console.log(car_info, "-");
             response.render('auction_detail', {
                 car_info: car_info
             });
