@@ -210,7 +210,7 @@ switch ($request_path) {
             "user_id" => $_GET['user_id'],
             "car_id" => $_GET['car_id'],
             "bid_price" => $_GET['bid_price'],
-            "time" => $_GET['time']
+            // "time" => $_GET['time']
         ]);
         $sql = "INSERT INTO bid ";
         $sql .= into_make($into_make);
