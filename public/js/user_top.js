@@ -37,11 +37,15 @@ const held = document.getElementById('held');
 const heldH2 = held.getElementsByTagName('h2')[0];
 const heldInPHTMLColection = held.getElementsByTagName('p');
 const heldButton = document.getElementById('button');
-heldButton.href = `./auction_detail/${mincolmn.car_id}`;
+heldButton.href = `/auction_detail/${mincolmn.car_id}`;
 
 const car_type_name = heldInPHTMLColection[0];
 const now_price     = heldInPHTMLColection[1];
 const time_left     = heldInPHTMLColection[2];
+
+const bak = document.getElementById('bak');
+const bak_img = bak.getElementsByTagName('img')[0];
+bak_img.src = `/../img/${mincolmn.car_type_img_name}`;
 
 car_type_name.textContent = `車種名：${mincolmn.car_type_name}`;
 now_price.textContent     = `現在の落札価格：${mincolmn.now_price}`;
@@ -49,7 +53,7 @@ now_price.textContent     = `現在の落札価格：${mincolmn.now_price}`;
 let from = new Date(mincolmn.time_from);
 let to   = new Date(mincolmn.time_to);
 
-setInterval(() => {
+function interval_fnc(){
     const nowDate = new Date();
     
     let baseDate;
@@ -69,11 +73,14 @@ setInterval(() => {
     const s = Math.floor(difference / (1000)) % 60; // 0.xxx ~ -0.xxx の区間を潰すためfloor
     
     time_left.textContent = `残り時間: ${d}日 ${h}時 ${m}分 ${s}秒`;
-}, 1000);
+}
+interval_fnc();
+setInterval(interval_fnc, 1000);
 
-const path = window.location.pathname;
-const split = path.split('/');
-const user_id = split[2]; // /user_top/:userId
+const url = new URL(window.location.href);
+const params = url.searchParams;
+const user_id = params.get('user_id');
+
 if (typeof user_id !== 'undefined') {
     const a_HTMLColection = document.getElementsByTagName('a');
     for (const element of a_HTMLColection) {

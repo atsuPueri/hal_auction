@@ -14,12 +14,12 @@
     <main>
         <article>
             <section>
-                <h2>スズキ　ハスラー</h2>
+                <h2><%= carData[0].car_type_name %></h2>
                 <div class="price">
                     <p>価格</p>
                     <p id="price"><%= carData[0].car_id %></p>
                 </div>
-                <p id="bak"><img src="../img/hustler.png" alt=""></p>
+                <p id="bak"><img src="../img/<%= carData[0].car_type_img_name %>" alt="<%= carData[0].car_type_name %>"></p>
             </section>
             <section id="content">
                 <div class="flex">
@@ -65,7 +65,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result"></span>色</span>
-                                <span class="detail_right"><%= color %></span>
+                                <span class="detail_right"><%= carData[0].color %></span>
                             </li>
                         <ul>
                     </div>
@@ -73,7 +73,7 @@
                         <ul>
                             <li class="detail">
                                 <span class="detail_result">車検有効期限</span>
-                                <span class="detail_right">1,200,000円</span>
+                                <span class="detail_right"><%= carData[0].vehicle_inspection_expiration_date %></span>
                             </li>
                         <ul>
                     </div>

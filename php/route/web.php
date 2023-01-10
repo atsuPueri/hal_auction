@@ -47,7 +47,6 @@ switch ($request_path) {
             "mileage" => $_GET['mileage'],
             "is_actual_driving" => $_GET['is_actual_driving'],
             "color" => $_GET['color'],
-            "vehicle_inspection_expiration_date" => $_GET['vehicle_inspection_expiration_date'],
             "automatic_or_mission" => $_GET['automatic_or_mission'],
             "displacement" => $_GET['displacement'],
             "number_of_passengers" => $_GET['number_of_passengers'],
@@ -55,18 +54,26 @@ switch ($request_path) {
             "equipment" => $_GET['equipment']
         ]);
 
+        if ((($_GET['vehicle_inspection_expiration_date'] ?? '') === '')) {
+            $into_make["vehicle_inspection_expiration_date"] = $_GET['vehicle_inspection_expiration_date'];
+        }
+
         $into_make["equipment"] = decbin($into_make["equipment"]);
 
         $length = 32;
         $count = $length - strlen($into_make["equipment"]);
+        for($i=0;$i<$count;$i++){
+            $into_make["equipment"] = "0".$into_make["equipment"];
+        }
 
-        $into_make["equipment"] = str_repeat('0', $count).$into_make["equipment"];
+        $into_make["equipment"] = '"'.$into_make["equipment"].'"';
+
+        // $into_make["equipment"] = str_repeat('0', $count).$into_make["equipment"];
 
         $sql = "INSERT INTO car ";
         $sql .= into_make($into_make);
-        var_dump($sql);
         $list = db_change($sql);
-        
+
         return enc($list);
 
     case "/upd_car":
@@ -304,15 +311,17 @@ switch ($request_path) {
 
     case "/add_favorite_car_type":
         $into_make = ([
-            "user_id" => $_GET['user_id'],
-            "car_type_id" => $_GET['car_type_id'],
-            "maker_id" => $_GET['maker_id'],
-            "keyword" => $_GET['keyword'],
-            "equipment" => $_GET['equipment'],
-            "mileage" => $_GET['mileage'],
-            "clor" => $_GET['clor'],
-            "automatic_or_mission" => $_GET['automatic_or_mission'],
-            "number_of_passengers" => $_GET['number_of_passengers']
+            "favorite_car_type_id" => $_GET['favorite_car_type_id'],
+            "user_id" => $_GET['user_id']
+            // ,
+            // "car_type_id" => $_GET['car_type_id'],
+            // "maker_id" => $_GET['maker_id'],
+            // "keyword" => $_GET['keyword'],
+            // "equipment" => $_GET['equipment'],
+            // "mileage" => $_GET['mileage'],
+            // "clor" => $_GET['clor'],
+            // "automatic_or_mission" => $_GET['automatic_or_mission'],
+            // "number_of_passengers" => $_GET['number_of_passengers']
         ]);
         $sql = "INSERT INTO favorite_car_type ";
         $sql .= into_make($into_make);
@@ -390,8 +399,6 @@ switch ($request_path) {
         $list = db_get($sql);
         
         $pass = md5('"'.$_GET['pass'].'"');
-        // var_dump($pass);
-        // var_dump($list["data"][0]["hash_password"]);
         if($list["data"][0]["hash_password"] == $pass){
             return enc([
                 "data" => $list["data"][0]["user_id"],
@@ -441,6 +448,43 @@ switch ($request_path) {
         $list["data"][0]["color"] = $color_array[$list["data"][0]["color"]];
 
         return enc($list);
+
+        case "/test1":
+            // 駆動方式とボディタイプを取る
+            //車種とメーカーをJOINした車両を取得
+            $sql = "SELECT c.*, 
+            ct.name AS car_type_name, 
+            ct.img_name AS car_type_img_name, 
+            m.name AS maker_name, 
+            m.img_name AS maker_img_name, 
+            ex.time_from AS time_from,
+            ex.time_to AS time_to,
+            ex.now_price AS now_price,
+            ex.first_price AS first_price,
+            ex.lowest_price AS lowest_price 
+            FROM car AS c LEFT JOIN car_type AS ct
+            ON c.car_type_id = ct.car_type_id 
+            LEFT JOIN maker AS m 
+            ON ct.maker_id = m.maker_id 
+            LEFT JOIN exhibit AS ex 
+            ON c.car_id = ex.car_id ";
+            $sql = add_and($sql, "c.car_id",    "=", $_GET["car_id"]  ?? '');
+            
+            $list = db_get($sql);
+    
+            //ボディタイプ
+            $body_type_list = ["セダン", "クーペ", "オープンカー", "ステーションワゴン", "ワンボックス", "ミニバン", "SUV", "ハッチバック"];
+            $list["data"][0]["body_type"] = $body_type_list[$list["data"][0]["body_type"]];
+    
+            //駆動処理
+            $drive_system_list = ["FF", "FR", "MR", "4WD"];
+            $list["data"][0]["drive_system"] = $drive_system_list[$list["data"][0]["drive_system"]];
+    
+            //色
+            $color_array = ["白色" , "灰色" , "赤色" , "ピンク色" , "オレンジ色" , "黄色" , "薄緑" , "緑" , "青色" , "紫色" , "紺色" , "黒色"];
+            $list["data"][0]["color"] = $color_array[$list["data"][0]["color"]];
+    
+            return enc($list);
 
     // ---------------------------------その他   
     default:
