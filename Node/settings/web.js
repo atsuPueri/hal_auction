@@ -28,9 +28,10 @@ module.exports = function(app) {
             const response_array = [];
             for (const value of exhibit_obj) {
                 response_array.push({
-                    id:        value.car_id,
-                    time_from: value.time_from,
-                    time_to:   value.time_to
+                    id:            value.car_id,
+                    time_from:     value.time_from,
+                    time_to:       value.time_to,
+                    car_type_name: value.name,
                 });
             }
             response.render('schedule', {

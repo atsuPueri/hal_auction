@@ -205,7 +205,7 @@ window.addEventListener('load', () => {
         }
     }
 
-    /** 登録ボタン たぶん未完 */
+    /** 登録ボタン */
     const schedule_registration = document.getElementById('schedule_registration');
     schedule_registration.addEventListener('click', event => {
         const socket = io();
@@ -242,17 +242,24 @@ window.addEventListener('load', () => {
     });
 });
 
+// ------ functions -------
 
 function init(car_info_array) {
     console.log(car_info_array);
     let registered_count = 1;
     const row_HTMLCollection = document.getElementsByClassName('row');
+    
+    for (const row of row_HTMLCollection) {
+        while (row.firstChild) {
+            
+        }
+    }
 
     for (const car_info of car_info_array) {
-
         let first;
         let last;
         let rowKey;
+
         if (car_info.time_from !== null) {
             const first_date = new Date(car_info.time_from);
             const last_date = new Date(car_info.time_to);
@@ -270,40 +277,39 @@ function init(car_info_array) {
             last = 1; // 高さを表すから１つ分
             registered_count++;
         }
-        const draggable = createDraggable(car_info.id, first, last);
-
-        console.log(rowKey);
+        
+        const draggable = createDraggable(car_info.id, first, last, car_info.car_type_name);
         row_HTMLCollection[rowKey].appendChild(draggable);
     }
+}
 
-    ////////////////////////////////////////////////
+function createDraggable(id, top, height, name) {
+    const draggable = document.createElement('div');
 
-    function createDraggable(id, top, height) {
-        const draggable = document.createElement('div');
+    draggable.classList.add('draggable');
+    draggable.draggable = true;
+    draggable.dataset.id = id;
 
-        draggable.classList.add('draggable');
-        draggable.draggable = true;
-        draggable.dataset.id = id;
+    draggable.style.top = (top * base_height) + 'px';
+    draggable.style.height = (height * base_height) + 'px';
+    draggable.textContent = name;
+    console.log(draggable, name);
 
-        draggable.style.top = (top * base_height) + 'px';
-        draggable.style.height = (height * base_height) + 'px';
+    const size = document.createElement('div');
+    size.classList.add('size');
+    draggable.appendChild(size);
 
-        const size = document.createElement('div');
-        size.classList.add('size');
-        draggable.appendChild(size);
-
-        return draggable;
-    }
+    return draggable;
+}
 
 
-    /**
-     * @param {Date} date 
-     */
-    function DateToNumber(date) {
-        const h = date.getHours() - start_hours;
-        const m = date.getMinutes();
-        const all_m = (h * 60) + m;
+/**
+ * @param {Date} date 
+ */
+function DateToNumber(date) {
+    const h = date.getHours() - start_hours;
+    const m = date.getMinutes();
+    const all_m = (h * 60) + m;
 
-        return all_m / base_minutes;
-    }
+    return all_m / base_minutes;
 }
