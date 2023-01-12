@@ -74,8 +74,9 @@ main {
     font-weight: bold;
 }
 #right {
-    position: absolute;
-    right: 15%;
+    width: 100%;
+    margin-left: 55vw;
+    display: flex;
 }
 .now {
     display: flex;
@@ -86,14 +87,26 @@ main {
 #right p {
     margin: 3%;
 }
+#left_time_txt {
+    width: 10vw;
+}
+#right_time_txt {
+    width: 9.4vw;
+}
+#left_time {
+    width: 18vw;
+}
+#bid {
+    margin-top: 2vh;
+}
 input[type="text"] {
-    width: 50%;
+    width: 60%;
     border: solid 1px black;
 }
 #bit_button {
     border: solid 1px black;
-    width: 50%;
-    padding: 2%;
+    width: 60%;
+    padding: 0.5%;
     text-align: center;
     background-color: orange;
 }
