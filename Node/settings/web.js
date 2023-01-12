@@ -125,7 +125,7 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/user_top', (request, response) => {
-                    php('/get_maker', get_maker_message => {
+                php('/get_maker', get_maker_message => {
                 const makerData = JSON.parse(get_maker_message);
     
                 // 現在時刻以降を取得するため
@@ -174,13 +174,16 @@ module.exports = function(app, io_socket) {
 
     app.post('/auction_detail/:car_id', (request, response) => {
         const car_id = request.params.car_id;
-        var user_id = request.query.user_id;
 
-        php('/add_favorite_car_type?favorite_car_type_id='+car_id+'&user_id='+user_id, response_message => {
-            if(JSON.parse(response_message).status === true){
-                response.redirect('/auction_detail/'+car_id+'?user_id='+user_id);
-            }
-        });
+        if(request.query.user_id){
+            php('/add_favorite_car_type?favorite_car_type_id='+car_id+'&user_id='+request.query.user_id, response_message => {
+                if(JSON.parse(response_message).status === true){
+                    response.redirect('/auction_detail/'+car_id+'?user_id='+request.query.user_id);
+                }
+            });
+        } else {
+            response.redirect('/auction_detail/'+car_id);
+        }
     });
 
     app.get('/car_detail', (request, response) => {
@@ -241,20 +244,6 @@ module.exports = function(app, io_socket) {
     });
     app.get('/error', (request, response) => {
         response.render('error');
-    });
-
-
-
-    app.get('/test1', (request, response) => {
-        response.render('test1');
-    });
-
-    app.get('/test1/:id', (request, response) => {
-        php('/add_favorite_car_type?car_id='+request.params.id, response_message => {
-            response.render('test1', {
-                carData : JSON.parse(response_message).data
-            });
-        });
     });
 
 }
