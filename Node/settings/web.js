@@ -125,40 +125,39 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/user_top', (request, response) => {
-        console.log(request.query.user_id);
-                php('/get_maker', get_maker_message => {
-                const makerData = JSON.parse(get_maker_message);
-    
-                // 現在時刻以降を取得するため
-                const date = new Date();
-                php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => {
-                    
-                    const get_car_join = JSON.parse(get_car_join_message);
-    
-                    if(request.query.user_id){
-                        php('/get_favorite?user_id='+request.query.user_id, favorite_message => {
-                            const get_favorite = JSON.parse(favorite_message);
-                            if(get_favorite.data){
-                                response.render('user_top', {
-                                    carData : get_car_join.data,
-                                    makerData : makerData.data,
-                                    favoriteData : get_favorite.data
-                                });
-                            } else {
-                                response.render('user_top', {
-                                    carData : get_car_join.data,
-                                    makerData : makerData.data,
-                                });
-                            }
-                        });
-                    } else {
-                        response.render('user_top', {
-                            carData : get_car_join.data,
-                            makerData : makerData.data,
-                        });
-                    }
-                });
+        php('/get_maker', get_maker_message => {
+            const makerData = JSON.parse(get_maker_message);
+
+            // 現在時刻以降を取得するため
+            const date = new Date();
+            php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => {
+                
+                const get_car_join = JSON.parse(get_car_join_message);
+
+                if(request.query.user_id){
+                    php('/get_favorite?user_id='+request.query.user_id, favorite_message => {
+                        const get_favorite = JSON.parse(favorite_message);
+                        if(get_favorite.data){
+                            response.render('user_top', {
+                                carData : get_car_join.data,
+                                makerData : makerData.data,
+                                favoriteData : get_favorite.data
+                            });
+                        } else {
+                            response.render('user_top', {
+                                carData : get_car_join.data,
+                                makerData : makerData.data,
+                            });
+                        }
+                    });
+                } else {
+                    response.render('user_top', {
+                        carData : get_car_join.data,
+                        makerData : makerData.data,
+                    });
+                }
             });
+        });
     });
 
     app.get('/auction_detail/:car_id', (request, response) => {
@@ -209,7 +208,20 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/favorite', (request, response) => {
-        response.render('favorite');
+        if(request.query.user_id){
+            php('/get_favorite?user_id='+request.query.user_id, favorite_message => {
+                const get_favorite = JSON.parse(favorite_message);
+                if(get_favorite.data){
+                    response.render('favorite', {
+                        favoriteData : get_favorite.data
+                    });
+                } else {
+                    response.render('favorite');
+                }
+            });
+        } else {
+            response.render('favorite');
+        }
     });
 
     app.get('/inform', (request, response) => {
@@ -244,7 +256,43 @@ module.exports = function(app, io_socket) {
 
     
     app.get('/login', (request, response) => {
-        response.render('login');
+        if(request.query.user_id){ 
+            php('/get_maker', get_maker_message => {
+                const makerData = JSON.parse(get_maker_message);
+
+                // 現在時刻以降を取得するため
+                const date = new Date();
+                php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => {
+                    
+                    const get_car_join = JSON.parse(get_car_join_message);
+
+                    if(request.query.user_id){
+                        php('/get_favorite?user_id='+request.query.user_id, favorite_message => {
+                            const get_favorite = JSON.parse(favorite_message);
+                            if(get_favorite.data){
+                                response.render('user_top', {
+                                    carData : get_car_join.data,
+                                    makerData : makerData.data,
+                                    favoriteData : get_favorite.data
+                                });
+                            } else {
+                                response.render('user_top', {
+                                    carData : get_car_join.data,
+                                    makerData : makerData.data,
+                                });
+                            }
+                        });
+                    } else {
+                        response.render('user_top', {
+                            carData : get_car_join.data,
+                            makerData : makerData.data,
+                        });
+                    }
+                });
+            });
+        } else {
+            response.render('login');
+        }
     });
     
     app.get('/mypage', (request, response) => {
