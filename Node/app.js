@@ -104,7 +104,7 @@ io_socket.on('connection', (stream) => {
                 }
                 
                 php(`/upd_exhibit?car_id=${parse_obj.car_id}&now_price=${parse_obj.price}`, () => {
-                    // console.log(get_car.car_id);
+                    console.log(get_car.car_id);
                     io_socket.to(get_car.car_id).emit('upd_exhibit', parse_obj.price);
                 })
             });
@@ -112,7 +112,7 @@ io_socket.on('connection', (stream) => {
     });
 
     stream.on('detail_join', request_message => {
-        // console.log(request_message);
+        console.log(request_message);
         stream.join(request_message);
     });
 
