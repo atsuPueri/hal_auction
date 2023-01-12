@@ -1,3 +1,4 @@
+
 /**
  * 引数のDateが第何週かを返す
  * @param {Date} date 
@@ -46,4 +47,17 @@ function numberToDate(start_hours, base_minutes, number, year, math, day) {
     const m = all_m % 60;
     
     return new Date(`${year}/${math}/${day} ${h}:${m}`);
+}
+
+function add_param_user_id(){
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
+    const user_id = params.get('user_id');
+
+    if (user_id !== null) {
+        const a_HTMLColection = document.getElementsByTagName('a');
+        for (const element of a_HTMLColection) {
+            element.href += "?user_id=" + user_id;
+        }
+    }
 }

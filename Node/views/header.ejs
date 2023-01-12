@@ -10,14 +10,21 @@
 </head>
 <body>
     <header>
-        <a href="user_top"><h1>HALオークション</h1></a>
+        <a href="/user_top"><h1>HALオークション</h1></a>
         <nav>
             <ul>
-                <li><a href="inform"><img src="../img/alarm.png" alt="通知" width="42px"></a></li>
-                <li><a href="favorite"><img src="../img/star.png" alt="お気に入り" width="42px"></a></li>
-                <li><a href="login"><img src="../img/user.png" alt="ログイン/登録" width="42px"></a></li>
+                <li><a href="/inform"><img src="../img/alarm.png" alt="通知" width="42px"></a></li>
+                <li><a href="/favorite"><img src="../img/star.png" alt="お気に入り" width="42px"></a></li>
+                <li><a href="/login"><img src="../img/user.png" alt="ログイン/登録" width="42px"></a></li>
             </ul>
         </nav>
     </header>
 </body>
+<script src="../js/functions.js"></script>
+<script>
+    window.addEventListener('load', ()=> {
+        add_param_user_id();
+    });
+</script>
+
 </html>

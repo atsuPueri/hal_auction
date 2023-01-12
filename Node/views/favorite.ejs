@@ -16,76 +16,24 @@
             <h2 id="select_s"><button>閲覧履歴</button></h2>    
         </div>
         <p id="checkbox"><input type="checkbox" name="" value="">オークション予定のみ表示</p>
+        <% if(typeof favoriteData !== 'undefined') { %>    
+        <% for (let column of favoriteData) { %>
         <div class="space_between">
             <div class="item">
-                <p><img src="../img/SELENA.png" alt="車の写真" width="200px"></p>
+                <p><img src="../img/<%= column.car_type_img_name %>" alt="<%= column.car_type_name %>の画像" width="200px"></p>
                 <div class="detail">
-                    <p>車種名</p>
-                    <p>￥〇〇,〇〇〇</p>
-                    <div class="icon">
+                    <p><%= column.car_type_name %></p>
+                    <p>￥<%= column.purchase_price %></p>
+                    <!-- <div class="icon">
                         <p><img src="../img/like.png" alt="ハート" width="20px">4</p>
                         <p><img src="../img/chat.png" alt="チャット" width="20px">5</p>    
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <p class="next">></p>
         </div>
-        <div class="space_between">
-            <div class="item">
-                <p><img src="../img/SELENA.png" alt="車の写真" width="200px"></p>
-                <div class="detail">
-                    <p>車種名</p>
-                    <p>￥〇〇,〇〇〇</p>
-                    <div class="icon">
-                        <p><img src="../img/like.png" alt="ハート" width="20px">8</p>
-                        <p><img src="../img/chat.png" alt="チャット" width="20px">10</p>    
-                    </div>
-                </div>
-            </div>
-            <p class="next">></p>
-        </div>
-        <div class="space_between">
-            <div class="item">
-                <p><img src="../img/hasure.png" alt="車の写真" width="200px"></p>
-                <div class="detail">
-                    <p>車種名</p>
-                    <p>￥〇〇,〇〇〇</p>
-                    <div class="icon">
-                        <p><img src="../img/like.png" alt="ハート" width="20px">8</p>
-                        <p><img src="../img/chat.png" alt="チャット" width="20px">10</p>    
-                    </div>
-                </div>
-            </div>
-            <p class="next">></p>
-        </div>
-        <div class="space_between">
-            <div class="item">
-                <p><img src="../img/hasure.png" alt="車の写真" width="200px"></p>
-                <div class="detail">
-                    <p>車種名</p>
-                    <p>￥〇〇,〇〇〇</p>
-                    <div class="icon">
-                        <p><img src="../img/like.png" alt="ハート" width="20px">8</p>
-                        <p><img src="../img/chat.png" alt="チャット" width="20px">5</p>    
-                    </div>
-                </div>
-            </div>
-            <p class="next">></p>
-        </div>
-        <div class="space_between">
-            <div class="item">
-                <p><img src="../img/hasure.png" alt="車の写真" width="200px"></p>
-                <div class="detail">
-                    <p>車種名</p>
-                    <p>￥〇〇,〇〇〇</p>
-                    <div class="icon">
-                        <p><img src="../img/like.png" alt="ハート" width="20px">8</p>
-                        <p><img src="../img/chat.png" alt="チャット" width="20px">10</p>    
-                    </div>
-                </div>
-            </div>
-            <p class="next">></p>
-        </div>
+        <% } %>
+        <% } %>
     </main>
 </body>
 </html>
