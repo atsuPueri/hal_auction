@@ -5,7 +5,8 @@ h1 {
     width: 100%;
     margin:0 auto;
     border: 1px solid #9c9c9c;
-    padding: 50px;
+    padding-left: 50px;
+    padding-top: 30px;
     box-sizing: border-box;
   }
   article {
@@ -78,7 +79,7 @@ h1 {
 
 }
 .flex .item {
-    width: 22vw;
+    width: 20vw;
 }
 .flex .item label {
     width: 10vw;
