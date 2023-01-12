@@ -125,6 +125,7 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/user_top', (request, response) => {
+        console.log(request.query.user_id);
                 php('/get_maker', get_maker_message => {
                 const makerData = JSON.parse(get_maker_message);
     
@@ -137,7 +138,6 @@ module.exports = function(app, io_socket) {
                     if(request.query.user_id){
                         php('/get_favorite?user_id='+request.query.user_id, favorite_message => {
                             const get_favorite = JSON.parse(favorite_message);
-                            
                             if(get_favorite.data){
                                 response.render('user_top', {
                                     carData : get_car_join.data,
