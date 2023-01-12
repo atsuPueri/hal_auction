@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/destyle.css">
-    <link rel="stylesheet" href="../css/side.css">
-    <link rel="stylesheet" href="../css/grid.css">
-    <link rel="stylesheet" href="../css/exhibit.css">
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <title>車両管理</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/destyle.css">
+	<link rel="stylesheet" href="../css/side.css">
+	<link rel="stylesheet" href="../css/grid.css">
+	<link rel="stylesheet" href="../css/exhibit.css">
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<title>車両管理</title>
 </head>
+
 <body>
-  <div class="top">
-    <header class="header">
-      <h1>HAL中古車販売</h1>
-    </header>
-    <aside class="menu">
-        <ul id="accordion" class="accordion">
-            <li>
-              <div class="link"><i class="fa fa-database"></i>車両管理<i class="fa fa-chevron-down"></i></div>
-              <ul class="submenu">
-                <li><a href="top">車両一覧</a></li>
-                <li><a href="#">車両情報登録</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link"><i class="fa fa-code"></i>会員管理<i class="fa fa-chevron-down"></i></div>
-              <ul class="submenu">
-                <li><a href="user">会員情報一覧</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link"><i class="fa fa-mobile"></i>出品管理<i class="fa fa-chevron-down"></i></div>
-              <ul class="submenu">
-                <li><a href="schedule">スケジュール登録</a></li>
-                <li><a href="#">出品一覧</a></li>
-                <li><a href="exhibit">出品情報登録</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link"><i class="fa fa-globe"></i>オークション管理<i class="fa fa-chevron-down"></i></div>
-              <ul class="submenu">
-                <li><a href="auction">オークション一覧</a></li>
-              </ul>
-            </li>
-          </ul>
-    </aside>
-        <main class="main">
-            <h1>出品情報登録</h1>
-              <form class="form" action="#" method="post">
+	<div class="top">
+		<header class="header">
+			<h1>HAL中古車販売</h1>
+		</header>
+		<aside class="menu">
+			<ul id="accordion" class="accordion">
+				<li>
+					<div class="link"><i class="fa fa-database"></i>車両管理<i class="fa fa-chevron-down"></i></div>
+					<ul class="submenu">
+						<li><a href="top">車両一覧</a></li>
+						<li><a href="#">車両情報登録</a></li>
+					</ul>
+				</li>
+				<li>
+					<div class="link"><i class="fa fa-code"></i>会員管理<i class="fa fa-chevron-down"></i></div>
+					<ul class="submenu">
+						<li><a href="user">会員情報一覧</a></li>
+					</ul>
+				</li>
+				<li>
+					<div class="link"><i class="fa fa-mobile"></i>出品管理<i class="fa fa-chevron-down"></i></div>
+					<ul class="submenu">
+						<li><a href="schedule">スケジュール登録</a></li>
+						<li><a href="#">出品一覧</a></li>
+						<li><a href="exhibit">出品情報登録</a></li>
+					</ul>
+				</li>
+				<li>
+					<div class="link"><i class="fa fa-globe"></i>オークション管理<i class="fa fa-chevron-down"></i></div>
+					<ul class="submenu">
+						<li><a href="auction">オークション一覧</a></li>
+					</ul>
+				</li>
+			</ul>
+		</aside>
+		<main class="main">
+			<h1>出品情報登録</h1>
+			<form class="form" action="/exhibit" method="post">
 
-                <div class="center">
-                <select name="sources" id="sources" class="custom-select sources" placeholder="車両選択">
-                    <option value="1">プリウス</option>
-                    <option value="2">アルファード</option>
-                    <option value="3">セレナ</option>
-                </select>
-                </div>
+				<div class="center">
+					<select name="car_id" id="sources" class="custom-select sources" placeholder="車両選択" required>
+						<option value="">選択してください</option>
+						<% for (column of car_array) { %>}
+							<option value="<%= column.car_id %>">
+								<%= column.car_id %>.<%= column.name %>
+							</option>
+							<% } %>
+					</select>
+				</div>
 
-                  <!-- 最低落札価格 -->
-                  <div class="item">
-                    <label class="label_left" for="price">最低落札価格</label>
-                    <input id="price" type="text" placeholder="最低落札価格を入力" required><br>
-                  </div>
-                
-                  <!-- 初期価格 -->
-                  <div class="item">
-                    <label class="label_left" for="firstprice">初期価格</label>
-                    <input id="firstprice" type="text" placeholder="初期価格を入力" required><br>
-                  </div>
+				<!-- 最低落札価格 -->
+				<div class="item">
+					<label class="label_left" for="price">最低落札価格</label>
+					<input id="price" name="lowest_price" type="number" placeholder="最低落札価格を入力" required><br>
+				</div>
 
-                  <div class="btns">
-                    <input type="submit" value="登録"><br>
-                    <input type="reset" value="リセット">
-                  </div>
-              </form>
-        </main>
-        <footer class="footer">フッター</footer>
-</div>
-      <script src="../js/side.js"></script>
-  </body>
+				<!-- 初期価格 -->
+				<div class="item">
+					<label class="label_left" for="firstprice">初期価格</label>
+					<input id="firstprice" name="first_price" type="number" placeholder="初期価格を入力" required><br>
+				</div>
+
+				<div class="btns">
+					<input type="submit" value="登録"><br>
+					<input type="reset" value="リセット">
+				</div>
+			</form>
+		</main>
+		<footer class="footer">フッター</footer>
+	</div>
+
+	<script src="../js/side.js"></script>
+</body>
+
 </html>

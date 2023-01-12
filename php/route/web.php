@@ -13,26 +13,28 @@ switch ($request_path) {
         $list = db_get($sql);
         return enc($list);
 
-    case "/get_car_join":
+    case "/get_car_join":    
         //車種とメーカーをJOINした車両を取得
         $sql = "SELECT c.*, 
         ct.name AS car_type_name, 
         ct.img_name AS car_type_img_name, 
         m.name AS maker_name, 
-        m.img_name AS maker_img_name, 
-        ex.time_from AS time_from,
-        ex.time_to AS time_to,
-        ex.now_price AS now_price,
-        ex.first_price AS first_price,
-        ex.lowest_price AS lowest_price 
+        m.img_name AS maker_img_name
         FROM car AS c LEFT JOIN car_type AS ct
         ON c.car_type_id = ct.car_type_id 
         LEFT JOIN maker AS m 
-        ON ct.maker_id = m.maker_id 
-        LEFT JOIN exhibit AS ex 
-        ON c.car_id = ex.car_id ";
-        $sql = add_and($sql, "c.car_id",    "=", $_GET["car_id"]  ?? '');
-        $sql = add_and($sql, "ex.time_to", ">=", $_GET["time_to"] ?? '');//時間
+        ON ct.maker_id = m.maker_id ";
+        $sql = add_and($sql, "car_id", "=", $_GET["car_id"] ?? '');
+
+        $list = db_get($sql);
+        return enc($list);
+
+    case "/get_car_right":
+        $sql = "SELECT c.*, e.first_price, e.time_from, e.time_to, ct.name
+        FROM car AS c LEFT JOIN exhibit AS e
+        ON c.car_id = e.car_id
+        JOIN car_type AS ct
+        ON ct.car_type_id = c.car_type_id";
 
         $list = db_get($sql);
         return enc($list);
@@ -47,6 +49,7 @@ switch ($request_path) {
             "mileage" => $_GET['mileage'],
             "is_actual_driving" => $_GET['is_actual_driving'],
             "color" => $_GET['color'],
+            "vehicle_inspection_expiration_date" => $_GET['vehicle_inspection_expiration_date'],
             "automatic_or_mission" => $_GET['automatic_or_mission'],
             "displacement" => $_GET['displacement'],
             "number_of_passengers" => $_GET['number_of_passengers'],
@@ -162,8 +165,8 @@ switch ($request_path) {
             "first_price" => $_GET['first_price'],
             "bid_increase" => $_GET['bid_increase'],
             "now_price" => $_GET['now_price'],
-            "time_from" => $_GET['time_from'],
-            "time_to" => $_GET['time_to']
+            // "time_from" => $_GET['time_from'],
+            // "time_to" => $_GET['time_to']
         ]);
         $sql = "INSERT INTO exhibit ";
         $sql .= into_make($into_make);
@@ -210,7 +213,7 @@ switch ($request_path) {
             "user_id" => $_GET['user_id'],
             "car_id" => $_GET['car_id'],
             "bid_price" => $_GET['bid_price'],
-            // "time" => $_GET['time']
+            "time" => $_GET['time']
         ]);
         $sql = "INSERT INTO bid ";
         $sql .= into_make($into_make);
@@ -239,7 +242,7 @@ switch ($request_path) {
             "address" => $_GET['address'],
             "apartment" => $_GET['apartment'],
             "credit_card_number" => $_GET['credit_card_number'],
-            // "status" => $_GET['status']
+            "status" => $_GET['status']
         ]);
         $sql = "INSERT INTO user ";
     

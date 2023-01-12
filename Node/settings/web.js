@@ -7,23 +7,8 @@ module.exports = function(app, io_socket) {
 
     const php = require('../util/php.js');
 
-    //php呼び出し方
-    // app.get('/test', (request, response) => {
-    //     php('/get_car_type', response_message => {
-    //         const carTypeData = JSON.parse(response_message);
-    //         php('/get_maker', response_message => {
-    //             const makerData = JSON.parse(response_message);
-    //             response.render('carentry', {
-    //                 carData : carTypeData.data,
-    //                 makerData : makerData.data
-    //             });
-    //         });
-    //     });
-    // });
-
     app.get('/', (request, response) => {
         php('/get_car_join', response_message => {
-            // console.log(JSON.parse(response_message).data);
             response.render('top', {
                 carData : JSON.parse(response_message).data
             });
@@ -32,7 +17,6 @@ module.exports = function(app, io_socket) {
 
     app.get('/top', (request, response) => {
         php('/get_car_join', response_message => {
-            // console.log(JSON.parse(response_message).data);
             response.render('top', {
                 carData : JSON.parse(response_message).data
             });
@@ -60,9 +44,6 @@ module.exports = function(app, io_socket) {
                 ornaments_total += Number.parseInt(value);
             }
         }
-
-        // console.log('add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.run+'&color='+request.body.color+'&vehicle_inspection_expiration_date="'+request.body.is_actual_driving+'"&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment="'+ornaments_total+'"');   
-
         
         
         php('/add_car?car_type_id='+request.body.car_type_name+'&purchase_price='+request.body.purchase_price+'&body_type='+request.body.body_type+'&model_year="'+request.body.year_type+'"&mileage='+request.body.mileage+'&is_actual_driving='+request.body.run+'&color='+request.body.color+'&vehicle_inspection_expiration_date='+request.body.is_actual_driving+'&automatic_or_mission='+request.body.auto+'&displacement='+request.body.displacement+'&number_of_passengers='+request.body.ride+'&drive_system='+request.body.drive_system+'&equipment='+ornaments_total, response_message => {
@@ -94,7 +75,35 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/exhibit', (request, response) => {
-        response.render('exhibit');
+        php('/get_car_right', m => {
+            const parse_obj = JSON.parse(m);
+
+            const result_array = [];
+            for (const column of parse_obj.data) {
+                
+                if (column.first_price == null) {
+                    result_array.push(column);
+                }
+            }
+
+            response.render('exhibit', {
+                car_array: result_array
+            });
+        })
+    });
+
+    app.post('/exhibit', (request, response) => {
+        const car_id       = request.body.car_id;
+        const lowest_price = request.body.lowest_price;
+        const first_price  = request.body.first_price;
+        const bid_increase = 0;
+        const now_price    = 0;
+        // const time_from    = 'null'; // phpでnullを与える必要があるっぽい
+        // const time_to      = 'null';
+        php(`/add_exhibit?car_id=${car_id}&lowest_price=${lowest_price}&first_price=${first_price}&bid_increase=${bid_increase}&now_price=${now_price}&time_from`, m => {
+            console.log(m);
+            response.redirect('/exhibit');
+        });
     });
 
     app.get('/auction', (request, response) => {
@@ -151,7 +160,9 @@ module.exports = function(app, io_socket) {
         }
 
         php(`/detail_info?car_id=${car_id}`, get_car_join_message => {
+            console.log(get_car_join_message);
             const parse_obj = JSON.parse(get_car_join_message);
+
             const car_data = parse_obj.data;
 
             let car_info;
@@ -173,10 +184,6 @@ module.exports = function(app, io_socket) {
 
     app.get('/evaluation', (request, response) => {
         response.render('evaluation');
-    });
-
-    app.get('/exhibit', (request, response) => {
-        response.render('exhibit');
     });
 
     app.get('/favorite', (request, response) => {
@@ -247,7 +254,6 @@ module.exports = function(app, io_socket) {
 
     app.get('/test1/:car_id/:user_id', (request, response) => {
         php('/add_favorite_car_type?favorite_car_type_id='+request.params.car_id+'&user_id='+request.params.user_id, response_message => {
-            // console.log(response_message);
             php('/test1?car_id='+request.params.car_id, car_response => {
                 console.log(car_response);
                 if(JSON.parse(response_message).status === true){
