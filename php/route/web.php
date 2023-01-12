@@ -486,6 +486,16 @@ switch ($request_path) {
     
             return enc($list);
 
+        case "/get_car_right":
+            $sql = "SELECT c.*, e.first_price, e.time_from, e.time_to, ct.name
+            FROM car AS c LEFT JOIN exhibit AS e
+            ON c.car_id = e.car_id
+            JOIN car_type AS ct
+            ON ct.car_type_id = c.car_type_id";
+    
+            $list = db_get($sql);
+            return enc($list);
+
     // ---------------------------------その他   
     default:
         return enc([
