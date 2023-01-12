@@ -43,6 +43,12 @@ main {
 }
 #img {
     border: solid 1px;
+    margin-top: 8vh;
+}
+#img img{
+    width: 80%;
+    margin: 0 auto;
+    padding-left: 5vw;
 }
 #detail {
     display: flex;

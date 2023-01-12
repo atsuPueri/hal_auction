@@ -67,6 +67,55 @@ io_socket.on('connection', (stream) => {
         });
     });
 
+    // オークション時間終了時
+    stream.on('end_auction', request_message => {
+        const car_id = request_message;
+        php(`/get_bid?car_id=${car_id}`, response_message => {
+            const get_car = JSON.parse(response_message);
+
+            // php(`/add_notification?`)
+            io_socket.to(get_car.user_id).emit('inform', get_car);
+        });
+    });
+
+    // 入札
+    stream.on('bid', request_message => {
+        const parse_obj = JSON.parse(request_message);
+
+        php(`/get_car_join?car_id=${parse_obj.car_id}`, get_car_join_message => {
+            let get_car = JSON.parse(get_car_join_message);
+
+            if (get_car.data === undefined) {
+                return;
+            }
+            get_car = get_car.data[0];
+
+            const now = new Date();
+            const to  = new Date(get_car.time_to);
+            if (now.getTime() > to.getTime()) {
+                return;
+            } 
+            
+            php(`/add_bid?car_id=${parse_obj.car_id}&bid_price=${parse_obj.price}&user_id=${parse_obj.user_id}`, (res) => {
+                
+                const obj = JSON.parse(res);
+                if (obj.status == false) {
+                    return;
+                }
+                
+                php(`/upd_exhibit?car_id=${parse_obj.car_id}&now_price=${parse_obj.price}`, () => {
+                    // console.log(get_car.car_id);
+                    io_socket.to(get_car.car_id).emit('upd_exhibit', parse_obj.price);
+                })
+            });
+        })
+    });
+
+    stream.on('detail_join', request_message => {
+        // console.log(request_message);
+        stream.join(request_message);
+    });
+
     //車両情報登録
     // stream.on('login_info', request_message => {
     //     let user_info = JSON.parse(request_message);

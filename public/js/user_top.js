@@ -22,6 +22,7 @@
 const json = document.getElementById('carDataJson').dataset.car_data;
 const parse_obj = JSON.parse(json);
 
+console.log(parse_obj);
 let min = Infinity;
 let mincolmn = {};
 // 一番若いcolumnを特定
@@ -32,12 +33,13 @@ for (const column of parse_obj) {
     }
 }
 
-
 const held = document.getElementById('held');
 const heldH2 = held.getElementsByTagName('h2')[0];
 const heldInPHTMLColection = held.getElementsByTagName('p');
 const heldButton = document.getElementById('button');
 heldButton.href = `/auction_detail/${mincolmn.car_id}`;
+
+console.log(mincolmn);
 
 const car_type_name = heldInPHTMLColection[0];
 const now_price     = heldInPHTMLColection[1];
@@ -81,9 +83,9 @@ const url = new URL(window.location.href);
 const params = url.searchParams;
 const user_id = params.get('user_id');
 
-if (typeof user_id !== 'undefined') {
+if (user_id !== null) {
     const a_HTMLColection = document.getElementsByTagName('a');
     for (const element of a_HTMLColection) {
-        element.href += "/" + user_id;
+        element.href += "?user_id=" + user_id;
     }
 }
