@@ -118,7 +118,7 @@ module.exports = function(app, io_socket) {
     app.get('/user_top', (request, response) => {
         // phpが非同期関数の為複数のテーブル情報が欲しいときにネストするしかなくなっている
         php('/get_car_type', get_car_type_message => {
-            console.log(get_car_type_message, "---");
+            // console.log(get_car_type_message, "---");
 
             const carTypeData = JSON.parse(get_car_type_message);
             php('/get_maker', get_maker_message => {
@@ -126,16 +126,12 @@ module.exports = function(app, io_socket) {
 
                 // 現在時刻以降を取得するため
                 const date = new Date();
-                php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => {
-
-                    php('/color?color='+JSON.parse(get_car_join_message).data[0].color, color_message => {
-                        
-                        response.render('user_top', {
-                            carData : carTypeData.data,
-                            makerData : makerData.data,
-                            carData : JSON.parse(get_car_join_message).data,
-                            color : JSON.parse(color_message).data
-                        });
+                php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => { 
+                    console.log(get_car_join_message);
+                    response.render('user_top', {
+                        carData : carTypeData.data,
+                        makerData : makerData.data,
+                        carData : JSON.parse(get_car_join_message).data
                     });
                 });
             });
@@ -164,6 +160,17 @@ module.exports = function(app, io_socket) {
             response.render('auction_detail', {
                 car_info: car_info
             });
+        });
+    });
+
+    app.post('/auction_detail/:car_id', (request, response) => {
+        const car_id = request.params.car_id;
+        var user_id = request.query.user_id;
+
+        php('/add_favorite_car_type?favorite_car_type_id='+car_id+'&user_id='+user_id, response_message => {
+            if(JSON.parse(response_message).status === true){
+                response.redirect('/auction_detail/'+car_id+'?user_id='+user_id);
+            }
         });
     });
 
@@ -245,17 +252,17 @@ module.exports = function(app, io_socket) {
         });
     });
 
-    app.get('/test1/:car_id/:user_id', (request, response) => {
-        php('/add_favorite_car_type?favorite_car_type_id='+request.params.car_id+'&user_id='+request.params.user_id, response_message => {
-            // console.log(response_message);
-            php('/test1?car_id='+request.params.car_id, car_response => {
-                console.log(car_response);
-                if(JSON.parse(response_message).status === true){
-                    response.render('test1', {
-                        carData : JSON.parse(car_response).data
-                    });
-                }
-            });
-        });
-    });
+    // app.get('/test1/:car_id/:user_id', (request, response) => {
+    //     php('/add_favorite_car_type?favorite_car_type_id='+request.params.car_id+'&user_id='+request.params.user_id, response_message => {
+    //         // console.log(response_message);
+    //         php('/test1?car_id='+request.params.car_id, car_response => {
+    //             console.log(car_response);
+    //             if(JSON.parse(response_message).status === true){
+    //                 response.render('test1', {
+    //                     carData : JSON.parse(car_response).data
+    //                 });
+    //             }
+    //         });
+    //     });
+    // });
 }

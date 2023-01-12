@@ -33,7 +33,7 @@ switch ($request_path) {
         ON c.car_id = ex.car_id ";
         $sql = add_and($sql, "c.car_id",    "=", $_GET["car_id"]  ?? '');
         $sql = add_and($sql, "ex.time_to", ">=", $_GET["time_to"] ?? '');//時間
-
+        
         $list = db_get($sql);
         return enc($list);
 
@@ -449,7 +449,7 @@ switch ($request_path) {
 
         return enc($list);
 
-        case "/test1":
+        case "/get_car_join2":
             // 駆動方式とボディタイプを取る
             //車種とメーカーをJOINした車両を取得
             $sql = "SELECT c.*, 
