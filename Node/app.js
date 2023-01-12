@@ -69,7 +69,13 @@ io_socket.on('connection', (stream) => {
 
     // オークション時間終了時
     stream.on('end_auction', request_message => {
+        const car_id = request_message;
+        php(`/get_bid?car_id=${car_id}`, response_message => {
+            const get_car = JSON.parse(response_message);
 
+            // php(`/add_notification?`)
+            io_socket.to(get_car.user_id).emit('inform', get_car);
+        });
     });
 
     // 入札
@@ -98,7 +104,6 @@ io_socket.on('connection', (stream) => {
                 }
                 
                 php(`/upd_exhibit?car_id=${parse_obj.car_id}&now_price=${parse_obj.price}`, () => {
-                    // io_socket.emit('upd_exhibit', parse_obj.price);
                     console.log(get_car.car_id);
                     io_socket.to(get_car.car_id).emit('upd_exhibit', parse_obj.price);
                 })

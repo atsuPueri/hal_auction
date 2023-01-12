@@ -14,6 +14,7 @@ function db_get($param){
         return [ 'data' => [], 'status' => false ];
     }
 
+    $list['data'] = [];
     while($row = mysqli_fetch_assoc($result)){
         $list['data'][] = $row;
     }
