@@ -33,6 +33,7 @@ header ul li {
 }
 /** main **/
 main {
+    width: 100%;
     display: flex;
     justify-content: space-around;
 }
@@ -74,9 +75,7 @@ main {
     font-weight: bold;
 }
 #right {
-    width: 100%;
-    margin-left: 55vw;
-    display: flex;
+    margin-left: 65vw;
 }
 .now {
     display: flex;
@@ -87,8 +86,9 @@ main {
 #right p {
     margin: 3%;
 }
+
 #left_time_txt {
-    width: 10vw;
+    width: 6.5vw;
 }
 #right_time_txt {
     width: 9.4vw;
@@ -99,14 +99,28 @@ main {
 #bid {
     margin-top: 2vh;
 }
-input[type="text"] {
-    width: 60%;
+input[type="number"] {
+    width: 25%;
+    padding: 0.5%;
     border: solid 1px black;
 }
 #bit_button {
     border: solid 1px black;
-    width: 60%;
+    width: 13%;
     padding: 0.5%;
+    text-align: center;
+    background-color: orange;
+}
+#favorite_btn {
+    position: absolute;
+    top: 18vh;
+    left: 2vw;
+    border: solid 1px black;
+    font-size: 15px;
+    font-weight: bold;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     text-align: center;
     background-color: orange;
 }
