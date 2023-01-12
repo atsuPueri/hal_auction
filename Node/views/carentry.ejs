@@ -54,7 +54,6 @@
                 <!-- メーカー名 -->
                 <div class="item">
                   <label class="label_left" for="meka">メーカー名</label>
-                  <!-- <input id="meka" type="text" placeholder="メーカー名を入力" required><br> -->
                 
                   <select name="make" id="make" required>
                     <option value="">以下から選択してください</option>
@@ -68,7 +67,6 @@
                 <!-- 車種名 -->
                   <div class="item">
                     <label class="label_left" for="name">車種名</label>
-                    <!-- <input id="name" type="text" placeholder="車種名を入力" required><br> -->
                     
                     <select name="car_type_name" id="name">
                       <option value="">以下から選択してください</option>
@@ -143,9 +141,6 @@
                       <select name="ride" id="ride" required>
                           <option value="">以下から選択してください</option>
                           <!-- 乗車人数繰り返し処理　htmlファイルのため消してます-->
-                          {# <?php for($number = 1; $number <= 12 ;$number ++){ ?>
-                              <option value="<?= $year?>" selected><?= $year?></option>
-                          <?php } ?> #}
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -167,12 +162,6 @@
                       <input id="drive" type="number" min="0" max="4" placeholder="駆動方式を入力" required name="drive_system"><br>
                   </div> 
 
-                  <!-- 削除おけ？ -->
-                  <!-- 装備品
-                  <div class="item">
-                      <label class="label_left" for="equipment">装備品</label>
-                      <input id="equipment" type="text" placeholder="装備品を入力" required><br>
-                  </div> -->
                   
                   <div class="item">
                       <label class="label_left" for="img">車種写真<br><img src="../img/hasure.png"></label>
@@ -331,7 +320,6 @@
                       <input type="checkbox" name="ornaments" class="ornaments" value="1">
                     </div>
                   </div>
-
               
                   <!--   名前 -->
                   <div class="btns">

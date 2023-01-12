@@ -10,6 +10,11 @@ h1 {
   margin: 0 0 5vh 5vh;
   font-size: 24px;
 }
+button {
+  position: relative;
+  left: 70vw;
+  margin-bottom: 3vh;
+}
 
 #days {
   background-color: rgb(179, 179, 179);
@@ -21,9 +26,13 @@ h1 {
 #days .day {
   background-color: rgb(179, 179, 179);
   text-align: center;
-  width: 19%;
+  width: 13.5%;
 }
-
+.menu {
+  position: fixed;
+  height: 100%;
+  /* padding: 15px 40px 15px 42px; */
+}
 #container {
   background-color: rgb(179, 179, 179);
   width: 80%;
@@ -47,6 +56,18 @@ h1 {
   width: 20%;
   position: relative;
 }
+
+/* 大きさを増やすために追加 */
+#registerd {
+  height: 100%;
+}
+
+#registered .row {
+  margin: 0 5px;
+  background-color: white;
+  height: 58vh;
+}
+
 #container .row .draggable {
   background-color: skyblue;
   display: block;
@@ -55,6 +76,17 @@ h1 {
   border-radius: 5px;
   cursor: move;
 }
+
+/* 登録済みの要素 */
+#registered .row .draggable {
+  background-color: skyblue;
+  display: block;
+  position: absolute;
+  width: 90%;
+  border-radius: 5px;
+  cursor: move;
+}
+
 #container .row .draggable .size {
   position: absolute;
   bottom: 0px;
@@ -63,6 +95,22 @@ h1 {
   height: 5px;
   cursor: ns-resize;
 }/*# sourceMappingURL=style.css.map */
+
 .time {
-  margin: 4.5vh 0 2vh 0;
+  /* margin: 4.5vh 0 2vh 0; */
+}
+
+.content2 {
+  position: fixed;
+  left: 0.5vw;
+  top: 50vh;
+  background-color: rgba(136, 132, 120);
+  height: 58vh;
+  width: 11vw;
+  z-index: 0;
+}
+
+input,
+label {
+    margin: .4rem 0;
 }

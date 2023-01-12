@@ -125,7 +125,7 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/user_top', (request, response) => {
-                    php('/get_maker', get_maker_message => {
+            php('/get_maker', get_maker_message => {
                 const makerData = JSON.parse(get_maker_message);
     
                 // 現在時刻以降を取得するため
@@ -142,6 +142,7 @@ module.exports = function(app, io_socket) {
                     response.render('user_top', {
                         carData : get_car_join.data,
                         makerData : makerData.data,
+
                     });
                 });
             });

@@ -19,6 +19,7 @@ http_socket.listen(9000);
 
 // クライアントからサーバーにコネクションしたとき
 io_socket.on('connection', (stream) => {
+
     const php = require('./util/php.js');
 
     // 車両削除
@@ -111,43 +112,23 @@ io_socket.on('connection', (stream) => {
         })
     });
 
+    // オークション詳細のJOIN
     stream.on('detail_join', request_message => {
-        console.log(request_message);
         stream.join(request_message);
     });
 
-    //車両情報登録
-    // stream.on('login_info', request_message => {
-    //     let user_info = JSON.parse(request_message);
-    
-    //     php(`/login_user?user_id=${user_info.login_id}&pass=${user_info.pass}`, response_message => {
-    //         const status = JSON.parse(response_message).status;
-    //         if(status === true){
-                
-    //         }
-    //     });
-    // });
 
-
-    // ユーザー側
-    // stream.on('login', request_message => {
-    //     let user_info = JSON.parse(request_message);
-
-    //     //todo:test
-    //     // console.log(`/add_user?login_id=${user_info.login}&hash_password=${user_info.pass}&user_name=${user_info.name}&phone_number=${user_info.tel}&post_code=${user_info.postal}&address=${user_info.address}&apartment=${user_info.apartment}&credit_card_number=${user_info.login}&status=${user_info.login}`);
-    //     // '/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login;
-    //     php('/add_user?login_id='+user_info.login+'&hash_password="'+user_info.pass+'"&user_name="'+user_info.name+'"&phone_number="'+user_info.tel+'"&post_code="'+user_info.postal+'"&address="'+user_info.address+'"&apartment="'+user_info.apartment+'"&status='+user_info.login, response_message => {
-    //         // console.log(response_message);
+    // スケジュール登録時
+    stream.on('regist', m => {
+        const car_info_array = JSON.parse(m);
+        console.log(car_info_array);
+        for (const car_info of car_info_array) {
             
-    //         response_message = JSON.parse(response_message);
-    //         //todo:test
-    //         //response_message = true;
+            php(`/upd_exhibit?car_id=${car_info.id}&time_from='${car_info.from}'&time_to='${car_info.to}'`, m => {
+                console.log(m);
+            });
+        }
+    });
 
-    //         if(response_message.status === true){
-    //             //user_topに戻す
-    //             console.log("成功");
-    //         }
-    //     });
-    // });
 });
 
