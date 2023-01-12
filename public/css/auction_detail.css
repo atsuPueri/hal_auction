@@ -99,8 +99,9 @@ main {
 #bid {
     margin-top: 2vh;
 }
-input[type="text"] {
-    width: 23%;
+input[type="number"] {
+    width: 25%;
+    padding: 0.5%;
     border: solid 1px black;
 }
 #bit_button {
@@ -110,6 +111,16 @@ input[type="text"] {
     text-align: center;
     background-color: orange;
 }
-#button  {
-    width: 13%;
+#favorite_btn {
+    position: absolute;
+    top: 18vh;
+    left: 2vw;
+    border: solid 1px black;
+    font-size: 15px;
+    font-weight: bold;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: orange;
 }
