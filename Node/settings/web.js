@@ -257,6 +257,7 @@ module.exports = function(app, io_socket) {
         const user_id = request.query.user_id;
         if (user_id == undefined) {
             response.redirect('/login');
+            return;
         };
         
         php(`/get_notification?user_id=${user_id}`, m => {
