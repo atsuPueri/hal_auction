@@ -70,6 +70,7 @@ h2 {
 }
 .vehicle img{
     width: 100%;
+    object-fit: cover;
 }
 .detail {
     color: brown;
