@@ -292,8 +292,7 @@ function createDraggable(id, top, height, name) {
 
     draggable.style.top = (top * base_height) + 'px';
     draggable.style.height = (height * base_height) + 'px';
-    draggable.textContent = name;
-    console.log(draggable, name);
+    draggable.textContent = id + "." + name;
 
     const size = document.createElement('div');
     size.classList.add('size');

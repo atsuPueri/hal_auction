@@ -71,7 +71,23 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/schedule', (request, response) => {
-        response.render('schedule');
+        php('/get_exhibit', m => {
+            const exhibit_obj = JSON.parse(m).data;
+            console.log(exhibit_obj);
+    
+            const response_array = [];
+            for (const value of exhibit_obj) {
+                response_array.push({
+                    id:            value.car_id,
+                    time_from:     value.time_from,
+                    time_to:       value.time_to,
+                    car_type_name: value.name,
+                });
+            }
+            response.render('schedule', {
+                car_info_array: JSON.stringify(response_array)
+            });
+        });
     });
 
     app.get('/exhibit', (request, response) => {
@@ -157,6 +173,7 @@ module.exports = function(app, io_socket) {
         }
 
         php(`/detail_info?car_id=${car_id}`, get_car_join_message => {
+            console.log(get_car_join_message);
             const parse_obj = JSON.parse(get_car_join_message);
             const car_data = parse_obj.data;
 

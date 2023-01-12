@@ -162,8 +162,8 @@ switch ($request_path) {
             "first_price" => $_GET['first_price'],
             "bid_increase" => $_GET['bid_increase'],
             "now_price" => $_GET['now_price'],
-            "time_from" => $_GET['time_from'],
-            "time_to" => $_GET['time_to']
+            // "time_from" => $_GET['time_from'],
+            // "time_to" => $_GET['time_to']
         ]);
         $sql = "INSERT INTO exhibit ";
         $sql .= into_make($into_make);
