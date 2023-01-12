@@ -125,30 +125,27 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/user_top', (request, response) => {
-        // phpが非同期関数の為複数のテーブル情報が欲しいときにネストするしかなくなっている
-        php('/get_car_type', get_car_type_message => {
-            console.log(get_car_type_message, "---");
-
-            const carTypeData = JSON.parse(get_car_type_message);
+    
             php('/get_maker', get_maker_message => {
                 const makerData = JSON.parse(get_maker_message);
-
+    
                 // 現在時刻以降を取得するため
                 const date = new Date();
                 php(`/get_car_join?time_to='${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}'`, get_car_join_message => {
-
-                    php('/color?color='+JSON.parse(get_car_join_message).data[0].color, color_message => {
-                        
-                        response.render('user_top', {
-                            carData : carTypeData.data,
-                            makerData : makerData.data,
-                            carData : JSON.parse(get_car_join_message).data,
-                            color : JSON.parse(color_message).data
-                        });
+                    
+                    const get_car_join = JSON.parse(get_car_join_message);
+    
+                    console.log({
+                        carData : get_car_join,
+                        makerData : makerData.data,
+                    });
+    
+                    response.render('user_top', {
+                        carData : get_car_join.data,
+                        makerData : makerData.data,
                     });
                 });
             });
-        });
     });
 
     app.get('/auction_detail/:car_id', (request, response) => {
