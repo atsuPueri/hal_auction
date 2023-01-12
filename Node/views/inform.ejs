@@ -12,57 +12,20 @@
     <%- include('header') %>
     <main>
         <h2>新着情報</h2>
-        <ul>
-            <li class="list">
-                <a href="#a">
-                    <time>2022/12/01</time>
-                    <p>入札が完了しました。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="#a">
-                    <time>2022/12/01</time>
-                    <p>オークションが終了しました。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="#a">
-                    <time>2022/12/01</time>
-                    <p>入札金額が上回られました。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="">
-                    <time>2022/12/01</time>
-                    <p>オークション終了まで残り5分です。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="">
-                    <time>2022/12/01</time>
-                    <p>まもなくオークションが開催されます。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="">
-                    <time>2022/11/28</time>
-                    <p>新しくセダンがオークションに登場しました。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="">
-                    <time>2022/11/20</time>
-                    <p>〇〇さんやその他30名がいいねを押しました。</p>
-                    <span>NEW!</span>
-                </a>
-            </li>
+        <ul id="all_info">
+            <% for (column of table) { %>
+                <% const date = new Date(column.time); %>
+                <li class="list">
+                    <a href="#a">
+                        <time><%= date.getFullYear() %>/<%= date.getMonth() + 1 %>/<%= date.getDate() %> <%= date.getHours() %>:<%= date.getMinutes() %></time>
+                        <p>入札が完了しました。</p>
+                    </a>
+                </li>
+            <% } %>
           </ul>
     </main>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/inform.js"></script>
 </body>
 </html>

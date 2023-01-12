@@ -71,12 +71,60 @@ io_socket.on('connection', (stream) => {
     // オークション時間終了時
     stream.on('end_auction', request_message => {
         const car_id = request_message;
+        console.log('オークション終了', car_id);
         php(`/get_bid?car_id=${car_id}`, response_message => {
             const get_car = JSON.parse(response_message);
 
-            // php(`/add_notification?`)
-            io_socket.to(get_car.user_id).emit('inform', get_car);
+            console.log(get_car);
+
+            const table = get_car.data;
+            if (table == undefined) {
+                return;
+            }
+            if (table.length == 0) {
+                return;
+            }
+
+            let max = -Infinity;
+            let max_column;
+            for (const column of table) {
+                if (max < column.bid_price) {
+                    max = column.bid_price;
+                    max_column = column;
+                }
+            }
+
+            const now = new Date();
+
+            const car_id            = max_column.car_id;
+            const user_id           = max_column.user_id;
+            const notification_type = 0;
+            const date              = `'${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}'`;
+
+            php(`/get_notification?user_id=${user_id}`, get_m => {
+
+                const parse_obj = JSON.parse(get_m);
+                const table = parse_obj.data;
+
+                if (table != undefined) {
+                    for (const column of table) {
+                        if (column.car_id == max_column.car_id) {
+                            return;
+                        }
+                    }
+                }
+
+                php(`/add_notification?user_id=${user_id}&notification_type=${notification_type}&car_id=${car_id}&time=${date}`, m => {
+    
+                    io_socket.to('user_' + max_column.user_id).emit('inform', max_column);
+                });
+            });
         });
+    });
+    
+    // ユーザーのJOIN
+    stream.on('user_join', user_id => {
+        stream.join('user_' + user_id);
     });
 
     // 入札
@@ -111,6 +159,7 @@ io_socket.on('connection', (stream) => {
             });
         })
     });
+
 
     // オークション詳細のJOIN
     stream.on('detail_join', request_message => {

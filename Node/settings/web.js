@@ -214,7 +214,24 @@ module.exports = function(app, io_socket) {
     });
 
     app.get('/inform', (request, response) => {
-        response.render('inform');
+        
+        const user_id = request.query.user_id;
+        if (user_id == undefined) {
+            response.redirect('/login');
+        };
+        
+        php(`/get_notification?user_id=${user_id}`, m => {
+
+            const parse_obj = JSON.parse(m);
+            let table = parse_obj.data;
+            if (table == undefined) {
+                table = [];
+            }
+
+            response.render('inform', {
+                table: table
+            });
+        })
     });
 
     app.post('/login_check', (request, response) => {

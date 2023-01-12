@@ -10,6 +10,9 @@ const left_time = document.getElementById('left_time');
 const from_txt = document.getElementById('from').dataset.from;
 const to_txt   = document.getElementById('to').dataset.to;
 
+const bit_button = document.getElementById('bit_button');
+const end_auction_span = document.getElementById('end_auction_span');
+
 const from = new Date(from_txt);
 const to   = new Date(to_txt);
 
@@ -19,9 +22,11 @@ const interval_fnc = () => {
     let baseDate;
     const is_start = nowDate.getTime() > from.getTime();
     if (is_start) {
+        bit_button.disabled = false;
         baseDate = to;
         left_time_txt.textContent = "残り時間";
     } else {
+        // bit_button.disabled = true;
         baseDate = from;
         left_time_txt.textContent = "開始まで";
     }
@@ -34,11 +39,11 @@ const interval_fnc = () => {
     const s = Math.floor(difference / (1000)) % 60; // 0.xxx ~ -0.xxx の区間を潰すためfloor
 
     if (s < 0 || m < 0 || h < 0 || d < 0) {
-        console.log(123);
-        socketio.emit('end_auction', {
-
-        });
+        end_auction_span.style.display = 'block';
+        socketio.emit('end_auction', car_id);
         return;
+    } else {
+        end_auction_span.style.display = 'none';
     }
     
     left_time.textContent = `${d}日 ${h}時 ${m}分 ${s}秒`;
@@ -47,7 +52,7 @@ const interval_fnc = () => {
 interval_fnc();
 setInterval(interval_fnc, 1000);
 
-document.getElementById('bit_button').addEventListener('click', () => {
+bit_button.addEventListener('click', () => {
     const bit_text = document.getElementById('bit_text');
     const price = bit_text.value;
     
