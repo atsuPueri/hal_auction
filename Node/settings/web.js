@@ -134,15 +134,29 @@ module.exports = function(app, io_socket) {
                     
                     const get_car_join = JSON.parse(get_car_join_message);
     
-                    console.log({
-                        carData : get_car_join,
-                        makerData : makerData.data,
-                    });
-    
-                    response.render('user_top', {
-                        carData : get_car_join.data,
-                        makerData : makerData.data,
-                    });
+                    if(request.query.user_id){
+                        php('/get_favorite?user_id='+request.query.user_id, favorite_message => {
+                            const get_favorite = JSON.parse(favorite_message);
+                            
+                            if(get_favorite.data){
+                                response.render('user_top', {
+                                    carData : get_car_join.data,
+                                    makerData : makerData.data,
+                                    favoriteData : get_favorite.data
+                                });
+                            } else {
+                                response.render('user_top', {
+                                    carData : get_car_join.data,
+                                    makerData : makerData.data,
+                                });
+                            }
+                        });
+                    } else {
+                        response.render('user_top', {
+                            carData : get_car_join.data,
+                            makerData : makerData.data,
+                        });
+                    }
                 });
             });
     });

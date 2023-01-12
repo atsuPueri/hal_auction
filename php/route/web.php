@@ -495,6 +495,15 @@ switch ($request_path) {
     
             $list = db_get($sql);
             return enc($list);
+        
+        case "/get_favorite":
+            $sql = "SELECT c.*, f.favorite_car_type_id, f.user_id 
+            FROM car AS c LEFT JOIN favorite_car_type AS f
+            ON c.car_id = f.favorite_car_type_id";
+            $sql = add_and($sql, "f.user_id",    "=", $_GET["user_id"]  ?? '');
+                        
+            $list = db_get($sql);
+            return enc($list);
 
     // ---------------------------------その他   
     default:
