@@ -500,6 +500,26 @@ switch ($request_path) {
             $sql = "SELECT c.*, f.favorite_car_type_id, f.user_id 
             FROM car AS c LEFT JOIN favorite_car_type AS f
             ON c.car_id = f.favorite_car_type_id";
+
+            $sql = "SELECT c.*, 
+            f.*, 
+            ct.name AS car_type_name, 
+            ct.img_name AS car_type_img_name, 
+            m.name AS maker_name, 
+            m.img_name AS maker_img_name, 
+            ex.time_from AS time_from,
+            ex.time_to AS time_to,
+            ex.now_price AS now_price,
+            ex.first_price AS first_price,
+            ex.lowest_price AS lowest_price 
+            FROM car AS c LEFT JOIN car_type AS ct
+            ON c.car_type_id = ct.car_type_id 
+            LEFT JOIN maker AS m 
+            ON ct.maker_id = m.maker_id 
+            LEFT JOIN exhibit AS ex 
+            ON c.car_id = ex.car_id 
+            LEFT JOIN favorite_car_type AS f
+            ON c.car_id = f.favorite_car_type_id";
             $sql = add_and($sql, "f.user_id",    "=", $_GET["user_id"]  ?? '');
                         
             $list = db_get($sql);
