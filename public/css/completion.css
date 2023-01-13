@@ -1,0 +1,51 @@
+#contents {
+    display: flex;
+    justify-content: space-around;
+    margin: 1vw;
+}
+#img {
+    border: solid 1px;
+    margin-top: 8vh;
+}
+#img img{
+    width: 80%;
+    margin: 0 auto;
+    padding-left: 5vw;
+}
+#detail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20vh 5vw 0 10vw;
+}
+#detail p {
+    padding: 1vh;
+}
+#detail h2 {
+    font-size: 2vw;
+    position: absolute;
+    top: 20%;
+}
+#detail h2 span{
+    margin-left: 1vw;
+    /* display: none; */
+    font-size: 1.5vw;
+    color: red;
+}
+#detail p span {
+    font-weight: bold;
+}
+    
+.soldout{
+    width: 53vw;
+    padding:5px;
+    text-align: center;
+    font-weight:bold;
+    font-size:3vw;
+    color:#fff;
+    background:#c00;
+    position:absolute;
+    top: 30vh;
+    left: 1vw;
+}
+    
