@@ -397,8 +397,16 @@ switch ($request_path) {
         $sql = "SELECT * FROM user ";
         $sql = add_and($sql, "login_id", "=", $_GET["login_id"] ?? '');
         $list = db_get($sql);
+    
+        $pass = md5($_GET['pass']);
+
+        if (!isset($list["data"])) {
+            return enc([
+                "data" => "",
+                "status" => false
+            ]);
+        }
         
-        $pass = md5('"'.$_GET['pass'].'"');
         if($list["data"][0]["hash_password"] == $pass){
             return enc([
                 "data" => $list["data"][0]["user_id"],

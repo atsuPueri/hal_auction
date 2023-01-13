@@ -113,7 +113,7 @@ module.exports = function(app, io_socket) {
         const lowest_price = request.body.lowest_price;
         const first_price  = request.body.first_price;
         const bid_increase = 0;
-        const now_price    = 0;
+        const now_price    = request.body.first_price;
         // const time_from    = 'null'; // phpでnullを与える必要があるっぽい
         // const time_to      = 'null';
         php(`/add_exhibit?car_id=${car_id}&lowest_price=${lowest_price}&first_price=${first_price}&bid_increase=${bid_increase}&now_price=${now_price}&time_from`, m => {
@@ -295,8 +295,15 @@ module.exports = function(app, io_socket) {
 
     app.post('/login_user', (request, response) => {
         php('/login_user?login_id="'+request.body.login_id+'"&pass='+request.body.pass, response_message => {
-            response_message = JSON.parse(response_message);
-            response.redirect('/user_top?user_id='+response_message.data);
+
+            console.log("response_message:", response_message);
+            const parse_obj = JSON.parse(response_message);
+            if (parse_obj.status === false) {
+                response.redirect('/login');
+                return;
+            }
+
+            response.redirect('/user_top?user_id='+parse_obj.data);
         });
     });
 
