@@ -197,7 +197,7 @@ module.exports = function(app, io_socket) {
                 response.redirect('../error');
             }
 
-            var equipment = "";
+            let equipment = "";
             const equipment_list = ["スペアタイヤ", "新車時保証書", "取扱説明書", "試乗、現車確認可能", "限定車", "ペット同乗なし", "禁煙車", "ローダウン", "福祉車両", "寒冷地帯仕様車", "トラクションコントロール", "横滑り防止装置", "純正アルミホイール", "純正エアロパーツ", "本革シート", "サンルーフ", "電動スライドドア", "バックカメラ", "ナビゲーション", "テレビ", "DVDビデオ", "MD", "CD", "スマートキー", "キーレスエントリー", "ETC", "エアバック", "ABS", "集中ドアロック", "パワーウィンドウ", "パワステ", "エアコン"];
             var array_split = Array.from(car_data[0].equipment);
             for(i=0;i<array_split.length;i++){

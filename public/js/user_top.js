@@ -28,7 +28,9 @@ let mincolmn = {};
 // 一番若いcolumnを特定
 for (const column of parse_obj) {
     const from = new Date(column.time_from);
+    console.log(from.getTime());
     if (from.getTime() < min) {
+        min = from.getTime();
         mincolmn = column;
     }
 }
