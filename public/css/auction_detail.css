@@ -42,7 +42,9 @@ main {
     justify-content: space-around;
     margin: 1vw;
 }
+.img
 #img {
+    width: 40vw;
     border: solid 1px;
     margin-top: 8vh;
 }

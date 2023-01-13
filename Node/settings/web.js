@@ -273,7 +273,6 @@ module.exports = function(app, io_socket) {
             });
         })
     });
-
     app.post('/login_check', (request, response) => {
         response.render('login_check',{
             user_info:request.body
@@ -360,5 +359,9 @@ module.exports = function(app, io_socket) {
     app.get('/error', (request, response) => {
         response.render('error');
     });
-
+    
+    app.get('/completion', (request, response) => {
+        response.render('completion');
+    });
 }
+
