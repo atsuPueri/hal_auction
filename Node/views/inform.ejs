@@ -16,7 +16,7 @@
             <% for (column of table) { %>
                 <% const date = new Date(column.time); %>
                 <li class="list">
-                    <a href="#a">
+                    <a href="/completion">
                         <time><%= date.getFullYear() %>/<%= date.getMonth() + 1 %>/<%= date.getDate() %> <%= date.getHours() %>:<%= date.getMinutes() %></time>
                         <p>入札が完了しました。</p>
                     </a>

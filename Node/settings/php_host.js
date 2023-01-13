@@ -1,3 +1,3 @@
 module.exports = {
-    host: "http://localhost:80/hal_auction/php"
+    host: "http://localhost:80/github/hal_auction/php"
 };
